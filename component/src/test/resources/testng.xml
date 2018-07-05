@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Siddhi-Execution-	test-Test-Suite">
+    <test name="Siddhi-execution-	test-tests" enabled="true" preserve-order="true" parallel="false">
+        <classes>
+            <class name="org.wso2.extension.siddhi.execution.json.JsonTokenizerStreamProcessorFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetBoolJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetDoubleJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetFloatJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetIntJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetLongJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetObjectJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.GetStringJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.ToJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.ToStringFunctionTestCase"/>
+        </classes>
+    </test>
+</suite>
