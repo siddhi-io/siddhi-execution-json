@@ -15,6 +15,8 @@
             <class name="org.wso2.extension.siddhi.execution.json.GetStringJSONFunctionTestCase"/>
             <class name="org.wso2.extension.siddhi.execution.json.ToJSONFunctionTestCase"/>
             <class name="org.wso2.extension.siddhi.execution.json.ToStringFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.InsertToJSONFunctionTestCase"/>
+            <class name="org.wso2.extension.siddhi.execution.json.JsonTokenizerAsObjectStreamProcessorFunctionTestCase"/>
         </classes>
     </test>
 </suite>
