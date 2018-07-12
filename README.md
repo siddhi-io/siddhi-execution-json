@@ -1,7 +1,15 @@
 Siddhi Execution Extension - Json
 ======================================
 
-The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides the capability to tokenize json elements based on paths, get json element as String, Object, Int, Double, Float,Long and Bool based on the given paths.
+The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides a rich set of capabilities to retrieve data from JSONs and inserting/modifying elements in JSONs using Siddhi streams. Please find the high-level overview of the available functions.
+
+* tokenize() and tokenizeAsObject – These methods will tokenize the given JSON with a specified path. If the specified path provides JSON array, it will generate events for each and every elements in JSON array by adding these elements as a additional attribute ‘jsonElement’.
+
+* getBool, getInt, getFloat, getDouble, getLong, getString, getObject – These methods can be used to retrieved data from a JSON based on a given path in desired format. Users can select a method according to their preference and get the response in desired format by passing the JSON and path.
+
+* toString and toObject – These methods can be used to convert given JSON into an object or string type.
+
+* setElement – This method is used to insert/modify the JSONs by providing the path and the new value. Users can insert new JSON elements, modify existing JSON elements and add JSON elements into existing JSON arrays using this function.
 
 Find some useful links below:
 
