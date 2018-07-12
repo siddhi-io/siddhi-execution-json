@@ -12,4 +12,6 @@ extra:
 pages:
 - Welcome to WSO2 Siddhi Execution Json: index.md
 - License: license.md
+- API Docs:
+  - latest: api/latest.md
 theme: material
