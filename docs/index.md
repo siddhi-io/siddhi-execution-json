@@ -1,8 +1,7 @@
 Siddhi Execution Extension - Json
 ======================================
 
-The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides the capability to tokenize json elements based on paths, get json element as String, Object, Int, Double,
- Float,Long and Bool based on the given paths.
+The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides the capability to tokenize json elements based on paths, get json element as String, Object, Int, Double, Float,Long and Bool based on the given paths.
 
 Find some useful links below:
 
