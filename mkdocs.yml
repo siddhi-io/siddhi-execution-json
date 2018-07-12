@@ -1,4 +1,4 @@
-site_name: Siddhi-Execution-	test
+site_name: Siddhi-Execution-Json
 extra_css:
 - stylesheets/extra.css
 extra_javascript:
@@ -10,7 +10,6 @@ extra:
     primary: teal
     accent: teal
 pages:
-- Welcome to WSO2 Siddhi Execution 	test: index.md
-- API Docs:
-- License: about/license.md
+- Welcome to WSO2 Siddhi Execution Json: index.md
+- License: license.md
 theme: material
