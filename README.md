@@ -1,15 +1,7 @@
-Siddhi Execution Extension - Json
+Siddhi Execution Json Extension
 ======================================
 
-The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides a rich set of capabilities to retrieve data from JSONs and inserting/modifying elements in JSONs using Siddhi streams. Please find the high-level overview of the available functions.
-
-* tokenize() and tokenizeAsObject – These methods will tokenize the given JSON with a specified path. If the specified path provides JSON array, it will generate events for each and every elements in JSON array by adding these elements as a additional attribute ‘jsonElement’.
-
-* getBool, getInt, getFloat, getDouble, getLong, getString, getObject – These methods can be used to retrieved data from a JSON based on a given path in desired format. Users can select a method according to their preference and get the response in desired format by passing the JSON and path.
-
-* toString and toObject – These methods can be used to convert given JSON into an object or string type.
-
-* setElement – This method is used to insert/modify the JSONs by providing the path and the new value. Users can insert new JSON elements, modify existing JSON elements and add JSON elements into existing JSON arrays using this function.
+The **siddhi-execution-json extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that provides a rich set of capabilities to retrieve data from JSONs and inserting/modifying elements in JSONs using Siddhi streams.
 
 Find some useful links below:
 
@@ -19,6 +11,7 @@ Find some useful links below:
 
 ## Latest API Docs 
 
+Latest API Docs is <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT">1.0.3-SNAPSHOT</a>.
 
 ## How to use 
 
@@ -51,7 +44,22 @@ directory.
 
 ---
 
+
 ## Features
+
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getbool-function">getBool</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the Boolean value of Json element corresponding to the given path. If there is no valid Boolean value at the given path, the method will return 'false'</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getdouble-function">getDouble</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the double value of Json element corresponding to the given path. If there is no valid Double value at the given path, the method will return 'null'</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getfloat-function">getFloat</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the Float value of the Json element corresponding to the given path. If there is no valid Float value at the given path, the method will return 'null'</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getint-function">getInt</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the Integer value of Json element corresponding to the given path. If there is no valid Integer value at the given path, the method will return 'null'</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getlong-function">getLong</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the Long value of the Json element corresponding to the given path. Ifthere is no valid Long value at the given path, the method will return 'null'</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getobject-function">getObject</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the object of Json element corresponding to the given path.</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#getstring-function">getString</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the string value of Json element corresponding to the given path.</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#isexists-function">isExists</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method allows to check whether there is any json element in the given path or not. If there is a valid json element in the given path, it will return true. If there is no valid json element, it will return false</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#setelement-function">setElement</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method allows to insert elements to the given json based on the specified path. If there is no valid path given, it will return the original json. Otherwise it will return the new json</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#toobject-function">toObject</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the json object related to given json string.</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#tostring-function">toString</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a>*<br><div style="padding-left: 1em;"><p>This method will return the json string related to given json object.</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#tokenize-stream-processor">tokenize</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a>*<br><div style="padding-left: 1em;"><p>This will tokenize the given json according the path provided</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.3-SNAPSHOT/#tokenizeasobject-stream-processor">tokenizeAsObject</a> *<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a>*<br><div style="padding-left: 1em;"><p>This will tokenize the given json according the path provided and return the response as object</p></div>
 
 ## How to Contribute
  
