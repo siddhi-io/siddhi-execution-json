@@ -183,7 +183,7 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
                     + "required 2, but found " + attributeExpressionExecutors.length);
         }
         List<Attribute> attributes = new ArrayList<>();
-        attributes.add(new Attribute("jsonElement", Attribute.Type.STRING));
+        attributes.add(new Attribute("jsonElement", Attribute.Type.OBJECT));
         return attributes;
     }
 
