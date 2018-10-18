@@ -50,22 +50,22 @@ import java.util.Map;
 @Extension(
         name = "tokenizeAsObject",
         namespace = "json",
-        description = "This will tokenize the given json according the path provided and return the response as object",
+        description = "This tokenizes the given json based on the path provided and returns the response as an object.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The input json which should be tokenized using the given path.",
+                        description = "The input json that should be tokenized using the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to tokenize the given json",
+                        description = "The path that is used to tokenize the given json",
                         type = {DataType.STRING}),
                 @Parameter(
                         name = "fail.on.missing.attribute",
-                        description = "This can either have value true or false. By default it will be true. If the " +
-                                "specified path does not provide any json, it will return null. In this scenario " +
-                                "users can drop or keep the event with 'null' value using this attribute. If this " +
-                                "parameter is 'true', it will generate events with the 'null' value",
+                        description = "If this parameter is set to 'true' and a json is not provided in the given" +
+                                " path, the event is dropped. If the parameter is set to 'false', the " +
+                                "unavailability of a json in the specified path results in the event being created" +
+                                " with a 'null' value for the json element.",
                         type = {DataType.BOOL},
                         optional = true,
                         defaultValue = "true")
@@ -73,7 +73,7 @@ import java.util.Map;
         returnAttributes = {
                 @ReturnAttribute(
                         name = "jsonElement",
-                        description = "The json element retrieved based on the given path and the json",
+                        description = "The json element retrieved based on the given path and the json.",
                         type = {DataType.OBJECT})},
         examples = @Example(
                 syntax = "define stream InputStream (json string,path string);\n" +
@@ -81,14 +81,16 @@ import java.util.Map;
                         "from InputStream#json:tokenizeAsObject(json, path)\n" +
                         "select jsonElement\n" +
                         "insert into OutputStream;",
-                description = "This query performs tokenization for the given json using the path specified. If the " +
-                        "specified path provides json array, it will generate events for each elements in specified " +
-                        "json array by adding additional attribute as the 'jsonElement' into the stream\n`" +
-                        "Eg:-\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n path -" +
-                        " \"$.enrolledSubjects\"\n`\nIt we use configuration like above example, it will generate " +
+                description = "This query performs a tokenization for the given json using the path specified. If " +
+                        "the specified path provides a json array, it generates events for each element in the " +
+                        "specified json array by adding an additional attribute as the 'jsonElement' into the " +
+                        "stream\n`" +
+                        "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
+                        "path -" +
+                        " \"$.enrolledSubjects\"\n`\nIf we use the configuration in the above example, it generates " +
                         "two events with the attributes \"Mathematics\", \"Physics\".\nIf the specified path provides" +
-                        " a single json element, it will add the specified json element as a additional attribute " +
-                        "named 'jsonElement' into the stream \n`\n Eg:-\n jsonInput - {name:\"John\",age:25}, \n " +
+                        " a single json element, it adds the specified json element as an additional attribute " +
+                        "named 'jsonElement' into the stream \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
                         "path - \"$.age\"\n`\n")
 )
 public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcessor {
