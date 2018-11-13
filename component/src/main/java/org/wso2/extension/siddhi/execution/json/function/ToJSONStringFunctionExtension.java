@@ -19,6 +19,7 @@
 package org.wso2.extension.siddhi.execution.json.function;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.log4j.Logger;
 import org.wso2.siddhi.annotation.Example;
 import org.wso2.siddhi.annotation.Extension;
@@ -60,7 +61,7 @@ import java.util.Map;
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
