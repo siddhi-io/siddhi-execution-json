@@ -19,6 +19,7 @@
 package org.wso2.extension.siddhi.execution.json.function;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.apache.log4j.Logger;
@@ -66,7 +67,7 @@ import java.util.Map;
 )
 public class GetStringJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetStringJSONFunctionExtension.class);
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate

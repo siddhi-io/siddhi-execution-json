@@ -19,6 +19,7 @@
 package org.wso2.extension.siddhi.execution.json;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.apache.log4j.Logger;
@@ -95,7 +96,7 @@ import java.util.Map;
 )
 public class JsonTokenizerStreamProcessorFunction extends StreamProcessor {
     private static final Logger log = Logger.getLogger(JsonTokenizerStreamProcessorFunction.class);
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
     private boolean failOnMissingAttribute = true;
 
     @Override
