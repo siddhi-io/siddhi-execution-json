@@ -44,26 +44,28 @@ import java.util.Map;
 @Extension(
         name = "getString",
         namespace = "json",
-        description = "This method will return the string value of Json element corresponding to the given path.",
+        description = "This returns the string value of the JSON element present in the given path.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the value from given json",
+                        description = "The path of the JSON input from which the 'getString' function fetches " +
+                                " the string value.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the string value of input json against the given path",
+                description = "Returns the string value of the input JSON from the input stream.",
                 type = {DataType.STRING}),
         examples = @Example(
-                description = "This will return the corresponding string value to the given path",
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getString(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the string value of the JSON input in the given path. The results are " +
+                        "directed to the 'OutputStream' stream.")
 )
 public class GetStringJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetStringJSONFunctionExtension.class);
