@@ -43,18 +43,18 @@ import java.util.Map;
 @Extension(
         name = "getBool",
         namespace = "JSON",
-        description = "This method returns a boolean value, either 'true' or 'false', based on the value" +
+        description = "This method returns a 'boolean' value, either 'true' or 'false', based on the value" +
                 "specified against the JSON element present in the given path." +
-                "In case there is no valid boolean value found in the given path, the method still returns 'false'",
+                "In case there is no valid boolean value found in the given path, the method still returns 'false'.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the boolean value in the given path",
+                        description = "The JSON input that holds the boolean value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
                         description = "The path of the input JSON from which the 'getBool' function fetches the" +
-                                "boolean value",
+                                "boolean value.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
@@ -65,7 +65,7 @@ import java.util.Map;
                         "from IpStream\n" +
                         "select json:getBool(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
-                description = "This returns the corresponding boolean value for the given path. The results are " +
+                description = "This returns the boolean value of the given path. The results are " +
                         "directed to the OutputStream stream."
 )
 )
