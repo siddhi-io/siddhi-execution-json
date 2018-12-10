@@ -66,7 +66,7 @@ import java.util.Map;
                         "select json:getFloat(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the float value of the JSON input in the given path. The results are" +
-                "directed to the OutputStream stream.")
+                "directed to the 'OutputStream' stream.")
 )
 public class GetFloatJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetFloatJSONFunctionExtension.class);

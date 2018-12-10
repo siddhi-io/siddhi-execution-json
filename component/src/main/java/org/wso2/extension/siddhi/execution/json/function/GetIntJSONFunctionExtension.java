@@ -43,23 +43,25 @@ import java.util.Map;
 @Extension(
         name = "getInt",
         namespace = "json",
-        description = "This method will return the Integer value of Json element corresponding to the given path. If " +
-                "there is no valid Integer value at the given path, the method will return 'null'",
+        description = "This method returns the integer value of the JSON element present in the given path. If " +
+                "there is no valid integer value in the given path, the method returns 'null'.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the value from given json",
+                        description = "The path of the input JSON from which the 'getInt' function fetches the" +
+                                "integer value.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns integer value of input json against the given path",
+                description = "Returns the integer value of the input JSON from the input stream.",
                 type = {DataType.INT}),
         examples = @Example(
-                description = "This will return the corresponding integer value based on the given path",
+                description = "This returns the integer value of the JSON input in the given path. The results" +
+                        "are directed to the 'OutputStream' stream.",
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getInt(json,\"$.name\") as name\n" +

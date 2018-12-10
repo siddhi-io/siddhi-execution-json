@@ -65,7 +65,7 @@ import java.util.Map;
                         "select json:getDouble(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the double value of the given path. The results are" +
-                             "directed to the OutputStream stream.")
+                             "directed to the 'OutputStream' stream.")
 )
 public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetDoubleJSONFunctionExtension.class);
