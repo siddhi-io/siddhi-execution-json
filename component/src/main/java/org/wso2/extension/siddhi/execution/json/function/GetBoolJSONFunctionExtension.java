@@ -65,7 +65,7 @@ import java.util.Map;
                         "from IpStream\n" +
                         "select json:getBool(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
-                description = "This returns the boolean value of the given path. The results are " +
+                description = "This returns the boolean value of the JSON input in the given path. The results are " +
                         "directed to the OutputStream stream."
 )
 )
