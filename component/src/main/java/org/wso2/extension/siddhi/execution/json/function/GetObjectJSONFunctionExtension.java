@@ -43,26 +43,28 @@ import java.util.Map;
 @Extension(
         name = "getObject",
         namespace = "json",
-        description = "This method will return the object of Json element corresponding to the given path.",
+        description = "This returns the object of the JSON element present in the given path.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the object from given json",
+                        description = "The path of the input JSON from which the 'getObject' function fetches the" +
+                                "object.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the object of input json against the given path",
+                description = "Returns the object of the input JSON from the input stream.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-                description = "This will return the corresponding object to the given path",
-                syntax = "define stream InputStream(json string);\n" +
+                                syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getObject(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+        description = "This returns the object of the JSON input in the given path. The results are " +
+                "directed to the 'OutputStream' stream.")
 )
 public class GetObjectJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetObjectJSONFunctionExtension.class);
