@@ -60,12 +60,13 @@ import java.util.Map;
                 description = "Returns the integer value of the input JSON from the input stream.",
                 type = {DataType.INT}),
         examples = @Example(
-                description = "This returns the integer value of the JSON input in the given path. The results" +
-                        "are directed to the 'OutputStream' stream.",
+
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getInt(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the integer value of the JSON input in the given path. The results" +
+                "are directed to the 'OutputStream' stream.")
 )
 public class GetIntJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetIntJSONFunctionExtension.class);
