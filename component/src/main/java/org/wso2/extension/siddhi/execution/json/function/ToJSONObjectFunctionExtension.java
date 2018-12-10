@@ -42,22 +42,25 @@ import java.util.Map;
 @Extension(
         name = "toObject",
         namespace = "json",
-        description = "This method will return the json object related to given json string.",
+        description = "This method returns the JSON object related to a given JSON string.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "A valid json string which is used to generate the returned json object",
+                        description = "A valid JSON string from which the function generates " +
+                                "the JSON object.",
                         type = {DataType.STRING}),
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the json object generated using the given json string",
+                description = "Returns the JSON object generated using the given JSON string.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-                description = "This will return the json object related to given json string",
+
                 syntax = "define stream InputStream(json string);\n" +
                         "from InputStream\n" +
                         "select json:toJson(json) as jsonObject\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the JSON object corresponding to the given JSON string.The results are" +
+                        "directed to the 'OutputStream' stream.")
 )
 public class ToJSONObjectFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONObjectFunctionExtension.class);
