@@ -88,7 +88,7 @@ import java.util.Map;
                         "array by adding an additional attributes as the 'jsonElement' to the stream.\n`" +
                         "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
                         "path -" +
-                        " \"$.enrolledSubjects\"\n`\nIf we use the configuration in this example, it generates " +
+                        " \"$.enrolledSubjects\"\n`\n If we use the configuration in this example, it generates " +
                         "two events with the attributes \"Mathematics\", \"Physics\".\nIf the specified path provides" +
                         " a single json element, it adds the specified json element as an additional attribute " +
                         "named 'jsonElement' into the stream. \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
