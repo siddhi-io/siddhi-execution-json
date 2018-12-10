@@ -42,28 +42,32 @@ import java.util.Map;
  */
 @Extension(
         name = "getBool",
-        namespace = "json",
-        description = "This method will return the Boolean value of Json element corresponding to the given path. If " +
-                "there is no valid Boolean value at the given path, the method will return 'false'",
+        namespace = "JSON",
+        description = "This method returns a boolean value, either 'true' or 'false', based on the value" +
+                "specified against the JSON element present in the given path." +
+                "In case there is no valid boolean value found in the given path, the method still returns 'false'",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the boolean value in the given path",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the value from given json",
+                        description = "The path of the input JSON from which the 'getBool' function fetches the" +
+                                "boolean value",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the Boolean value of input json against the given path",
+                description = "Returns the boolean value of the input JSON from the input stream.",
                 type = {DataType.BOOL}),
         examples = @Example(
-                description = "This will return the corresponding Boolean value to the given path",
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getBool(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the corresponding boolean value for the given path. The results are " +
+                        "directed to the OutputStream stream."
+)
 )
 public class GetBoolJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetBoolJSONFunctionExtension.class);
@@ -81,7 +85,7 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
                         SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length == 2) {
             if (attributeExpressionExecutors[0] == null) {
-                throw new SiddhiAppValidationException("Invalid input given to first argument 'json' of " +
+                throw new SiddhiAppValidationException("Invalid input given to the first argument 'json' of " +
                         "json:getBool() function. Input for 'json' argument cannot be null");
             }
             Attribute.Type firstAttributeType = attributeExpressionExecutors[0].getReturnType();
@@ -124,7 +128,8 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.error("Cannot find the json element for the path '" + path + "'. Hence it returns" +
+                    "the default value 'null'");
         }
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
@@ -141,8 +146,8 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         returnValue = Boolean.parseBoolean(filteredJsonElement.toString());
         if (returnValue == false && !filteredJsonElement.toString().equalsIgnoreCase("false")) {
             returnValue = null;
-            log.error("The value that is retrieved using the given path '" + path + "', is not a valid Boolean value." +
-                    " Hence returning the default value 'null'");
+            log.error("The value that is retrieved using the given path '" + path + "', is not a valid boolean value." +
+                    " Hence it returns the default value 'null'");
         }
         return returnValue;
     }
