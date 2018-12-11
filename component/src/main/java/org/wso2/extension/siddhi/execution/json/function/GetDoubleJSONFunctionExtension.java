@@ -43,27 +43,29 @@ import java.util.Map;
 @Extension(
         name = "getDouble",
         namespace = "json",
-        description = "This method will return the double value of Json element corresponding to the given path. If " +
-                "there is no valid Double value at the given path, the method will return 'null'",
+        description = "This method returns the double value of the JSON element present in the given path. If " +
+                "there is no valid double value in the given path, the method returns 'null'.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the value from given json",
+                        description = "The path of the input JSON from which the 'getDouble' function fetches the" +
+                                "double value.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the double value of input json against the given path",
+                description = "Returns the double value of the input JSON from the input stream.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "This will return the corresponding double value to the given path",
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getDouble(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the double value of the given path. The results are" +
+                             "directed to the 'OutputStream' stream.")
 )
 public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetDoubleJSONFunctionExtension.class);
@@ -124,13 +126,15 @@ public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.error("Cannot find json element for the path '" + path + "'. Hence it returns the default value, " +
+                    "'null'");
         }
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
                 filteredJsonElement = null;
-                log.error("Multiple matches or No matches for the given path '" + path + "' in input json. Please use" +
-                        " valid path which provide exact one match in the given json");
+                log.error("Multiple matches or no matches for the given path '" + path + "' in the input json. " +
+                        "Please use" +
+                        "valid path which provides the exact match for the given json");
             } else {
                 filteredJsonElement = ((List) filteredJsonElement).get(0);
             }
@@ -143,7 +147,7 @@ public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
         } catch (NumberFormatException e) {
             returnValue = null;
             log.error("The value that is retrieved using the given path '" + path + "', is not a valid double value. " +
-                    "Hence returning the default value 'null'");
+                    "Hence it returns the default value, 'null'");
         }
         return returnValue;
     }

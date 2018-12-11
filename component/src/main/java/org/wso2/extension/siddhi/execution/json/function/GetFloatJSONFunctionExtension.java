@@ -43,28 +43,30 @@ import java.util.Map;
 @Extension(
         name = "getFloat",
         namespace = "json",
-        description = "This method will return the Float value of the Json element corresponding to the given path. " +
-                "If " +
-                "there is no valid Float value at the given path, the method will return 'null'",
+        description = "This method returns the float value of the JSON element present in the given path." +
+                "If there is no valid float value in the given path, the method returns 'null'.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used get the value against the given path",
+                        description = "The JSON input that holds the value in the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to get the value from given json",
+                        description = "The path of the input JSON from which the 'getFloat' function fetches the" +
+                                "value.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns Float value of input json against the given path",
+                description = "Returns the float value of the input JSON from the input stream.",
                 type = {DataType.FLOAT}),
         examples = @Example(
-                description = "This will return the corresponding Float value based on the given path",
+
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:getFloat(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the float value of the JSON input in the given path. The results are" +
+                "directed to the 'OutputStream' stream.")
 )
 public class GetFloatJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetFloatJSONFunctionExtension.class);

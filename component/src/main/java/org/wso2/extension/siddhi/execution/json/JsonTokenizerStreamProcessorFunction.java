@@ -85,13 +85,13 @@ import java.util.Map;
                         "insert into OutputStream;",
                 description = "This query performs a tokenization for the given json using the path specified. If " +
                         "the specified path provides a json array, it generates events for each element in that " +
-                        "array by adding an additional attributes as the 'jsonElement' to the stream\n`" +
+                        "array by adding an additional attributes as the 'jsonElement' to the stream.\n`" +
                         "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
                         "path -" +
-                        " \"$.enrolledSubjects\"\n`\nIf we use the configuration in this example, it generates " +
+                        " \"$.enrolledSubjects\"\n`\n If we use the configuration in this example, it generates " +
                         "two events with the attributes \"Mathematics\", \"Physics\".\nIf the specified path provides" +
                         " a single json element, it adds the specified json element as an additional attribute " +
-                        "named 'jsonElement' into the stream \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
+                        "named 'jsonElement' into the stream. \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
                         "path - \"$.age\"\n`\n")
 )
 public class JsonTokenizerStreamProcessorFunction extends StreamProcessor {

@@ -42,29 +42,33 @@ import java.util.Map;
 @Extension(
         name = "isExists",
         namespace = "json",
-        description = "This method allows to check whether there is any json element in the given path or not. If " +
-                "there is a valid json element in the given path, it will return true. If there is no valid json " +
-                "element, it will return false",
+        description = "This method checks whether there is a JSON element present in the given path or not." +
+                "If there is a valid JSON element in the given path, it returns 'true'. If there is no valid JSON " +
+                "element, it returns 'false'",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used to search the element with the given path",
+                        description = "The JSON input in a given path, on which the function performs the search for" +
+                                "JSON elements.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to search in the given input json",
+                        description = "The path that contains the input JSON on which the function " +
+                                "performs the search.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "If there is a valid json element in the given path, it will return true. If there is " +
-                        "no valid json element, it will return false",
+                description = "If there is a valid JSON element in the given path, it returns 'true'. If there is " +
+                        "no valid JSON element, it returns 'false'.",
                 type = {DataType.BOOL}),
         examples = @Example(
-                description = "This will return the true/false based existence of the given path",
+
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:isExists(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns either true or false based on the existence of a JSON element in a " +
+                        "given path. The results are directed to the 'OutputStream' stream.")
 )
 public class IsExistsFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(IsExistsFunctionExtension.class);

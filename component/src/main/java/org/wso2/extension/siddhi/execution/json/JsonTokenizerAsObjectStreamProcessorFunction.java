@@ -50,21 +50,21 @@ import java.util.Map;
 @Extension(
         name = "tokenizeAsObject",
         namespace = "json",
-        description = "This tokenizes the given json based on the path provided and returns the response as an object.",
+        description = "This tokenizes the given JSON based on the path provided and returns the response as an object.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The input json that should be tokenized using the given path.",
+                        description = "The input json that is tokenized using the given path.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path that is used to tokenize the given json",
+                        description = "The path of the input JSON that the function tokenizes.",
                         type = {DataType.STRING}),
                 @Parameter(
                         name = "fail.on.missing.attribute",
-                        description = "If this parameter is set to 'true' and a json is not provided in the given" +
+                        description = "If this parameter is set to 'true' and a JSON is not provided in the given" +
                                 " path, the event is dropped. If the parameter is set to 'false', the " +
-                                "unavailability of a json in the specified path results in the event being created" +
+                                "unavailability of a JSON in the specified path results in the event being created" +
                                 " with a 'null' value for the json element.",
                         type = {DataType.BOOL},
                         optional = true,
@@ -73,7 +73,7 @@ import java.util.Map;
         returnAttributes = {
                 @ReturnAttribute(
                         name = "jsonElement",
-                        description = "The json element retrieved based on the given path and the json.",
+                        description = "The JSON element retrieved based on the given path and the JSON.",
                         type = {DataType.OBJECT})},
         examples = @Example(
                 syntax = "define stream InputStream (json string,path string);\n" +
@@ -81,14 +81,14 @@ import java.util.Map;
                         "from InputStream#json:tokenizeAsObject(json, path)\n" +
                         "select jsonElement\n" +
                         "insert into OutputStream;",
-                description = "This query performs a tokenization for the given json using the path specified. If " +
-                        "the specified path provides a json array, it generates events for each element in the " +
+                description = "This query performs a tokenization for the given JSON using the path specified. If " +
+                        "the specified path provides a JSON array, it generates events for each element in the " +
                         "specified json array by adding an additional attribute as the 'jsonElement' into the " +
-                        "stream\n`" +
+                        "stream.\n`" +
                         "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
                         "path -" +
                         " \"$.enrolledSubjects\"\n`\nIf we use the configuration in the above example, it generates " +
-                        "two events with the attributes \"Mathematics\", \"Physics\".\nIf the specified path provides" +
+                        "two events with the attributes \"Mathematics\" and \"Physics\".\nIf the specified path provides" +
                         " a single json element, it adds the specified json element as an additional attribute " +
                         "named 'jsonElement' into the stream \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
                         "path - \"$.age\"\n`\n")

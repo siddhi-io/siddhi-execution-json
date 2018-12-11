@@ -47,36 +47,39 @@ import java.util.Map;
 @Extension(
         name = "setElement",
         namespace = "json",
-        description = "This method allows to insert elements to the given json based on the specified path. If there " +
-                "is no valid path given, it will return the original json. Otherwise it will return the new json",
+        description = "This method allows to insert elements into a given JSON present in a specific path. If there " +
+                "is no valid path given, it returns the original JSON. Otherwise, it returns the new JSON.",
+
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The json input which is used to insert the given value",
+                        description = "The JSON input into which is this function inserts the new value.",
                         type = {DataType.STRING, DataType.OBJECT}),
                 @Parameter(
                         name = "path",
-                        description = "The path which is used to insert the given element to the input json",
+                        description = "The path on the JSON input which is used to insert the given element.",
                         type = {DataType.STRING}),
                 @Parameter(
                         name = "jsonelement",
-                        description = "The json element which is inserted into the given input json",
+                        description = "The JSON element which is inserted by the function into the input JSON.",
                         type = {DataType.STRING, DataType.BOOL, DataType.DOUBLE, DataType.FLOAT, DataType.INT,
                                 DataType.LONG, DataType.OBJECT}),
                 @Parameter(
                         name = "key",
-                        description = "The key which is used to insert the given element to the input json",
+                        description = "The key which is used to insert the given element into the input JSON.",
                         type = {DataType.STRING})
         },
         returnAttributes = @ReturnAttribute(
-                description = "returns the json object with inserted elements",
+                description = "Returns the JSON object with the inserted elements.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-                description = "This will return the corresponding json object based on the given path and json element",
                 syntax = "define stream InputStream(json string);\n" +
                         "from IpStream\n" +
                         "select json:setElement(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;")
+                        "insert into OutputStream;",
+                description = "This returns the JSON object present in the given path with the newly inserted JSON" +
+                        "element. The results are directed to the 'OutputStream' stream.")
+
 )
 public class InsertToJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(InsertToJSONFunctionExtension.class);
