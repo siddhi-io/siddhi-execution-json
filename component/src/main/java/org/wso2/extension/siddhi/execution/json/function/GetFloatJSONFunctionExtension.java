@@ -62,7 +62,7 @@ import java.util.Map;
         examples = @Example(
 
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:getFloat(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the float value of the JSON input in the given path. The results are" +

@@ -64,7 +64,7 @@ import java.util.Map;
         examples = @Example(
 
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:isExists(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns either true or false based on the existence of a JSON element in a " +

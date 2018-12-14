@@ -55,7 +55,7 @@ import java.util.Map;
         examples = @Example(
 
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:toString(json) as jsonString\n" +
                         "insert into OutputStream;",
                 description = "This returns the JSON string corresponding to a given JSON object. The results are " +
