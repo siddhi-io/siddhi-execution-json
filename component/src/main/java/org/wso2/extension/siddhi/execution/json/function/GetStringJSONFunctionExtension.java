@@ -61,7 +61,7 @@ import java.util.Map;
                 type = {DataType.STRING}),
         examples = @Example(
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:getString(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the string value of the JSON input in the given path. The results are " +

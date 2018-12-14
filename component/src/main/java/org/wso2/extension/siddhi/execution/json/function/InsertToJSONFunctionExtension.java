@@ -74,7 +74,7 @@ import java.util.Map;
                 type = {DataType.OBJECT}),
         examples = @Example(
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:setElement(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the JSON object present in the given path with the newly inserted JSON" +

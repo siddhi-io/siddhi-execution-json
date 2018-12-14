@@ -61,7 +61,7 @@ import java.util.Map;
                 type = {DataType.LONG}),
         examples = @Example(
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:getLong(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the long value of the JSON input in the given path. The results are" +

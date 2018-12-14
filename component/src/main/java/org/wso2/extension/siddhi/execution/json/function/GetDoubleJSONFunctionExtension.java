@@ -61,7 +61,7 @@ import java.util.Map;
                 type = {DataType.DOUBLE}),
         examples = @Example(
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:getDouble(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the double value of the given path. The results are" +

@@ -62,7 +62,7 @@ import java.util.Map;
                 type = {DataType.BOOL}),
         examples = @Example(
                 syntax = "define stream InputStream(json string);\n" +
-                        "from IpStream\n" +
+                        "from InputStream\n" +
                         "select json:getBool(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the boolean value of the JSON input in the given path. The results are " +
