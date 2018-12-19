@@ -42,7 +42,7 @@ import java.util.Map;
  */
 @Extension(
         name = "getBool",
-        namespace = "JSON",
+        namespace = "json",
         description = "This method returns a 'boolean' value, either 'true' or 'false', based on the value" +
                 "specified against the JSON element present in the given path." +
                 "In case there is no valid boolean value found in the given path, the method still returns 'false'.",

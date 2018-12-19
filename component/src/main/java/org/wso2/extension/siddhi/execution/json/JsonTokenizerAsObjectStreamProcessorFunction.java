@@ -88,10 +88,10 @@ import java.util.Map;
                         "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
                         "path -" +
                         " \"$.enrolledSubjects\"\n`\nIf we use the configuration in the above example, it generates " +
-                        "two events with the attributes \"Mathematics\" and \"Physics\".\nIf the specified path provides" +
-                        " a single json element, it adds the specified json element as an additional attribute " +
-                        "named 'jsonElement' into the stream \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
-                        "path - \"$.age\"\n`\n")
+                        "two events with the attributes \"Mathematics\" and \"Physics\".\nIf the specified path " +
+                        "provides a single json element, it adds the specified json element as an additional " +
+                        "attribute named 'jsonElement' into the stream \n`\n e.g.,\n jsonInput - " +
+                        "{name:\"John\",age:25}, \n path - \"$.age\"\n`\n")
 )
 public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcessor {
     private static final Logger log = Logger.getLogger(JsonTokenizerAsObjectStreamProcessorFunction.class);
