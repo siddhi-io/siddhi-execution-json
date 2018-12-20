@@ -18,6 +18,9 @@
 
 package org.wso2.extension.siddhi.execution.json.function;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.apache.log4j.Logger;
@@ -27,6 +30,7 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -68,6 +72,7 @@ import java.util.Map;
 )
 public class GetObjectJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetObjectJSONFunctionExtension.class);
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
@@ -118,20 +123,23 @@ public class GetObjectJSONFunctionExtension extends FunctionExecutor {
      */
     @Override
     protected Object execute(Object[] data) {
-        String jsonInput = data[0].toString();
+        String jsonInput;
+        if (data[0] instanceof String) {
+            jsonInput = (String) data[0];
+        } else {
+            jsonInput = gson.toJson(data[0]);
+        }
         String path = data[1].toString();
         Object returnValue = null;
         try {
             returnValue = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
             log.warn("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+        } catch (InvalidJsonException e) {
+            throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
         if (returnValue instanceof List) {
-            if (((List) returnValue).size() != 1) {
-                returnValue = null;
-                log.warn("Multiple matches or No matches for the given path '" + path + "' in input json. Please use " +
-                        "valid path which provide exact one match in the given json");
-            } else {
+            if (((List) returnValue).size() == 1) {
                 returnValue = ((List) returnValue).get(0);
             }
         }

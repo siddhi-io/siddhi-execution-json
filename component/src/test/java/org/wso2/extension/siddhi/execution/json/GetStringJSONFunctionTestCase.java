@@ -18,6 +18,9 @@
 
 package org.wso2.extension.siddhi.execution.json;
 
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
@@ -87,6 +90,56 @@ public class GetStringJSONFunctionTestCase {
         inputHandler.send(new Object[]{JSON_INPUT, "$.name"});
         inputHandler.send(new Object[]{JSON_INPUT, "$.bar"});
         inputHandler.send(new Object[]{JSON_INPUT, "$.married"});
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testGetStringFromJSON2() throws InterruptedException, ParseException {
+        log.info("GetStringJSONFunctionTestCase - testGetStringFromJSON");
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(json object,path string);\n";
+        String query = ("@info(name = 'query1')\n" +
+                "from InputStream\n" +
+                "select json:getString(json,path) as married\n" +
+                "insert into OutputStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals("25", event.getData(0));
+                            break;
+                        case 2:
+                            AssertJUnit.assertEquals("false", event.getData(0));
+                            break;
+                        case 3:
+                            AssertJUnit.assertEquals("John", event.getData(0));
+                            break;
+                        case 4:
+                            AssertJUnit.assertEquals("[{\"barName\":\"barName\"},{\"barName\":\"barName2\"}]", event
+                                    .getData(0));
+                            break;
+                        case 5:
+                            AssertJUnit.assertEquals(null, event.getData(0));
+                            break;
+                    }
+                }
+            }
+        });
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{jsonObject, "$.age"});
+        inputHandler.send(new Object[]{jsonObject, "$.citizen"});
+        inputHandler.send(new Object[]{jsonObject, "$.name"});
+        inputHandler.send(new Object[]{jsonObject, "$.bar"});
+        inputHandler.send(new Object[]{jsonObject, "$.married"});
         siddhiAppRuntime.shutdown();
     }
 }

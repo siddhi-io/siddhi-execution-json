@@ -18,6 +18,7 @@
 
 package org.wso2.extension.siddhi.execution.json;
 
+import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.apache.log4j.Logger;
@@ -31,6 +32,7 @@ import org.wso2.siddhi.core.event.ComplexEventChunk;
 import org.wso2.siddhi.core.event.stream.StreamEvent;
 import org.wso2.siddhi.core.event.stream.StreamEventCloner;
 import org.wso2.siddhi.core.event.stream.populater.ComplexEventPopulater;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ConstantExpressionExecutor;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.query.processor.Processor;
@@ -114,6 +116,8 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
             } catch (PathNotFoundException e) {
                 filteredJsonElements = null;
                 log.warn("Cannot find json element for the path '" + path + "' in the input json : " + jsonInput);
+            } catch (InvalidJsonException e) {
+                throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
             }
             if (filteredJsonElements instanceof List) {
                 List filteredJsonElementsList = (List) filteredJsonElements;
