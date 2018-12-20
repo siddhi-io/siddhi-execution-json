@@ -225,6 +225,62 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
         AssertJUnit.assertEquals(0, count.get());
         siddhiAppRuntime.shutdown();
     }
+
+    @Test
+    public void testJsonTokenizerWithStringInputWithGetString() throws InterruptedException, ParseException {
+        log.info("JsonTokenizerAsObjectStreamProcessorFunctionTestCase - testJsonTokenizerWithStringInput");
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(json string,path string);\n";
+        String query = ("@info(name = 'query1')\n" +
+                "from InputStream#json:tokenizeAsObject(json, path)\n" +
+                "select json:getString(jsonElement,'$') as t\n" +
+                "insert into OutputStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        JSONParser jsonParser = new JSONParser();
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals("John", event.getData(0));
+                            break;
+                        case 2:
+                            AssertJUnit.assertEquals("Peter", event.getData(0));
+                            break;
+                        case 3:
+                            AssertJUnit.assertEquals("{\"fooName\":\"fooName\"}", event.getData(0));
+                            break;
+                        case 4:
+                            AssertJUnit.assertEquals("{\"barName\":\"barName\"}", event.getData(0));
+                            break;
+                        case 5:
+                            AssertJUnit.assertEquals("{\"barName\":\"barName2\"}", event.getData(0));
+                            break;
+                        case 6:
+                            AssertJUnit.assertEquals("[{\"barName\":\"barName\"},{\"barName\":\"barName2\"}]",
+                                    event.getData(0));
+                            break;
+                        case 7:
+                            AssertJUnit.assertEquals("[{\"barName\":\"barName3\"},{\"barName\":\"barName4\"}]",
+                                    event.getData(0));
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{JSON_INPUT, "$.emp[0].name"});
+        inputHandler.send(new Object[]{JSON_INPUT, "$.emp[1].name"});
+        inputHandler.send(new Object[]{JSON_INPUT, "$.emp[0].foo"});
+        inputHandler.send(new Object[]{JSON_INPUT, "$.emp[0].bar"});
+        inputHandler.send(new Object[]{JSON_INPUT, "$..bar"});
+        siddhiAppRuntime.shutdown();
+    }
 }
 
 

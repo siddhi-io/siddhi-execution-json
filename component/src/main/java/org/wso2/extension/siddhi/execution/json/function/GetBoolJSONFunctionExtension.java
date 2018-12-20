@@ -18,6 +18,9 @@
 
 package org.wso2.extension.siddhi.execution.json.function;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.apache.log4j.Logger;
@@ -27,6 +30,7 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -67,10 +71,11 @@ import java.util.Map;
                         "insert into OutputStream;",
                 description = "This returns the boolean value of the JSON input in the given path. The results are " +
                         "directed to the 'OutputStream' stream."
-)
+        )
 )
 public class GetBoolJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetBoolJSONFunctionExtension.class);
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
@@ -121,7 +126,12 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
      */
     @Override
     protected Object execute(Object[] data) {
-        String jsonInput = data[0].toString();
+        String jsonInput;
+        if (data[0] instanceof String) {
+            jsonInput = (String) data[0];
+        } else {
+            jsonInput = gson.toJson(data[0]);
+        }
         String path = data[1].toString();
         Object filteredJsonElement = null;
         Boolean returnValue;
@@ -130,6 +140,8 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         } catch (PathNotFoundException e) {
             log.error("Cannot find the json element for the path '" + path + "'. Hence it returns" +
                     "the default value 'null'");
+        } catch (InvalidJsonException e) {
+            throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
