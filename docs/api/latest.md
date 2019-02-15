@@ -1,4 +1,4 @@
-# API Docs - v1.0.11
+# API Docs - v1.1.0-SNAPSHOT
 
 ## Json
 
