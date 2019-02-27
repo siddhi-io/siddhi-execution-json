@@ -13,7 +13,7 @@
         <meta name="description" content="Siddhi Execution JSON Extension">
       
       
-        <link rel="canonical" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.7/">
+        <link rel="canonical" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.1.0/">
       
       
         <meta name="author" content="WSO2">
@@ -42,7 +42,7 @@
     
     
       
-        <title>1.0.7 - Siddhi Execution JSON</title>
+        <title>1.1.0 - Siddhi Execution JSON</title>
       
     
     
@@ -106,7 +106,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#api-docs-v107" tabindex="1" class="md-skip">
+      <a href="#api-docs-v110" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -132,7 +132,7 @@
                 Siddhi Execution JSON
               </span>
               <span class="md-header-nav__topic">
-                1.0.7
+                1.1.0
               </span>
             
           
@@ -280,66 +280,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../1.1.0/" title="1.1.0" class="md-nav__link">
-      1.1.0
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../1.0.11/" title="1.0.11" class="md-nav__link">
-      1.0.11
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../1.0.10/" title="1.0.10" class="md-nav__link">
-      1.0.10
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../1.0.9/" title="1.0.9" class="md-nav__link">
-      1.0.9
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../1.0.8/" title="1.0.8" class="md-nav__link">
-      1.0.8
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -351,11 +291,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        1.0.7
+        1.1.0
       </label>
     
-    <a href="./" title="1.0.7" class="md-nav__link md-nav__link--active">
-      1.0.7
+    <a href="./" title="1.1.0" class="md-nav__link md-nav__link--active">
+      1.1.0
     </a>
     
       
@@ -480,6 +420,66 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.0.11/" title="1.0.11" class="md-nav__link">
+      1.0.11
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.0.10/" title="1.0.10" class="md-nav__link">
+      1.0.10
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.0.9/" title="1.0.9" class="md-nav__link">
+      1.0.9
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.0.8/" title="1.0.8" class="md-nav__link">
+      1.0.8
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.0.7/" title="1.0.7" class="md-nav__link">
+      1.0.7
+    </a>
   </li>
 
         
@@ -700,13 +700,13 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wso2-extensions/siddhi-execution-json/edit/master/docs/api/1.0.7.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/wso2-extensions/siddhi-execution-json/edit/master/docs/api/1.1.0.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="api-docs-v107">API Docs - v1.0.7<a class="headerlink" href="#api-docs-v107" title="Permanent link">&para;</a></h1>
+                <h1 id="api-docs-v110">API Docs - v1.1.0<a class="headerlink" href="#api-docs-v110" title="Permanent link">&para;</a></h1>
 <h2 id="json">Json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <h3 id="getbool-function">getBool <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getbool-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the Boolean value of Json element corresponding to the given path. If there is no valid Boolean value at the given path, the method will return 'false'</p>
+<p style="word-wrap: break-word">This method returns a 'boolean' value, either 'true' or 'false', based on the valuespecified against the JSON element present in the given path.In case there is no valid boolean value found in the given path, the method still returns 'false'.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;BOOL&gt; json:getBool(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -725,7 +725,7 @@
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the boolean value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -733,7 +733,7 @@
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON from which the 'getBool' function fetches theboolean value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -743,16 +743,16 @@
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getBool(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding Boolean value to the given path</p>
+<p style="word-wrap: break-word">This returns the boolean value of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="getdouble-function">getDouble <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getdouble-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the double value of Json element corresponding to the given path. If there is no valid Double value at the given path, the method will return 'null'</p>
+<p style="word-wrap: break-word">This method returns the double value of the JSON element present in the given path. If there is no valid double value in the given path, the method returns 'null'.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;DOUBLE&gt; json:getDouble(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -771,7 +771,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -779,7 +779,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON from which the 'getDouble' function fetches thedouble value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -789,16 +789,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getDouble(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding double value to the given path</p>
+<p style="word-wrap: break-word">This returns the double value of the given path. The results aredirected to the 'OutputStream' stream.</p>
 
 <h3 id="getfloat-function">getFloat <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getfloat-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the Float value of the Json element corresponding to the given path. If there is no valid Float value at the given path, the method will return 'null'</p>
+<p style="word-wrap: break-word">This method returns the float value of the JSON element present in the given path.If there is no valid float value in the given path, the method returns 'null'.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;FLOAT&gt; json:getFloat(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -817,7 +817,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -825,7 +825,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON from which the 'getFloat' function fetches thevalue.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -835,16 +835,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getFloat(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding Float value based on the given path</p>
+<p style="word-wrap: break-word">This returns the float value of the JSON input in the given path. The results aredirected to the 'OutputStream' stream.</p>
 
 <h3 id="getint-function">getInt <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getint-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the Integer value of Json element corresponding to the given path. If there is no valid Integer value at the given path, the method will return 'null'</p>
+<p style="word-wrap: break-word">This method returns the integer value of the JSON element present in the given path. If there is no valid integer value in the given path, the method returns 'null'.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;INT&gt; json:getInt(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -863,7 +863,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -871,7 +871,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON from which the 'getInt' function fetches theinteger value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -881,16 +881,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getInt(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding integer value based on the given path</p>
+<p style="word-wrap: break-word">This returns the integer value of the JSON input in the given path. The resultsare directed to the 'OutputStream' stream.</p>
 
 <h3 id="getlong-function">getLong <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getlong-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the Long value of the Json element corresponding to the given path. Ifthere is no valid Long value at the given path, the method will return 'null'</p>
+<p style="word-wrap: break-word">This returns the long value of the JSON element present in the given path. Ifthere is no valid long value in the given path, the method returns 'null'.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;LONG&gt; json:getLong(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -909,7 +909,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -917,7 +917,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the JSON element from which the 'getLong' functionfetches the long value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -927,16 +927,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getLong(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding Long value based on the given path</p>
+<p style="word-wrap: break-word">This returns the long value of the JSON input in the given path. The results aredirected to 'OutputStream' stream.</p>
 
 <h3 id="getobject-function">getObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getobject-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the object of Json element corresponding to the given path.</p>
+<p style="word-wrap: break-word">This returns the object of the JSON element present in the given path.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:getObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -955,7 +955,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -963,7 +963,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the object from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON from which the 'getObject' function fetches theobject.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -973,16 +973,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getObject(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding object to the given path</p>
+<p style="word-wrap: break-word">This returns the object of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="getstring-function">getString <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getstring-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the string value of Json element corresponding to the given path.</p>
+<p style="word-wrap: break-word">This returns the string value of the JSON element present in the given path.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;STRING&gt; json:getString(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -1001,7 +1001,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used get the value against the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input that holds the value in the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1009,7 +1009,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to get the value from given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the JSON input from which the 'getString' function fetches  the string value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1019,16 +1019,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:getString(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding string value to the given path</p>
+<p style="word-wrap: break-word">This returns the string value of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="isexists-function">isExists <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#isexists-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method allows to check whether there is any json element in the given path or not. If there is a valid json element in the given path, it will return true. If there is no valid json element, it will return false</p>
+<p style="word-wrap: break-word">This method checks whether there is a JSON element present in the given path or not.If there is a valid JSON element in the given path, it returns 'true'. If there is no valid JSON element, it returns 'false'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;BOOL&gt; json:isExists(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
@@ -1047,7 +1047,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used to search the element with the given path</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input in a given path, on which the function performs the search forJSON elements.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1055,7 +1055,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to search in the given input json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path that contains the input JSON on which the function performs the search.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1065,16 +1065,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:isExists(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the true/false based existence of the given path</p>
+<p style="word-wrap: break-word">This returns either true or false based on the existence of a JSON element in a given path. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="setelement-function">setElement <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#setelement-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method allows to insert elements to the given json based on the specified path. If there is no valid path given, it will return the original json. Otherwise it will return the new json</p>
+<p style="word-wrap: break-word">This method allows to insert elements into a given JSON present in a specific path. If there is no valid path given, it returns the original JSON. Otherwise, it returns the new JSON.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; jsonelement, &lt;STRING&gt; key)
@@ -1093,7 +1093,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json input which is used to insert the given value</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON input into which is this function inserts the new value.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1101,7 +1101,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to insert the given element to the input json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path on the JSON input which is used to insert the given element.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1109,7 +1109,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">jsonelement</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json element which is inserted into the given input json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON element which is inserted by the function into the input JSON.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>BOOL<br>DOUBLE<br>FLOAT<br>INT<br>LONG<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1117,7 +1117,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">key</td>
-        <td style="vertical-align: top; word-wrap: break-word">The key which is used to insert the given element to the input json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The key which is used to insert the given element into the input JSON.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1127,16 +1127,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:setElement(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the corresponding json object based on the given path and json element</p>
+<p style="word-wrap: break-word">This returns the JSON object present in the given path with the newly inserted JSONelement. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="toobject-function">toObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#toobject-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the json object related to given json string.</p>
+<p style="word-wrap: break-word">This method returns the JSON object related to a given JSON string.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:toObject(&lt;STRING&gt; json)
@@ -1155,7 +1155,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">A valid json string which is used to generate the returned json object</td>
+        <td style="vertical-align: top; word-wrap: break-word">A valid JSON string from which the function generates the JSON object.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1171,10 +1171,10 @@ insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return the json object related to given json string</p>
+<p style="word-wrap: break-word">This returns the JSON object corresponding to the given JSON string.The results aredirected to the 'OutputStream' stream.</p>
 
 <h3 id="tostring-function">toString <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#tostring-function" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This method will return the json string related to given json object.</p>
+<p style="word-wrap: break-word">This method returns the JSON string corresponding to a given JSON object.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
@@ -1193,7 +1193,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">A valid json object which is used to generate the json string</td>
+        <td style="vertical-align: top; word-wrap: break-word">A valid JSON object from which the function generates a JSON string.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1203,16 +1203,16 @@ insert into OutputStream;
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <div class="codehilite"><pre><span></span>define stream InputStream(json string);
-from IpStream
+from InputStream
 select json:toString(json) as jsonString
 insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This will return a json string related to given json object</p>
+<p style="word-wrap: break-word">This returns the JSON string corresponding to a given JSON object. The results are directed to the 'OutputStream' stream.</p>
 
 <h3 id="tokenize-stream-processor">tokenize <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a></em><a class="headerlink" href="#tokenize-stream-processor" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This will tokenize the given json according the path provided</p>
+<p style="word-wrap: break-word">This tokenizes the given json according the path provided</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
@@ -1231,7 +1231,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The input json which should be tokenized using the given path.</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input json that should be tokenized using the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1239,7 +1239,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to tokenize the given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path that is used to tokenize the given json</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1247,7 +1247,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">fail.on.missing.attribute</td>
-        <td style="vertical-align: top; word-wrap: break-word">This can either have value true or false. By default it will be true. If the specified path does not provide any json, it will return null. In this scenario users can drop or keep the event with 'null' value using this attribute. If this parameter is 'true', it will generate events with the 'null' value</td>
+        <td style="vertical-align: top; word-wrap: break-word">If this parameter is set to 'true' and a json is not provided in the given path, the event is dropped. If the parameter is set to 'false', the unavailability of a json in the specified path results in the event being created with a 'null' value for the json element.</td>
         <td style="vertical-align: top">true</td>
         <td style="vertical-align: top">BOOL</td>
         <td style="vertical-align: top">Yes</td>
@@ -1263,7 +1263,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">jsonElement</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json element retrieved based on the given path and the json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The json element retrieved based on the given path and the json.</td>
         <td style="vertical-align: top">STRING</td>
     </tr>
 </table></p>
@@ -1277,17 +1277,17 @@ insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This query performs tokenization for the given json using the path specified. If the specified path provides json array, it will generate events for each elements in specified json array by adding additional attribute as the 'jsonElement' into the stream<br><code>Eg:-
+<p style="word-wrap: break-word">This query performs a tokenization for the given json using the path specified. If the specified path provides a json array, it generates events for each element in that array by adding an additional attributes as the 'jsonElement' to the stream.<br><code>e.g.,
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
  path - "$.enrolledSubjects"
-</code><br>It we use configuration like above example, it will generate two events with the attributes "Mathematics", "Physics".<br>If the specified path provides a single json element, it will add the specified json element as a additional attribute named 'jsonElement' into the stream <br><code>
- Eg:-
+</code><br>&nbsp;If we use the configuration in this example, it generates two events with the attributes "Mathematics", "Physics".<br>If the specified path provides a single json element, it adds the specified json element as an additional attribute named 'jsonElement' into the stream. <br><code>
+ e.g.,
  jsonInput - {name:"John",age:25}, 
  path - "$.age"
 </code><br></p>
 
 <h3 id="tokenizeasobject-stream-processor">tokenizeAsObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a></em><a class="headerlink" href="#tokenizeasobject-stream-processor" title="Permanent link">&para;</a></h3>
-<p style="word-wrap: break-word">This will tokenize the given json according the path provided and return the response as object</p>
+<p style="word-wrap: break-word">This tokenizes the given JSON based on the path provided and returns the response as an object.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <div class="codehilite"><pre><span></span>json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
@@ -1306,7 +1306,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">json</td>
-        <td style="vertical-align: top; word-wrap: break-word">The input json which should be tokenized using the given path.</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input json that is tokenized using the given path.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
@@ -1314,7 +1314,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">path</td>
-        <td style="vertical-align: top; word-wrap: break-word">The path which is used to tokenize the given json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The path of the input JSON that the function tokenizes.</td>
         <td style="vertical-align: top"></td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">No</td>
@@ -1322,7 +1322,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">fail.on.missing.attribute</td>
-        <td style="vertical-align: top; word-wrap: break-word">This can either have value true or false. By default it will be true. If the specified path does not provide any json, it will return null. In this scenario users can drop or keep the event with 'null' value using this attribute. If this parameter is 'true', it will generate events with the 'null' value</td>
+        <td style="vertical-align: top; word-wrap: break-word">If this parameter is set to 'true' and a JSON is not provided in the given path, the event is dropped. If the parameter is set to 'false', the unavailability of a JSON in the specified path results in the event being created with a 'null' value for the json element.</td>
         <td style="vertical-align: top">true</td>
         <td style="vertical-align: top">BOOL</td>
         <td style="vertical-align: top">Yes</td>
@@ -1338,7 +1338,7 @@ insert into OutputStream;
     </tr>
     <tr>
         <td style="vertical-align: top">jsonElement</td>
-        <td style="vertical-align: top; word-wrap: break-word">The json element retrieved based on the given path and the json</td>
+        <td style="vertical-align: top; word-wrap: break-word">The JSON element retrieved based on the given path and the JSON.</td>
         <td style="vertical-align: top">OBJECT</td>
     </tr>
 </table></p>
@@ -1352,11 +1352,11 @@ insert into OutputStream;
 </pre></div>
 
 
-<p style="word-wrap: break-word">This query performs tokenization for the given json using the path specified. If the specified path provides json array, it will generate events for each elements in specified json array by adding additional attribute as the 'jsonElement' into the stream<br><code>Eg:-
+<p style="word-wrap: break-word">This query performs a tokenization for the given JSON using the path specified. If the specified path provides a JSON array, it generates events for each element in the specified json array by adding an additional attribute as the 'jsonElement' into the stream.<br><code>e.g.,
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
  path - "$.enrolledSubjects"
-</code><br>It we use configuration like above example, it will generate two events with the attributes "Mathematics", "Physics".<br>If the specified path provides a single json element, it will add the specified json element as a additional attribute named 'jsonElement' into the stream <br><code>
- Eg:-
+</code><br>If we use the configuration in the above example, it generates two events with the attributes "Mathematics" and "Physics".<br>If the specified path provides a single json element, it adds the specified json element as an additional attribute named 'jsonElement' into the stream <br><code>
+ e.g.,
  jsonInput - {name:"John",age:25}, 
  path - "$.age"
 </code><br></p>
@@ -1380,7 +1380,7 @@ insert into OutputStream;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../1.0.8/" title="1.0.8" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Welcome" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1389,19 +1389,19 @@ insert into OutputStream;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                1.0.8
+                Welcome
               </span>
             </div>
           </a>
         
         
-          <a href="../1.0.6/" title="1.0.6" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../1.0.11/" title="1.0.11" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                1.0.6
+                1.0.11
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
