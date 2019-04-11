@@ -23,22 +23,23 @@ import com.google.gson.GsonBuilder;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.SiddhiAppRuntimeException;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import io.siddhi.query.api.exception.SiddhiAppValidationException;
 import org.apache.log4j.Logger;
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -70,7 +71,7 @@ import java.util.Map;
                         "select json:getInt(json,\"$.name\") as name\n" +
                         "insert into OutputStream;",
                 description = "This returns the integer value of the JSON input in the given path. The results" +
-                "are directed to the 'OutputStream' stream.")
+                        "are directed to the 'OutputStream' stream.")
 )
 public class GetIntJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetIntJSONFunctionExtension.class);
@@ -82,11 +83,11 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
      *
      * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
-     * @param siddhiAppContext             Siddhi app runtime context
+     * @param siddhiQueryContext           Siddhi query context
      */
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
         if (attributeExpressionExecutors.length == 2) {
             if (attributeExpressionExecutors[0] == null) {
                 throw new SiddhiAppValidationException("Invalid input given to first argument 'json' of " +
@@ -114,6 +115,7 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
                     + "required 2, but found " + attributeExpressionExecutors.length);
         }
 
+        return null;
     }
 
     /**
@@ -124,7 +126,7 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         String jsonInput;
         if (data[0] instanceof String) {
             jsonInput = (String) data[0];
@@ -172,7 +174,7 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         return null;
     }
 
@@ -186,26 +188,4 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
         return Attribute.Type.INT;
     }
 
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
-    }
 }
