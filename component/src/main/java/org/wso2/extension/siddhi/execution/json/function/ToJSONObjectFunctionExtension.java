@@ -18,22 +18,22 @@
 
 package org.wso2.extension.siddhi.execution.json.function;
 
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import io.siddhi.query.api.exception.SiddhiAppValidationException;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
 import org.apache.log4j.Logger;
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
-
-import java.util.Map;
 
 
 /**
@@ -72,11 +72,11 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
      *
      * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
-     * @param siddhiAppContext             Siddhi app runtime context
+     * @param siddhiQueryContext           Siddhi query context
      */
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
 
 
         if (attributeExpressionExecutors.length != 1) {
@@ -94,6 +94,8 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
                     "json:toJson() function, required " + Attribute.Type.STRING + ", but found " + firstAttributeType
                     .toString());
         }
+
+        return null;
     }
 
     /**
@@ -104,7 +106,7 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         return null;
     }
 
@@ -117,7 +119,7 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         Object returnValue = null;
         try {
             returnValue = jsonParser.parse(data.toString());
@@ -136,27 +138,5 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
     public Attribute.Type getReturnType() {
         return Attribute.Type.OBJECT;
     }
-
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
-    }
 }
+

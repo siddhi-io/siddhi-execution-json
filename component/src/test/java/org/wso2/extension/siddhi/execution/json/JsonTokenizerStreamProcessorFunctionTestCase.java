@@ -18,6 +18,12 @@
 
 package org.wso2.extension.siddhi.execution.json;
 
+import io.siddhi.core.SiddhiAppRuntime;
+import io.siddhi.core.SiddhiManager;
+import io.siddhi.core.event.Event;
+import io.siddhi.core.query.output.callback.QueryCallback;
+import io.siddhi.core.stream.input.InputHandler;
+import io.siddhi.core.util.EventPrinter;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
@@ -25,22 +31,16 @@ import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.wso2.siddhi.core.SiddhiAppRuntime;
-import org.wso2.siddhi.core.SiddhiManager;
-import org.wso2.siddhi.core.event.Event;
-import org.wso2.siddhi.core.query.output.callback.QueryCallback;
-import org.wso2.siddhi.core.stream.input.InputHandler;
-import org.wso2.siddhi.core.util.EventPrinter;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class JsonTokenizerStreamProcessorFunctionTestCase {
     private static final Logger log = Logger.getLogger(JsonTokenizerStreamProcessorFunctionTestCase.class);
-    private AtomicInteger count = new AtomicInteger(0);
     private static final String JSON_INPUT = "{emp:[" +
             "{\"name\":\"John\", foo:{fooName:\"fooName\"}, bar:[{barName:\"barName\"},{barName:\"barName2\"}]}," +
             "{\"name\":\"Peter\", foo:{fooName:\"fooName2\"}, bar:[{barName:\"barName3\"},{barName:\"barName4\"}]}" +
             "]}";
+    private AtomicInteger count = new AtomicInteger(0);
 
     @BeforeMethod
     public void init() {

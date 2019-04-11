@@ -20,20 +20,20 @@ package org.wso2.extension.siddhi.execution.json.function;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import io.siddhi.query.api.exception.SiddhiAppValidationException;
 import org.apache.log4j.Logger;
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
-
-import java.util.Map;
 
 
 /**
@@ -47,7 +47,7 @@ import java.util.Map;
                 @Parameter(
                         name = "json",
                         description = "A valid JSON object from which the function generates a JSON string.",
-                type = {DataType.OBJECT}),
+                        type = {DataType.OBJECT}),
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON string generated using the given JSON object.",
@@ -71,11 +71,11 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
      *
      * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
-     * @param siddhiAppContext             Siddhi app runtime context
+     * @param siddhiQueryContext           Siddhi query context
      */
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
 
 
         if (attributeExpressionExecutors.length != 1) {
@@ -93,6 +93,8 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
                     "json:toString() function, required " + Attribute.Type.OBJECT + ", but found " + firstAttributeType
                     .toString());
         }
+
+        return null;
     }
 
     /**
@@ -103,7 +105,7 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         return null;
     }
 
@@ -116,7 +118,7 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
      * @return the Function result
      */
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         return gson.toJson(data);
     }
 
@@ -128,28 +130,5 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
     @Override
     public Attribute.Type getReturnType() {
         return Attribute.Type.STRING;
-    }
-
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
     }
 }
