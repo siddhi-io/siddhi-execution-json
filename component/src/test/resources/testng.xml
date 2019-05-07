@@ -5,18 +5,18 @@
 <suite name="Siddhi-Execution-	test-Test-Suite">
     <test name="Siddhi-execution-	test-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.wso2.extension.siddhi.execution.json.JsonTokenizerStreamProcessorFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetBoolJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetDoubleJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetFloatJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetIntJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetLongJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetObjectJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.GetStringJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.ToJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.ToStringFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.InsertToJSONFunctionTestCase"/>
-            <class name="org.wso2.extension.siddhi.execution.json.JsonTokenizerAsObjectStreamProcessorFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.JsonTokenizerStreamProcessorFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetBoolJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetDoubleJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetFloatJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetIntJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetLongJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetObjectJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GetStringJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.ToJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.ToStringFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.InsertToJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.JsonTokenizerAsObjectStreamProcessorFunctionTestCase"/>
         </classes>
     </test>
 </suite>
