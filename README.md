@@ -28,7 +28,7 @@ directory.
 
 ```
      <dependency>
-        <groupId>org.wso2.extension.siddhi.execution.json</groupId>
+        <groupId>io.siddhi.extension.execution.json</groupId>
         <artifactId>siddhi-execution-json</artifactId>
         <version>x.x.x</version>
      </dependency>
