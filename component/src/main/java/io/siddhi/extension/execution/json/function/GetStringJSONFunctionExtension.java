@@ -26,6 +26,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -51,23 +52,25 @@ import org.apache.log4j.Logger;
                 @Parameter(
                         name = "json",
                         description = "The JSON input that holds the value in the given path.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path of the JSON input from which the 'getString' function fetches " +
                                 " the string value.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the string value of the input JSON from the input stream.",
                 type = {DataType.STRING}),
         examples = @Example(
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:getString(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
-                description = "This returns the string value of the JSON input in the given path. The results are " +
-                        "directed to the 'OutputStream' stream.")
+                syntax = "json:getString(json,\"$.name\") as name\n",
+                description = "This returns the string value of the JSON input in the given path."
+        )
 )
 public class GetStringJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetStringJSONFunctionExtension.class);

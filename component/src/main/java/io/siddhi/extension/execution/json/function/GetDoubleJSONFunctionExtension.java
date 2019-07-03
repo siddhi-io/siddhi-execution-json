@@ -26,6 +26,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -54,23 +55,25 @@ import java.util.List;
                 @Parameter(
                         name = "json",
                         description = "The JSON input that holds the value in the given path.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path of the input JSON from which the 'getDouble' function fetches the" +
                                 "double value.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the double value of the input JSON from the input stream.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:getDouble(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
-                description = "This returns the double value of the given path. The results are" +
-                        "directed to the 'OutputStream' stream.")
+                syntax = "json:getDouble(json,\"$.salary\") as salary\n",
+                description = "This returns the double value of the given path."
+        )
 )
 public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetDoubleJSONFunctionExtension.class);

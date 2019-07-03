@@ -25,6 +25,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -62,11 +63,13 @@ import java.util.Map;
                 @Parameter(
                         name = "json",
                         description = "The input json that should be tokenized using the given path.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path that is used to tokenize the given json",
-                        type = {DataType.STRING}),
+                        type = {DataType.STRING},
+                        dynamic = true),
                 @Parameter(
                         name = "fail.on.missing.attribute",
                         description = "If this parameter is set to 'true' and a json is not provided in the given" +
@@ -76,6 +79,10 @@ import java.util.Map;
                         type = {DataType.BOOL},
                         optional = true,
                         defaultValue = "true")
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"}),
+                @ParameterOverload(parameterNames = {"json", "path", "fail.on.missing.attribute"})
         },
         returnAttributes = {
                 @ReturnAttribute(

@@ -26,6 +26,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -55,23 +56,24 @@ import java.util.List;
                 @Parameter(
                         name = "json",
                         description = "The JSON input that holds the boolean value in the given path.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path of the input JSON from which the 'getBool' function fetches the" +
                                 "boolean value.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the boolean value of the input JSON from the input stream.",
                 type = {DataType.BOOL}),
         examples = @Example(
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:getBool(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
-                description = "This returns the boolean value of the JSON input in the given path. The results are " +
-                        "directed to the 'OutputStream' stream."
+                syntax = "json:getBool(json,\"$.name\") as name\n",
+                description = "This returns the boolean value of the JSON input in the given path."
         )
 )
 public class GetBoolJSONFunctionExtension extends FunctionExecutor {
@@ -158,7 +160,7 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
             return null;
         }
         returnValue = Boolean.parseBoolean(filteredJsonElement.toString());
-        if (returnValue == false && !filteredJsonElement.toString().equalsIgnoreCase("false")) {
+        if (!returnValue && !filteredJsonElement.toString().equalsIgnoreCase("false")) {
             returnValue = null;
             log.error("The value that is retrieved using the given path '" + path + "', is not a valid boolean value." +
                     " Hence it returns the default value 'null'");
