@@ -26,6 +26,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -54,25 +55,27 @@ import org.apache.log4j.Logger;
                         name = "json",
                         description = "The JSON input in a given path, on which the function performs the search for" +
                                 "JSON elements.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path that contains the input JSON on which the function " +
                                 "performs the search.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "If there is a valid JSON element in the given path, it returns 'true'. If there is " +
                         "no valid JSON element, it returns 'false'.",
                 type = {DataType.BOOL}),
         examples = @Example(
-
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:isExists(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
+                syntax = "json:isExists(json,\"$.name\") as name\n",
                 description = "This returns either true or false based on the existence of a JSON element in a " +
-                        "given path. The results are directed to the 'OutputStream' stream.")
+                        "given path."
+        )
 )
 public class IsExistsFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(IsExistsFunctionExtension.class);

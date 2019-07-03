@@ -23,6 +23,7 @@ import com.google.gson.GsonBuilder;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -47,19 +48,19 @@ import org.apache.log4j.Logger;
                 @Parameter(
                         name = "json",
                         description = "A valid JSON object from which the function generates a JSON string.",
-                        type = {DataType.OBJECT}),
+                        type = {DataType.OBJECT},
+                        dynamic = true),
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON string generated using the given JSON object.",
                 type = {DataType.STRING}),
         examples = @Example(
-
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:toString(json) as jsonString\n" +
-                        "insert into OutputStream;",
-                description = "This returns the JSON string corresponding to a given JSON object. The results are " +
-                        "directed to the 'OutputStream' stream.")
+                syntax = "json:toString(json) as jsonString\n",
+                description = "This returns the JSON string corresponding to a given JSON object."
+        )
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);

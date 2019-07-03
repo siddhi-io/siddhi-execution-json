@@ -28,6 +28,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -58,31 +59,38 @@ import java.util.Map;
                 @Parameter(
                         name = "json",
                         description = "The JSON input into which is this function inserts the new value.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path on the JSON input which is used to insert the given element.",
-                        type = {DataType.STRING}),
+                        type = {DataType.STRING},
+                        dynamic = true),
                 @Parameter(
                         name = "jsonelement",
                         description = "The JSON element which is inserted by the function into the input JSON.",
                         type = {DataType.STRING, DataType.BOOL, DataType.DOUBLE, DataType.FLOAT, DataType.INT,
-                                DataType.LONG, DataType.OBJECT}),
+                                DataType.LONG, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "key",
                         description = "The key which is used to insert the given element into the input JSON.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true,
+                        defaultValue = "It will consider the value of the parameter passed",
+                        optional = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path", "jsonelement"}),
+                @ParameterOverload(parameterNames = {"json", "path", "jsonelement", "key"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON object with the inserted elements.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:setElement(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
+                syntax = "json:setElement(json,\"$.name\") as name\n",
                 description = "This returns the JSON object present in the given path with the newly inserted JSON" +
-                        "element. The results are directed to the 'OutputStream' stream.")
+                        "element.")
 
 )
 public class InsertToJSONFunctionExtension extends FunctionExecutor {

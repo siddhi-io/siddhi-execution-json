@@ -26,6 +26,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -54,24 +55,25 @@ import java.util.List;
                 @Parameter(
                         name = "json",
                         description = "The JSON input that holds the value in the given path.",
-                        type = {DataType.STRING, DataType.OBJECT}),
+                        type = {DataType.STRING, DataType.OBJECT},
+                        dynamic = true),
                 @Parameter(
                         name = "path",
                         description = "The path of the input JSON from which the 'getFloat' function fetches the" +
                                 "value.",
-                        type = {DataType.STRING})
+                        type = {DataType.STRING},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the float value of the input JSON from the input stream.",
                 type = {DataType.FLOAT}),
         examples = @Example(
-
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:getFloat(json,\"$.name\") as name\n" +
-                        "insert into OutputStream;",
-                description = "This returns the float value of the JSON input in the given path. The results are" +
-                        "directed to the 'OutputStream' stream.")
+                syntax = "json:getFloat(json,\"$.salary\") as salary\n",
+                description = "This returns the float value of the JSON input in the given path."
+        )
 )
 public class GetFloatJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetFloatJSONFunctionExtension.class);

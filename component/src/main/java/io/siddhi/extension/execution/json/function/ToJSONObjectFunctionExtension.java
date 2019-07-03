@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.json.function;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -48,19 +49,19 @@ import org.apache.log4j.Logger;
                         name = "json",
                         description = "A valid JSON string from which the function generates " +
                                 "the JSON object.",
-                        type = {DataType.STRING}),
+                        type = {DataType.STRING},
+                        dynamic = true),
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"json"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON object generated using the given JSON string.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-
-                syntax = "define stream InputStream(json string);\n" +
-                        "from InputStream\n" +
-                        "select json:toJson(json) as jsonObject\n" +
-                        "insert into OutputStream;",
-                description = "This returns the JSON object corresponding to the given JSON string.The results are" +
-                        "directed to the 'OutputStream' stream.")
+                syntax = "json:toJson(json) as jsonObject\n",
+                description = "This returns the JSON object corresponding to the given JSON string."
+        )
 )
 public class ToJSONObjectFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONObjectFunctionExtension.class);
