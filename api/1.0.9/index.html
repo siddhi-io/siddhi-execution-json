@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -13,10 +13,6 @@
         <meta name="description" content="Siddhi Execution JSON Extension">
       
       
-        <link rel="canonical" href="https://wso2-extensions.github.io/siddhi-execution-json/api/1.0.9/">
-      
-      
-        <meta name="author" content="WSO2">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -38,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-0.17.4, mkdocs-material-2.9.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
@@ -46,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.ba0fd1a6.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -57,18 +53,47 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
-      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-103065-28", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
     
     
   </head>
@@ -81,24 +106,7 @@
       <defs>
         
         
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
-    viewBox="0 0 416 448" id="__github">
-  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
-        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
-        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
-        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
-        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
-        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
-        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
-        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
-        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
-        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
-        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
-        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
-        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
-        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
-        99.5z" />
-</svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
         
       </defs>
     </svg>
@@ -115,9 +123,9 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://wso2-extensions.github.io/siddhi-execution-json/" title="Siddhi Execution JSON" class="md-header-nav__button md-logo">
+        <a href="../.." title="Siddhi Execution JSON" class="md-header-nav__button md-logo">
           
-            <img src="../../images/siddhi-logo-w.svg" width="24" height="24">
+            <img src="../../images/siddhi-logo.svg" width="24" height="24">
           
         </a>
       </div>
@@ -127,22 +135,21 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Siddhi Execution JSON
-              </span>
-              <span class="md-header-nav__topic">
+            <span class="md-header-nav__topic">
+              Siddhi Execution JSON
+            </span>
+            <span class="md-header-nav__topic">
+              
                 1.0.9
-              </span>
-            
+              
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -165,7 +172,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -176,20 +182,18 @@
 
   
 
-
-  <a href="https://github.com/wso2-extensions/siddhi-execution-json/" title="Go to repository" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      Siddhi-Execution-JSON
+<a href="https://github.com/siddhi-io/siddhi-execution-json/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    Siddhi Execution Json
+  </div>
+</a>
           </div>
         </div>
       
@@ -211,11 +215,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <span class="md-nav__button md-logo">
+    <a href="../.." title="Siddhi Execution JSON" class="md-nav__button md-logo">
       
-        <img src="../../images/siddhi-logo-w.svg" width="48" height="48">
+        <img src="../../images/siddhi-logo.svg" width="48" height="48">
       
-    </span>
+    </a>
     Siddhi Execution JSON
   </label>
   
@@ -225,20 +229,18 @@
 
   
 
-
-  <a href="https://github.com/wso2-extensions/siddhi-execution-json/" title="Go to repository" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      Siddhi-Execution-JSON
+<a href="https://github.com/siddhi-io/siddhi-execution-json/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    Siddhi Execution Json
+  </div>
+</a>
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -249,8 +251,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Welcome" class="md-nav__link">
-      Welcome
+    <a href="../.." title="Information" class="md-nav__link">
+      Information
     </a>
   </li>
 
@@ -275,6 +277,30 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../latest/" title="latest" class="md-nav__link">
+      latest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.1/" title="2.0.1" class="md-nav__link">
+      2.0.1
+    </a>
+  </li>
+
         
           
           
@@ -555,18 +581,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../latest/" title="latest" class="md-nav__link">
-      latest
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -724,18 +738,17 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wso2-extensions/siddhi-execution-json/edit/master/docs/api/1.0.9.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/siddhi-execution-json/blob/master/api/1.0.9.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="api-docs-v109">API Docs - v1.0.9<a class="headerlink" href="#api-docs-v109" title="Permanent link">&para;</a></h1>
-<h2 id="json">Json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
-<h3 id="getbool-function">getBool <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getbool-function" title="Permanent link">&para;</a></h3>
+                <h1 id="api-docs-v109">API Docs - v1.0.9</h1>
+<h2 id="json">Json</h2>
+<h3 id="getbool-function">getBool <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the Boolean value of Json element corresponding to the given path. If there is no valid Boolean value at the given path, the method will return 'false'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;BOOL&gt; json:getBool(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;BOOL&gt; json:getBool(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -766,22 +779,20 @@
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getBool(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding Boolean value to the given path</p>
 
-<h3 id="getdouble-function">getDouble <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getdouble-function" title="Permanent link">&para;</a></h3>
+<h3 id="getdouble-function">getDouble <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the double value of Json element corresponding to the given path. If there is no valid Double value at the given path, the method will return 'null'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;DOUBLE&gt; json:getDouble(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;DOUBLE&gt; json:getDouble(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -812,22 +823,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getDouble(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding double value to the given path</p>
 
-<h3 id="getfloat-function">getFloat <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getfloat-function" title="Permanent link">&para;</a></h3>
+<h3 id="getfloat-function">getFloat <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the Float value of the Json element corresponding to the given path. If there is no valid Float value at the given path, the method will return 'null'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;FLOAT&gt; json:getFloat(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;FLOAT&gt; json:getFloat(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -858,22 +867,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getFloat(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding Float value based on the given path</p>
 
-<h3 id="getint-function">getInt <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getint-function" title="Permanent link">&para;</a></h3>
+<h3 id="getint-function">getInt <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the Integer value of Json element corresponding to the given path. If there is no valid Integer value at the given path, the method will return 'null'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;INT&gt; json:getInt(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;INT&gt; json:getInt(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -904,22 +911,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getInt(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding integer value based on the given path</p>
 
-<h3 id="getlong-function">getLong <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getlong-function" title="Permanent link">&para;</a></h3>
+<h3 id="getlong-function">getLong <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the Long value of the Json element corresponding to the given path. Ifthere is no valid Long value at the given path, the method will return 'null'</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;LONG&gt; json:getLong(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;LONG&gt; json:getLong(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -950,22 +955,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getLong(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding Long value based on the given path</p>
 
-<h3 id="getobject-function">getObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getobject-function" title="Permanent link">&para;</a></h3>
+<h3 id="getobject-function">getObject <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the object of Json element corresponding to the given path.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:getObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;OBJECT&gt; json:getObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -996,22 +999,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getObject(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding object to the given path</p>
 
-<h3 id="getstring-function">getString <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#getstring-function" title="Permanent link">&para;</a></h3>
+<h3 id="getstring-function">getString <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the string value of Json element corresponding to the given path.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;STRING&gt; json:getString(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;STRING&gt; json:getString(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1042,22 +1043,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:getString(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding string value to the given path</p>
 
-<h3 id="isexists-function">isExists <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#isexists-function" title="Permanent link">&para;</a></h3>
+<h3 id="isexists-function">isExists <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method allows to check whether there is any json element in the given path or not. If there is a valid json element in the given path, it will return true. If there is no valid json element, it will return false</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;BOOL&gt; json:isExists(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
-</pre></div>
-
+<pre><code>&lt;BOOL&gt; json:isExists(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1088,22 +1087,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:isExists(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the true/false based existence of the given path</p>
 
-<h3 id="setelement-function">setElement <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#setelement-function" title="Permanent link">&para;</a></h3>
+<h3 id="setelement-function">setElement <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method allows to insert elements to the given json based on the specified path. If there is no valid path given, it will return the original json. Otherwise it will return the new json</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; jsonelement, &lt;STRING&gt; key)
-</pre></div>
-
+<pre><code>&lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; jsonelement, &lt;STRING&gt; key)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1150,22 +1147,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:setElement(json,&quot;$.name&quot;) as name
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the corresponding json object based on the given path and json element</p>
 
-<h3 id="toobject-function">toObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#toobject-function" title="Permanent link">&para;</a></h3>
+<h3 id="toobject-function">toObject <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the json object related to given json string.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;OBJECT&gt; json:toObject(&lt;STRING&gt; json)
-</pre></div>
-
+<pre><code>&lt;OBJECT&gt; json:toObject(&lt;STRING&gt; json)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1188,22 +1183,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from InputStream
 select json:toJson(json) as jsonObject
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return the json object related to given json string</p>
 
-<h3 id="tostring-function">toString <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#function">(Function)</a></em><a class="headerlink" href="#tostring-function" title="Permanent link">&para;</a></h3>
+<h3 id="tostring-function">toString <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
 <p style="word-wrap: break-word">This method will return the json string related to given json object.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
-</pre></div>
-
+<pre><code>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1226,22 +1219,20 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream(json string);
+<pre><code>define stream InputStream(json string);
 from IpStream
 select json:toString(json) as jsonString
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This will return a json string related to given json object</p>
 
-<h3 id="tokenize-stream-processor">tokenize <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a></em><a class="headerlink" href="#tokenize-stream-processor" title="Permanent link">&para;</a></h3>
+<h3 id="tokenize-stream-processor">tokenize <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#stream-processor">(Stream Processor)</a></em></h3>
 <p style="word-wrap: break-word">This tokenizes the given json according the path provided</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
-</pre></div>
-
+<pre><code>json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1293,13 +1284,12 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream (json string,path string);
-@info(name = &#39;query1&#39;)
+<pre><code>define stream InputStream (json string,path string);
+@info(name = 'query1')
 from InputStream#json:tokenize(json, path)
 select jsonElement
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This query performs a tokenization for the given json using the path specified. If the specified path provides a json array, it generates events for each element in that array by adding an additional attributes as the 'jsonElement' to the stream<br><code>e.g.,
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
@@ -1310,13 +1300,12 @@ insert into OutputStream;
  path - "$.age"
 </code><br></p>
 
-<h3 id="tokenizeasobject-stream-processor">tokenizeAsObject <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#stream-processor">(Stream Processor)</a></em><a class="headerlink" href="#tokenizeasobject-stream-processor" title="Permanent link">&para;</a></h3>
+<h3 id="tokenizeasobject-stream-processor">tokenizeAsObject <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#stream-processor">(Stream Processor)</a></em></h3>
 <p style="word-wrap: break-word">This tokenizes the given json based on the path provided and returns the response as an object.</p>
 
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<div class="codehilite"><pre><span></span>json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
-</pre></div>
-
+<pre><code>json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
+</code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
 <table>
@@ -1368,13 +1357,12 @@ insert into OutputStream;
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<div class="codehilite"><pre><span></span>define stream InputStream (json string,path string);
-@info(name = &#39;query1&#39;)
+<pre><code>define stream InputStream (json string,path string);
+@info(name = 'query1')
 from InputStream#json:tokenizeAsObject(json, path)
 select jsonElement
 insert into OutputStream;
-</pre></div>
-
+</code></pre>
 
 <p style="word-wrap: break-word">This query performs a tokenization for the given json using the path specified. If the specified path provides a json array, it generates events for each element in the specified json array by adding an additional attribute as the 'jsonElement' into the stream<br><code>e.g.,
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
@@ -1441,7 +1429,7 @@ insert into OutputStream;
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2011 - 2018 WSO2
+            Siddhi - Documentation
           </div>
         
         powered by
@@ -1451,33 +1439,30 @@ insert into OutputStream;
           Material for MkDocs</a>
       </div>
       
-        
   <div class="md-footer-social">
     <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
-      <a href="https://github.com/wso2/siddhi" class="md-footer-social__link fa fa-github"></a>
+      <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/siddhi_io" class="md-footer-social__link fa fa-twitter"></a>
     
       <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
     
   </div>
 
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../assets/javascripts/application.a59e2a89.js"></script>
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
       
-      <script>app.initialize({version:"0.17.4",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
-        <script src="../../javascripts/extra.js"></script>
-      
-    
-    
-      
-        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-103065-28","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+        <script src="../../assets/javascripts/extra.js"></script>
       
     
   </body>
