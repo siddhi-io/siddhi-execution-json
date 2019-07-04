@@ -75,8 +75,8 @@ import java.util.Map;
                         description = "The key to be used to refer the newly added element in the input JSON.",
                         type = {DataType.STRING},
                         dynamic = true,
-                        defaultValue = "Assumes the element is added to a JSON array or the element selected in by" +
-                                " the JSON path is updated.",
+                        defaultValue = "Assumes the element is added to a JSON array, or the element selected " +
+                                "by the JSON path will be updated.",
                         optional = true)
         },
         parameterOverloads = {
