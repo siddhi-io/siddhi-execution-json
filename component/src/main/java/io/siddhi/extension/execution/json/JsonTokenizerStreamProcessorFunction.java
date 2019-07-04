@@ -58,24 +58,24 @@ import java.util.Map;
 @Extension(
         name = "tokenize",
         namespace = "json",
-        description = "This tokenizes the given json according the path provided",
+        description = "Stream processor tokenizes the given JSON into to multiple JSON string elements and " +
+                "sends them as separate events.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The input json that should be tokenized using the given path.",
+                        description = "The input JSON that needs to be tokenized.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path that is used to tokenize the given json",
+                        description = "The path of the set of elements that will be tokenized.",
                         type = {DataType.STRING},
                         dynamic = true),
                 @Parameter(
                         name = "fail.on.missing.attribute",
-                        description = "If this parameter is set to 'true' and a json is not provided in the given" +
-                                " path, the event is dropped. If the parameter is set to 'false', the " +
-                                "unavailability of a json in the specified path results in the event being created" +
-                                " with a 'null' value for the json element.",
+                        description = "If there are no element on the given path, when set to `true` the system " +
+                                "will drop the event, and when set to `false` the system will pass 'null' value to " +
+                                "the jsonElement output attribute.",
                         type = {DataType.BOOL},
                         optional = true,
                         defaultValue = "true")
@@ -87,24 +87,37 @@ import java.util.Map;
         returnAttributes = {
                 @ReturnAttribute(
                         name = "jsonElement",
-                        description = "The json element retrieved based on the given path and the json.",
+                        description = "The JSON element retrieved based on the given path will be returned " +
+                                "as a JSON string. If the 'path' selects a JSON array then the system returns each " +
+                                "element in the array as a JSON string via a separate events.",
                         type = {DataType.STRING})},
-        examples = @Example(
-                syntax = "define stream InputStream (json string,path string);\n" +
-                        "@info(name = 'query1')\n" +
-                        "from InputStream#json:tokenize(json, path)\n" +
-                        "select jsonElement\n" +
-                        "insert into OutputStream;",
-                description = "This query performs a tokenization for the given json using the path specified. If " +
-                        "the specified path provides a json array, it generates events for each element in that " +
-                        "array by adding an additional attributes as the 'jsonElement' to the stream.\n`" +
-                        "e.g.,\n jsonInput - {name:\"John\",enrolledSubjects:[\"Mathematics\",\"Physics\"]}, \n " +
-                        "path -" +
-                        " \"$.enrolledSubjects\"\n`\n If we use the configuration in this example, it generates " +
-                        "two events with the attributes \"Mathematics\", \"Physics\".\nIf the specified path provides" +
-                        " a single json element, it adds the specified json element as an additional attribute " +
-                        "named 'jsonElement' into the stream. \n`\n e.g.,\n jsonInput - {name:\"John\",age:25}, \n " +
-                        "path - \"$.age\"\n`\n")
+        examples = {
+                @Example(
+                        syntax = "define stream InputStream (json string, path string);\n\n" +
+                                "@info(name = 'query1')\n" +
+                                "from InputStream#json:tokenizeAsObject(json, path)\n" +
+                                "select path, jsonElement\n" +
+                                "insert into OutputStream;",
+                        description = "If the input 'json' is `{name:'John', enrolledSubjects:['Mathematics'," +
+                                " 'Physics']}`, and the 'path' is passed as `$.enrolledSubjects` then for both the " +
+                                "elements in the selected JSON array, it generates it generates events as " +
+                                "`('$.enrolledSubjects', 'Mathematics')`, and " +
+                                "`('$.enrolledSubjects', 'Physics')`.\n" +
+                                "For the same input JSON, if the 'path' is passed as `$.name` then it will only " +
+                                "produce one event `('$.name', 'John')` as the 'path' provided a single JSON element."
+                ),
+                @Example(
+                        syntax = "define stream InputStream (json string, path string);\n\n" +
+                                "@info(name = 'query1')\n" +
+                                "from InputStream#json:tokenizeAsObject(json, path, true)\n" +
+                                "select path, jsonElement\n" +
+                                "insert into OutputStream;",
+                        description = "If the input 'json' is `{name:'John', age:25}`," +
+                                "and the 'path' is passed as `$.salary` then the system will produce " +
+                                "`('$.salary', null)`, as the 'fail.on.missing.attribute' is `true` and there are " +
+                                "no matching element for `$.salary`."
+                )
+        }
 )
 public class JsonTokenizerStreamProcessorFunction extends StreamProcessor<State> {
     private static final Logger log = Logger.getLogger(JsonTokenizerStreamProcessorFunction.class);
@@ -128,7 +141,8 @@ public class JsonTokenizerStreamProcessorFunction extends StreamProcessor<State>
                 }
             } catch (PathNotFoundException e) {
                 filteredJsonElements = null;
-                log.warn("Cannot find json element for the path '" + path + "' in the input json : " + jsonInput);
+                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": Cannot find json element for the path '" + path + "' in the input json : " + jsonInput);
             }
             if (filteredJsonElements instanceof List) {
                 List filteredJsonElementsList = (List) filteredJsonElements;

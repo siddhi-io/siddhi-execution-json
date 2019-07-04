@@ -121,7 +121,7 @@ public class GetIntJSONFunctionTestCase {
                 }
             }
         });
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
         siddhiAppRuntime.start();

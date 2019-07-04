@@ -122,7 +122,7 @@ public class GetObjectJSONFunctionTestCase {
             }
         });
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{jsonObject, "$.age"});

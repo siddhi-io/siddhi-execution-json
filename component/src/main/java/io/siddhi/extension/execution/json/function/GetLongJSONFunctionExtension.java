@@ -49,18 +49,16 @@ import java.util.List;
 @Extension(
         name = "getLong",
         namespace = "json",
-        description = "This returns the long value of the JSON element present in the given path. If" +
-                "there is no valid long value in the given path, the method returns 'null'.",
+        description = "Function retrieves the 'long' value specified in the given path of the JSON element.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the value in the given path.",
+                        description = "The JSON input containing long value.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path of the JSON element from which the 'getLong' function" +
-                                "fetches the long value.",
+                        description = "The JSON path to fetch the long value.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -68,12 +66,26 @@ import java.util.List;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the long value of input JSON from the input stream.",
+                description = "Returns the long value retrieved by the JSON path from the given input JSON, " +
+                        "if no valid long found in the given path, it returns `null`.",
                 type = {DataType.LONG}),
-        examples = @Example(
-                syntax = "json:getLong(json,\"$.age\") as age\n",
-                description = "This returns the long value of the JSON input in the given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:getLong(json,'$.age')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `23` as there is a matching long at `$.age`."
+                ),
+                @Example(
+                        syntax = "json:getLong(json,'$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching element at `$.salary`."
+                ),
+                @Example(
+                        syntax = "json:getLong(json,'$.name')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching long at `$.name`."
+                )
+        }
 )
 public class GetLongJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetLongJSONFunctionExtension.class);
@@ -141,15 +153,17 @@ public class GetLongJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
                 filteredJsonElement = null;
-                log.error("Multiple matches or No matches for the given path '" + path + "' in input json. Please use" +
-                        " valid path which provide exact one match in the given json");
+                log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": Multiple matches or No matches for the given path '" + path +
+                        "' in input json. Please use valid path which provide exact one match in the given json");
             } else {
                 filteredJsonElement = ((List) filteredJsonElement).get(0);
             }
@@ -161,7 +175,8 @@ public class GetLongJSONFunctionExtension extends FunctionExecutor {
             returnValue = Long.parseLong(filteredJsonElement.toString());
         } catch (NumberFormatException e) {
             returnValue = null;
-            log.error("The value that is retrieved using the given path '" + path + "', is not a valid long value. " +
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": The value that is retrieved using the given path '" + path + "', is not a valid long value. " +
                     "Hence returning the default value 'null'");
         }
         return returnValue;

@@ -57,8 +57,8 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
                 "select jsonElement\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
-        Object expectedJsonObject1 = jsonParser.parse("{\"fooName\":\"fooName\"}");
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
+        Object expectedJsonObject1 = jsonParser.parse("{fooName:\"fooName\"}");
         Object expectedJsonObject2 = jsonParser.parse("{\"barName\":\"barName\"}");
         Object expectedJsonObject3 = jsonParser.parse("{\"barName\":\"barName2\"}");
         Object expectedJsonObject4 = jsonParser.parse("[{\"barName\":\"barName\"},{\"barName\":\"barName2\"}]");
@@ -116,8 +116,8 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
                 "select jsonElement\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
-        Object expectedJsonObject1 = jsonParser.parse("{\"fooName\":\"fooName\"}");
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
+        Object expectedJsonObject1 = jsonParser.parse("{fooName:\"fooName\"}");
         Object expectedJsonObject2 = jsonParser.parse("{\"barName\":\"barName\"}");
         Object expectedJsonObject3 = jsonParser.parse("{\"barName\":\"barName2\"}");
         Object expectedJsonObject4 = jsonParser.parse("[{\"barName\":\"barName\"},{\"barName\":\"barName2\"}]");
@@ -167,6 +167,7 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
         inputHandler.send(new Object[]{jsonObject, "$.emp[0].bar"});
         inputHandler.send(new Object[]{jsonObject, "$..bar"});
         inputHandler.send(new Object[]{jsonObject, "$.name"});
+        Thread.sleep(100);
         siddhiAppRuntime.shutdown();
     }
 
@@ -236,7 +237,7 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
                 "select json:getString(jsonElement,'$') as t\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,

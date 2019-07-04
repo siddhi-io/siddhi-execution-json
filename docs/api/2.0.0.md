@@ -2,7 +2,7 @@
 
 ## Json
 
-### getBool *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getBool *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns a 'boolean' value, either 'true' or 'false', based on the valuespecified against the JSON element present in the given path.In case there is no valid boolean value found in the given path, the method still returns 'false'.</p>
 
@@ -49,7 +49,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the boolean value of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
-### getDouble *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getDouble *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns the double value of the JSON element present in the given path. If there is no valid double value in the given path, the method returns 'null'.</p>
 
@@ -96,7 +96,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the double value of the given path. The results aredirected to the 'OutputStream' stream.</p>
 
-### getFloat *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getFloat *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns the float value of the JSON element present in the given path.If there is no valid float value in the given path, the method returns 'null'.</p>
 
@@ -143,7 +143,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the float value of the JSON input in the given path. The results aredirected to the 'OutputStream' stream.</p>
 
-### getInt *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getInt *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns the integer value of the JSON element present in the given path. If there is no valid integer value in the given path, the method returns 'null'.</p>
 
@@ -190,7 +190,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the integer value of the JSON input in the given path. The resultsare directed to the 'OutputStream' stream.</p>
 
-### getLong *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getLong *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns the long value of the JSON element present in the given path. Ifthere is no valid long value in the given path, the method returns 'null'.</p>
 
@@ -237,7 +237,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the long value of the JSON input in the given path. The results aredirected to 'OutputStream' stream.</p>
 
-### getObject *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getObject *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns the object of the JSON element present in the given path.</p>
 
@@ -284,7 +284,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the object of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
-### getString *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### getString *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns the string value of the JSON element present in the given path.</p>
 
@@ -331,7 +331,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the string value of the JSON input in the given path. The results are directed to the 'OutputStream' stream.</p>
 
-### isExists *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### isExists *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method checks whether there is a JSON element present in the given path or not.If there is a valid JSON element in the given path, it returns 'true'. If there is no valid JSON element, it returns 'false'</p>
 
@@ -378,7 +378,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns either true or false based on the existence of a JSON element in a given path. The results are directed to the 'OutputStream' stream.</p>
 
-### setElement *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### setElement *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method allows to insert elements into a given JSON present in a specific path. If there is no valid path given, it returns the original JSON. Otherwise, it returns the new JSON.</p>
 
@@ -441,7 +441,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the JSON object present in the given path with the newly inserted JSONelement. The results are directed to the 'OutputStream' stream.</p>
 
-### toObject *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### toObject *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns the JSON object related to a given JSON string.</p>
 
@@ -480,7 +480,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the JSON object corresponding to the given JSON string.The results aredirected to the 'OutputStream' stream.</p>
 
-### toString *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
+### toString *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This method returns the JSON string corresponding to a given JSON object.</p>
 
@@ -519,7 +519,7 @@ insert into OutputStream;
 ```
 <p style="word-wrap: break-word">This returns the JSON string corresponding to a given JSON object. The results are directed to the 'OutputStream' stream.</p>
 
-### tokenize *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#stream-processor">(Stream Processor)</a>*
+### tokenize *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#stream-processor">(Stream Processor)</a>*
 
 <p style="word-wrap: break-word">This tokenizes the given json according the path provided</p>
 
@@ -595,7 +595,7 @@ insert into OutputStream;
  path - "$.age"
 </code><br></p>
 
-### tokenizeAsObject *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#stream-processor">(Stream Processor)</a>*
+### tokenizeAsObject *<a target="_blank" href="https://siddhi.io/en/v4.0/docs/query-guide/#stream-processor">(Stream Processor)</a>*
 
 <p style="word-wrap: break-word">This tokenizes the given JSON based on the path provided and returns the response as an object.</p>
 

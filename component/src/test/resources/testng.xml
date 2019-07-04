@@ -15,7 +15,7 @@
             <class name="io.siddhi.extension.execution.json.GetStringJSONFunctionTestCase"/>
             <class name="io.siddhi.extension.execution.json.ToJSONFunctionTestCase"/>
             <class name="io.siddhi.extension.execution.json.ToStringFunctionTestCase"/>
-            <class name="io.siddhi.extension.execution.json.InsertToJSONFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.SetElementJSONFunctionTestCase"/>
             <class name="io.siddhi.extension.execution.json.JsonTokenizerAsObjectStreamProcessorFunctionTestCase"/>
         </classes>
     </test>
