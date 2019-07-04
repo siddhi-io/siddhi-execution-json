@@ -47,20 +47,16 @@ import org.apache.log4j.Logger;
 @Extension(
         name = "isExists",
         namespace = "json",
-        description = "This method checks whether there is a JSON element present in the given path or not." +
-                "If there is a valid JSON element in the given path, it returns 'true'. If there is no valid JSON " +
-                "element, it returns 'false'",
+        description = "Function checks whether there is a JSON element present in the given path or not.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input in a given path, on which the function performs the search for" +
-                                "JSON elements.",
+                        description = "The JSON input that needs to be searched for an elements.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path that contains the input JSON on which the function " +
-                                "performs the search.",
+                        description = "The JSON path to check for the element.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -68,17 +64,25 @@ import org.apache.log4j.Logger;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "If there is a valid JSON element in the given path, it returns 'true'. If there is " +
-                        "no valid JSON element, it returns 'false'.",
+                description = "Returns 'true' if there is element in the given path, " +
+                        "else returns 'false'.",
                 type = {DataType.BOOL}),
-        examples = @Example(
-                syntax = "json:isExists(json,\"$.name\") as name\n",
-                description = "This returns either true or false based on the existence of a JSON element in a " +
-                        "given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:isExists(json, '$.name')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `true` as there is an element in the given path."
+                ),
+                @Example(
+                        syntax = "json:isExists(json, '$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `false` as there is no element in the given path."
+                )
+        }
+
 )
-public class IsExistsFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(IsExistsFunctionExtension.class);
+public class IsExistsJSONFunctionExtension extends FunctionExecutor {
+    private static final Logger log = Logger.getLogger(IsExistsJSONFunctionExtension.class);
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**

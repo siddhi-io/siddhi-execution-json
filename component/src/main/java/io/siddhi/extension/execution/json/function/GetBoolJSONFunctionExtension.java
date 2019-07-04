@@ -49,19 +49,16 @@ import java.util.List;
 @Extension(
         name = "getBool",
         namespace = "json",
-        description = "This method returns a 'boolean' value, either 'true' or 'false', based on the value" +
-                "specified against the JSON element present in the given path." +
-                "In case there is no valid boolean value found in the given path, the method still returns 'false'.",
+        description = "Function retrieves the 'boolean' value specified in the given path of the JSON element.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the boolean value in the given path.",
+                        description = "The JSON input containing boolean value.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path of the input JSON from which the 'getBool' function fetches the" +
-                                "boolean value.",
+                        description = "The JSON path to fetch the boolean value.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -69,13 +66,28 @@ import java.util.List;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the boolean value of the input JSON from the input stream.",
+                description = "Returns the boolean retrieved by the JSON path from the given input JSON, " +
+                        "if no valid boolean found in the given path, it returns `null`.",
                 type = {DataType.BOOL}),
-        examples = @Example(
-                syntax = "json:getBool(json,\"$.name\") as name\n",
-                description = "This returns the boolean value of the JSON input in the given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:getBool(json,'$.married')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`, " +
+                                "the function returns `true` as there is a matching boolean at `$.married`."
+                ),
+                @Example(
+                        syntax = "json:getBool(json,'$.name')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`, " +
+                                "the function returns `null` as there is no matching boolean at `$.name`."
+                ),
+                @Example(
+                        syntax = "json:getBool(json,'$.foo')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`, " +
+                                "the function returns `null` as there is no matching element at `$.foo`."
+                )
+        }
 )
+
 public class GetBoolJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetBoolJSONFunctionExtension.class);
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
@@ -142,7 +154,8 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error("Cannot find the json element for the path '" + path + "'. Hence it returns" +
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot find the json element for the path '" + path + "'. Hence it returns" +
                     "the default value 'null'");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
@@ -150,8 +163,9 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
                 filteredJsonElement = null;
-                log.error("Multiple matches or No matches for the given path '" + path + "' in input json. Please use" +
-                        " valid path which provide exact one match in the given json");
+                log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": Multiple matches or No matches for the given path '" + path +
+                        "' in input json. Please use valid path which provide exact one match in the given json");
             } else {
                 filteredJsonElement = ((List) filteredJsonElement).get(0);
             }
@@ -162,8 +176,9 @@ public class GetBoolJSONFunctionExtension extends FunctionExecutor {
         returnValue = Boolean.parseBoolean(filteredJsonElement.toString());
         if (!returnValue && !filteredJsonElement.toString().equalsIgnoreCase("false")) {
             returnValue = null;
-            log.error("The value that is retrieved using the given path '" + path + "', is not a valid boolean value." +
-                    " Hence it returns the default value 'null'");
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": The value that is retrieved using the given path '" + path +
+                    "', is not a valid boolean value. Hence it returns the default value 'null'");
         }
         return returnValue;
     }

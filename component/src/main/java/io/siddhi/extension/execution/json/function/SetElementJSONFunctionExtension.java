@@ -52,49 +52,80 @@ import java.util.Map;
 @Extension(
         name = "setElement",
         namespace = "json",
-        description = "This method allows to insert elements into a given JSON present in a specific path. If there " +
-                "is no valid path given, it returns the original JSON. Otherwise, it returns the new JSON.",
-
+        description = "Function sets JSON element into a given JSON at the specific path.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input into which is this function inserts the new value.",
+                        description = "The JSON to which a JSON element needs to be added/replaced.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path on the JSON input which is used to insert the given element.",
+                        description = "The JSON path where the JSON element should be added/replaced.",
                         type = {DataType.STRING},
                         dynamic = true),
                 @Parameter(
-                        name = "jsonelement",
-                        description = "The JSON element which is inserted by the function into the input JSON.",
+                        name = "json.element",
+                        description = "The JSON element being added.",
                         type = {DataType.STRING, DataType.BOOL, DataType.DOUBLE, DataType.FLOAT, DataType.INT,
                                 DataType.LONG, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "key",
-                        description = "The key which is used to insert the given element into the input JSON.",
+                        description = "The key to be used to refer the newly added element in the input JSON.",
                         type = {DataType.STRING},
                         dynamic = true,
-                        defaultValue = "It will consider the value of the parameter passed",
+                        defaultValue = "Assumes the element is added to a JSON array or the element selected in by" +
+                                " the JSON path is updated.",
                         optional = true)
         },
         parameterOverloads = {
-                @ParameterOverload(parameterNames = {"json", "path", "jsonelement"}),
-                @ParameterOverload(parameterNames = {"json", "path", "jsonelement", "key"})
+                @ParameterOverload(parameterNames = {"json", "path", "json.element"}),
+                @ParameterOverload(parameterNames = {"json", "path", "json.element", "key"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the JSON object with the inserted elements.",
+                description = "Returns the modified JSON with the inserted elements. If there " +
+                        "are no valid path given, it returns the original JSON with modification.",
                 type = {DataType.OBJECT}),
-        examples = @Example(
-                syntax = "json:setElement(json,\"$.name\") as name\n",
-                description = "This returns the JSON object present in the given path with the newly inserted JSON" +
-                        "element.")
+        examples = {
+                @Example(
+                        syntax = "json:setElement(json, '$', \"{'country' : 'USA'}\", 'address')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`," +
+                                "the function updates the `json` as `{'name' : 'John', 'married' : true, " +
+                                "'address' : {'country' : 'USA'}}` by adding 'address' element and" +
+                                " returns the updated JSON."),
+                @Example(
+                        syntax = "json:setElement(json, '$', 40, 'age')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`," +
+                                "the function updates the `json` as `{'name' : 'John', 'married' : true, " +
+                                "'age' : 40}` by adding 'age' element and returns the updated JSON."),
+                @Example(
+                        syntax = "json:setElement(json, '$', 45, 'age')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true, " +
+                                "'age' : 40}`, the function updates the `json` as `{'name' : 'John', 'married' " +
+                                ": true, 'age' : 45}` by replacing 'age' element and returns the updated JSON."),
+                @Example(
+                        syntax = "json:setElement(json, '$.items', 'book')",
+                        description = "If the `json` is the format `{'name' : 'Stationary', 'items' : " +
+                                "['pen', 'pencil']}`, the function updates the `json` as `{'name' : 'John'," +
+                                " 'items' : ['pen', 'pencil', 'book']}` by adding 'book' in the items array and " +
+                                "returns the updated JSON."),
+                @Example(
+                        syntax = "json:setElement(json, '$.item', 'book')",
+                        description = "If the `json` is the format `{'name' : 'Stationary', 'item' : 'pen'}`, " +
+                                "the function updates the `json` as `{'name' : 'John', 'item' : 'book'}` " +
+                                "by replacing 'item' element and returns the updated JSON."),
+                @Example(
+                        syntax = "json:setElement(json, '$.address', 'city', 'SF')",
+                        description = "If the `json` is the format `{'name' : 'John', 'married' : true}`," +
+                                "the function will not update, but returns the original JSON as there are no valid " +
+                                "path for `$.address`."),
+        }
+
 
 )
-public class InsertToJSONFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(InsertToJSONFunctionExtension.class);
+public class SetElementJSONFunctionExtension extends FunctionExecutor {
+    private static final Logger log = Logger.getLogger(SetElementJSONFunctionExtension.class);
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
@@ -132,14 +163,14 @@ public class InsertToJSONFunctionExtension extends FunctionExecutor {
             }
 
             if (attributeExpressionExecutors[2] == null) {
-                throw new SiddhiAppValidationException("Invalid input given to third argument 'jsonElement' of " +
-                        "json:setElement() function. Input 'jsonElement' argument cannot be null");
+                throw new SiddhiAppValidationException("Invalid input given to third argument 'json.element' of " +
+                        "json:setElement() function. Input 'json.element' argument cannot be null");
             }
 
             if (attributeExpressionExecutors.length == 4) {
                 if (attributeExpressionExecutors[3] == null) {
-                    throw new SiddhiAppValidationException("Invalid input given to third argument 'jsonElement' of " +
-                            "json:setElement() function. Input 'jsonElement' argument cannot be null");
+                    throw new SiddhiAppValidationException("Invalid input given to fourth argument " +
+                            "'key' of json:setElement() function, argument cannot be null");
                 }
                 Attribute.Type keyAttributeType = attributeExpressionExecutors[3].getReturnType();
                 if (!(keyAttributeType == Attribute.Type.STRING)) {
@@ -152,7 +183,6 @@ public class InsertToJSONFunctionExtension extends FunctionExecutor {
             throw new SiddhiAppValidationException("Invalid no of arguments passed to json:setElement() function, "
                     + "required 3 or 4, but found " + attributeExpressionExecutors.length);
         }
-
         return null;
     }
 
@@ -182,8 +212,9 @@ public class InsertToJSONFunctionExtension extends FunctionExecutor {
         try {
             object = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.warn("The path '" + path + "' is not a valid path for the json '" + jsonInput + "'. Please provide a" +
-                    " valid path.");
+            log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": The path '" + path + "' is not a valid path for the json '" + jsonInput +
+                    "'. Please provide a valid path.");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
@@ -197,7 +228,8 @@ public class InsertToJSONFunctionExtension extends FunctionExecutor {
                     documentContext.add(path, jsonElement);
                 }
             } catch (InvalidModificationException e) {
-                log.warn("The path '" + path + "' is not a valid path for the json '" + jsonInput + "'. Please " +
+                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": The path '" + path + "' is not a valid path for the json '" + jsonInput + "'. Please " +
                         "provide a valid path.");
             }
         } else {
@@ -210,7 +242,7 @@ public class InsertToJSONFunctionExtension extends FunctionExecutor {
                     documentContext.put(path, key, jsonElement);
                 }
             } else {
-                log.warn("Please provide a valid key to insert the given json element. The key cannot be null.");
+                documentContext.set(path, jsonElement);
             }
         }
         return documentContext.json();

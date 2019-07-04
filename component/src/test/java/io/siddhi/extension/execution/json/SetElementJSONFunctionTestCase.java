@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class InsertToJSONFunctionTestCase {
+public class SetElementJSONFunctionTestCase {
     private static final Logger log = Logger.getLogger(JsonTokenizerStreamProcessorFunctionTestCase.class);
     private static final String JSON_INPUT = "{name:\"John\", married:true, citizen:false, subjects:[\"Mathematics\"]}";
     private static final String EXPECTED_JSON = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
@@ -48,7 +48,7 @@ public class InsertToJSONFunctionTestCase {
 
     @Test
     public void testInsertTOJSONWithStringInput() throws InterruptedException, ParseException {
-        log.info("InsertToJSONFunctionTestCase - testInsertTOJSONWithStringInput");
+        log.info("SetElementJSONFunctionTestCase - testInsertTOJSONWithStringInput");
         String expectedJson2 = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
                 "\"subjects\":[\"Mathematics\"],\"key\":{\"key\":\"value\",\"age\":\"25\",\"boo\":\"false\"}}";
         String expectedJson3 = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
@@ -64,7 +64,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject1 = (JSONObject) jsonParser.parse(EXPECTED_JSON);
         JSONObject expectedJsonObject2 = (JSONObject) jsonParser.parse(expectedJson2);
         JSONObject expectedJsonObject3 = (JSONObject) jsonParser.parse(expectedJson3);
@@ -109,7 +109,7 @@ public class InsertToJSONFunctionTestCase {
 
     @Test
     public void testInsertTOJSONWithObjectInput() throws InterruptedException, ParseException {
-        log.info("InsertToJSONFunctionTestCase - testInsertTOJSONWithObjectInput");
+        log.info("SetElementJSONFunctionTestCase - testInsertTOJSONWithObjectInput");
         SiddhiManager siddhiManager = new SiddhiManager();
         String stream = "define stream InputStream(json object,path string,jsonElement object,key string);\n";
         String query = ("@info(name = 'query1')\n" +
@@ -117,7 +117,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject = (JSONObject) jsonParser.parse(EXPECTED_JSON);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -150,7 +150,7 @@ public class InsertToJSONFunctionTestCase {
                 "\"subjects\":[\"Mathematics\",\"Biology\"]}";
         String expectedJson3 = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
                 "\"subjects\":[\"Mathematics\",\"25\"]}";
-        log.info("InsertToJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
+        log.info("SetElementJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
         SiddhiManager siddhiManager = new SiddhiManager();
         String stream = "define stream InputStream(json object,path string,jsonElement object,key string);\n";
         String query = ("@info(name = 'query1')\n" +
@@ -158,7 +158,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject = (JSONObject) jsonParser.parse(expectedJson);
         JSONObject expectedJsonObject2 = (JSONObject) jsonParser.parse(expectedJson2);
         JSONObject expectedJsonObject3 = (JSONObject) jsonParser.parse(expectedJson3);
@@ -204,7 +204,7 @@ public class InsertToJSONFunctionTestCase {
     public void testModifyPropertyInJSONWithIntInput() throws InterruptedException, ParseException {
         String expectedJson = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
                 "\"subjects\":[\"Mathematics\"],\"age\":25}";
-        log.info("InsertToJSONFunctionTestCase - testModifyPropertyInJSONWithIntInput");
+        log.info("SetElementJSONFunctionTestCase - testModifyPropertyInJSONWithIntInput");
         SiddhiManager siddhiManager = new SiddhiManager();
         String stream = "define stream InputStream(json object,path string,jsonElement int,key string);\n";
         String query = ("@info(name = 'query1')\n" +
@@ -212,7 +212,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject = (JSONObject) jsonParser.parse(expectedJson);
         JSONObject inputJsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
@@ -240,7 +240,7 @@ public class InsertToJSONFunctionTestCase {
     public void testModifyPropertyInJSONWithDoubleInput() throws InterruptedException, ParseException {
         String expectedJson = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
                 "\"subjects\":[\"Mathematics\"],\"age\":25.0}";
-        log.info("InsertToJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
+        log.info("SetElementJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
         SiddhiManager siddhiManager = new SiddhiManager();
         String stream = "define stream InputStream(json object,path string,jsonElement double,key string);\n";
         String query = ("@info(name = 'query1')\n" +
@@ -248,7 +248,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject = (JSONObject) jsonParser.parse(expectedJson);
         JSONObject inputJsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
@@ -277,7 +277,7 @@ public class InsertToJSONFunctionTestCase {
     public void testModifyPropertyInJSONWithBoolInput() throws InterruptedException, ParseException {
         String expectedJson = "{\"name\":\"John\",\"married\":true,\"citizen\":false," +
                 "\"subjects\":[\"Mathematics\"],\"age\":false}";
-        log.info("InsertToJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
+        log.info("SetElementJSONFunctionTestCase - testModifyPropertyInJSONWithObjectInput");
         SiddhiManager siddhiManager = new SiddhiManager();
         String stream = "define stream InputStream(json object,path string,jsonElement bool,key string);\n";
         String query = ("@info(name = 'query1')\n" +
@@ -285,7 +285,7 @@ public class InsertToJSONFunctionTestCase {
                 "select json:setElement(json,path,jsonElement,key) as married\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject expectedJsonObject = (JSONObject) jsonParser.parse(expectedJson);
         JSONObject inputJsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
@@ -306,6 +306,181 @@ public class InsertToJSONFunctionTestCase {
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{inputJsonObject, "$", false, "age"});
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testSetElement1() throws InterruptedException, ParseException {
+        log.info("testSetElement1");
+        String expectedJson = "{name=Stationary, items=[\"pen\",\"book\"]}";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(foo string);\n";
+        String query =
+                "@info(name = 'query1')\n" +
+                        "from InputStream\n" +
+                        "select json:setElement(\"{'name' : 'Stationary', 'items' : ['pen']}\", " +
+                        "                           '$.items', 'book') as newJson\n" +
+                        "insert into OutputStream;";
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals(expectedJson, event.getData(0).toString());
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"test"});
+        AssertJUnit.assertEquals(1, count.get());
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testSetElement2() throws InterruptedException, ParseException {
+        log.info("testSetElement2");
+        String expectedJson = "{name=Stationary, item=book}";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(foo string);\n";
+        String query =
+                "@info(name = 'query1')\n" +
+                        "from InputStream\n" +
+                        "select json:setElement(\"{'name' : 'Stationary', 'item' : 'pen'}\", " +
+                        "                           '$.item', 'book') as newJson\n" +
+                        "insert into OutputStream;";
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals(expectedJson, event.getData(0).toString());
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"test"});
+        AssertJUnit.assertEquals(1, count.get());
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testSetElement3() throws InterruptedException, ParseException {
+        log.info("testSetElement3");
+        String expectedJson = "{name=Stationary, item=book}";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(foo string);\n";
+        String query =
+                "@info(name = 'query1')\n" +
+                        "from InputStream\n" +
+                        "select json:setElement(\"{'name' : 'Stationary', 'item' : 'pen'}\", " +
+                        "                           '$.item', 'book', 'item') as newJson\n" +
+                        "insert into OutputStream;";
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals(expectedJson, event.getData(0).toString());
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"test"});
+        AssertJUnit.assertEquals(0, count.get());
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testSetElement4() throws InterruptedException, ParseException {
+        log.info("testSetElement4");
+        String expectedJson = "{name=Stationary, item=book}";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(foo string);\n";
+        String query =
+                "@info(name = 'query1')\n" +
+                        "from InputStream\n" +
+                        "select json:setElement(\"{'name' : 'Stationary', 'item' : 'pen'}\", " +
+                        "                           '$', 'book', 'item') as newJson\n" +
+                        "insert into OutputStream;";
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals(expectedJson, event.getData(0).toString());
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"test"});
+        AssertJUnit.assertEquals(1, count.get());
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testSetElement5() throws InterruptedException, ParseException {
+        log.info("testSetElement5");
+        String expectedJson = "{name=Stationary, item=book}";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(foo string);\n";
+        String query =
+                "@info(name = 'query1')\n" +
+                        "from InputStream\n" +
+                        "select json:setElement(\"{'name' : 'Stationary'}\", " +
+                        "                           '$', 'book', 'item') as newJson\n" +
+                        "insert into OutputStream;";
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals(expectedJson, event.getData(0).toString());
+                            break;
+                    }
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"test"});
+        AssertJUnit.assertEquals(1, count.get());
         siddhiAppRuntime.shutdown();
     }
 }

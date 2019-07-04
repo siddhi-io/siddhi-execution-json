@@ -49,18 +49,16 @@ import java.util.List;
 @Extension(
         name = "getDouble",
         namespace = "json",
-        description = "This method returns the double value of the JSON element present in the given path. If " +
-                "there is no valid double value in the given path, the method returns 'null'.",
+        description = "Function retrieves the 'double' value specified in the given path of the JSON element.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the value in the given path.",
+                        description = "The JSON input containing double value.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path of the input JSON from which the 'getDouble' function fetches the" +
-                                "double value.",
+                        description = "The JSON path to fetch the double value.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -68,12 +66,26 @@ import java.util.List;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the double value of the input JSON from the input stream.",
+                description = "Returns the double value retrieved by the JSON path from the given input JSON, " +
+                        "if no valid double found in the given path, it returns `null`.",
                 type = {DataType.DOUBLE}),
-        examples = @Example(
-                syntax = "json:getDouble(json,\"$.salary\") as salary\n",
-                description = "This returns the double value of the given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:getDouble(json,'$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'salary' : 12000.0}`, " +
+                                "the function returns `12000.0` as there is a matching double at `$.salary`."
+                ),
+                @Example(
+                        syntax = "json:getDouble(json,'$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching element at `$.salary`."
+                ),
+                @Example(
+                        syntax = "json:getDouble(json,'$.name')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching double at `$.name`."
+                )
+        }
 )
 public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetDoubleJSONFunctionExtension.class);
@@ -141,7 +153,8 @@ public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error("Cannot find json element for the path '" + path + "'. Hence it returns the default value, " +
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot find json element for the path '" + path + "'. Hence it returns the default value " +
                     "'null'");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
@@ -149,9 +162,9 @@ public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
                 filteredJsonElement = null;
-                log.error("Multiple matches or no matches for the given path '" + path + "' in the input json. " +
-                        "Please use" +
-                        "valid path which provides the exact match for the given json");
+                log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": Multiple matches or no matches for the given path '" + path + "' in the input json. " +
+                        "Please use valid path which provides the exact match for the given json");
             } else {
                 filteredJsonElement = ((List) filteredJsonElement).get(0);
             }
@@ -163,8 +176,9 @@ public class GetDoubleJSONFunctionExtension extends FunctionExecutor {
             returnValue = Double.parseDouble(filteredJsonElement.toString());
         } catch (NumberFormatException e) {
             returnValue = null;
-            log.error("The value that is retrieved using the given path '" + path + "', is not a valid double value. " +
-                    "Hence it returns the default value, 'null'");
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": The value that is retrieved using the given path '" + path +
+                    "', is not a valid double value. Hence it returns the default value 'null'");
         }
         return returnValue;
     }

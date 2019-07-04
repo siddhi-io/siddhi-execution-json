@@ -49,17 +49,16 @@ import java.util.List;
 @Extension(
         name = "getObject",
         namespace = "json",
-        description = "This returns the object of the JSON element present in the given path.",
+        description = "Function retrieves the object specified in the given path of the JSON element.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the value in the given path.",
+                        description = "The JSON input containing the object.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path of the input JSON from which the 'getObject' function fetches the" +
-                                "object.",
+                        description = "The JSON path to fetch the object.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -67,12 +66,28 @@ import java.util.List;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the object of the input JSON from the input stream.",
+                description = "Returns the object retrieved by the JSON path from the given input JSON, " +
+                        "if no valid JSON element found in the given path, it returns `null`.",
                 type = {DataType.OBJECT}),
-        examples = @Example(
-                syntax = "json:getObject(json,\"$.name\") as name\n",
-                description = "This returns the object of the JSON input in the given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:getObject(json,'$.address')",
+                        description = "If the `json` is the format `{'name' : 'John', 'address' : " +
+                                "{'city' : 'NY', 'country' : 'USA'}}`, " +
+                                "the function returns `{'city' : 'NY', 'country' : 'USA'}` " +
+                                "as there is a matching object at `$.address`."
+                ),
+                @Example(
+                        syntax = "json:getObject(json,'$.age')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `23` as there is a matching object at `$.age`."
+                ),
+                @Example(
+                        syntax = "json:getObject(json,'$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching element at `$.salary`."
+                )
+        }
 )
 public class GetObjectJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetObjectJSONFunctionExtension.class);
@@ -139,7 +154,8 @@ public class GetObjectJSONFunctionExtension extends FunctionExecutor {
         try {
             returnValue = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.warn("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }

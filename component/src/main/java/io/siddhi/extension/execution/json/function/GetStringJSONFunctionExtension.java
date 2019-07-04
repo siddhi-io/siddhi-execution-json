@@ -47,17 +47,16 @@ import org.apache.log4j.Logger;
 @Extension(
         name = "getString",
         namespace = "json",
-        description = "This returns the string value of the JSON element present in the given path.",
+        description = "Function retrieves value specified in the given path of the JSON element as a string.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "The JSON input that holds the value in the given path.",
+                        description = "The JSON input containing value.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "path",
-                        description = "The path of the JSON input from which the 'getString' function fetches " +
-                                " the string value.",
+                        description = "The JSON path to fetch the value.",
                         type = {DataType.STRING},
                         dynamic = true)
         },
@@ -65,12 +64,33 @@ import org.apache.log4j.Logger;
                 @ParameterOverload(parameterNames = {"json", "path"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the string value of the input JSON from the input stream.",
+                description = "Returns the string value retrieved by the JSON path from the given input JSON, " +
+                        "if no valid string found in the given path, it returns `null`.",
                 type = {DataType.STRING}),
-        examples = @Example(
-                syntax = "json:getString(json,\"$.name\") as name\n",
-                description = "This returns the string value of the JSON input in the given path."
-        )
+        examples = {
+                @Example(
+                        syntax = "json:getString(json,'$.name')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `John` as there is a matching string at `$.name`."
+                ),
+                @Example(
+                        syntax = "json:getString(json,'$.salary')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `null` as there are no matching element at `$.salary`."
+                ),
+                @Example(
+                        syntax = "json:getString(json,'$.age')",
+                        description = "If the `json` is the format `{'name' : 'John', 'age' : 23}`, " +
+                                "the function returns `23` as a string as there is a matching element at `$.age`."
+                ),
+                @Example(
+                        syntax = "json:getString(json,'$.address')",
+                        description = "If the `json` is the format `{'name' : 'John', 'address' : " +
+                                "{'city' : 'NY', 'country' : 'USA'}}`, " +
+                                "the function returns `{'city' : 'NY', 'country' : 'USA'}` as a string as there is " +
+                                " a matching element at `$.address`."
+                )
+        }
 )
 public class GetStringJSONFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(GetStringJSONFunctionExtension.class);
@@ -138,7 +158,8 @@ public class GetStringJSONFunctionExtension extends FunctionExecutor {
         try {
             returnValue = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.warn("Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }

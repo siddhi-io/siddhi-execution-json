@@ -55,7 +55,7 @@ public class ToJSONFunctionTestCase {
                 "select json:toObject(json) as json\n" +
                 "insert into OutputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
-        JSONParser jsonParser = new JSONParser();
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(JSON_INPUT);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override

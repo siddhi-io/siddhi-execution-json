@@ -1,4 +1,4 @@
-Siddhi Execution Json
+Siddhi Execution JSON
 ======================================
 
   [![Jenkins Build Status](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-json/badge/icon)](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-json/)

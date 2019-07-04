@@ -43,11 +43,11 @@ import org.apache.log4j.Logger;
 @Extension(
         name = "toString",
         namespace = "json",
-        description = "This method returns the JSON string corresponding to a given JSON object.",
+        description = "Function generates a JSON string corresponding to a given JSON object.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "A valid JSON object from which the function generates a JSON string.",
+                        description = "A valid JSON object to generates a JSON string.",
                         type = {DataType.OBJECT},
                         dynamic = true),
         },
@@ -55,10 +55,10 @@ import org.apache.log4j.Logger;
                 @ParameterOverload(parameterNames = {"json"})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the JSON string generated using the given JSON object.",
+                description = "Returns the JSON string for the given JSON object.",
                 type = {DataType.STRING}),
         examples = @Example(
-                syntax = "json:toString(json) as jsonString\n",
+                syntax = "json:toString(json)",
                 description = "This returns the JSON string corresponding to a given JSON object."
         )
 )

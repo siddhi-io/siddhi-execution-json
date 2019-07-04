@@ -43,12 +43,11 @@ import org.apache.log4j.Logger;
 @Extension(
         name = "toObject",
         namespace = "json",
-        description = "This method returns the JSON object related to a given JSON string.",
+        description = "Function generate JSON object from the given JSON string.",
         parameters = {
                 @Parameter(
                         name = "json",
-                        description = "A valid JSON string from which the function generates " +
-                                "the JSON object.",
+                        description = "A valid JSON string that needs to be converted to a JSON object.",
                         type = {DataType.STRING},
                         dynamic = true),
         },
@@ -59,13 +58,13 @@ import org.apache.log4j.Logger;
                 description = "Returns the JSON object generated using the given JSON string.",
                 type = {DataType.OBJECT}),
         examples = @Example(
-                syntax = "json:toJson(json) as jsonObject\n",
+                syntax = "json:toJson(json)",
                 description = "This returns the JSON object corresponding to the given JSON string."
         )
 )
 public class ToJSONObjectFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONObjectFunctionExtension.class);
-    private static final JSONParser jsonParser = new JSONParser();
+    private static final JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
@@ -125,7 +124,8 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
         try {
             returnValue = jsonParser.parse(data.toString());
         } catch (ParseException e) {
-            log.error("Cannot parse the given string into JSON. Hence returning null");
+            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                    ": Cannot parse the given string into JSON. Hence returning null");
         }
         return returnValue;
     }
