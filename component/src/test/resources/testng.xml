@@ -17,6 +17,8 @@
             <class name="io.siddhi.extension.execution.json.ToStringFunctionTestCase"/>
             <class name="io.siddhi.extension.execution.json.SetElementJSONFunctionTestCase"/>
             <class name="io.siddhi.extension.execution.json.JsonTokenizerAsObjectStreamProcessorFunctionTestCase"/>
+            <class name="io.siddhi.extension.execution.json.GroupAggregatorFunctionTestcase"/>
+            <class name="io.siddhi.extension.execution.json.GroupAsStringAggregatorFunctionTestcase"/>
         </classes>
     </test>
 </suite>
