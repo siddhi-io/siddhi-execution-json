@@ -39,12 +39,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static io.siddhi.query.api.definition.Attribute.Type.OBJECT;
+
+import static io.siddhi.query.api.definition.Attribute.Type.STRING;
 
 /**
- * group(json, enclosing.element)
- * Returns JSON object by merging all JSON elements if enclosing element is provided.
- * Returns a JSON array by adding all JSON elements if enclosing element is not provided
+ * group(json, enclosing.element, distinct)
+ * Returns JSON object as String by merging all JSON elements if enclosing element is provided.
+ * Returns a JSON array as String by adding all JSON elements if enclosing element is not provided
  */
 @Extension(
         name = "group",
@@ -132,7 +133,7 @@ public class GroupAggregatorFunctionExtension
     @Override
     public Object processAdd(Object o, ExtensionState extensionState) {
         addJSONElement(o);
-        return constructJSONObject(null, false);
+        return constructJSONString(null, false);
     }
 
     @Override
@@ -144,7 +145,7 @@ public class GroupAggregatorFunctionExtension
     @Override
     public Object processRemove(Object o, ExtensionState extensionState) {
         removeJSONElement(o);
-        return constructJSONObject(null, false);
+        return constructJSONString(null, false);
     }
 
     @Override
@@ -161,17 +162,17 @@ public class GroupAggregatorFunctionExtension
 
     @Override
     public Attribute.Type getReturnType() {
-        return OBJECT;
+        return STRING;
     }
 
     private Object processJSONObject(Object[] objects) {
         if (objects.length == 3) {
-            return constructJSONObject(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()));
+            return constructJSONString(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()));
         } else {
             if (objects[1] instanceof Boolean) {
-                return constructJSONObject(null, Boolean.parseBoolean(objects[1].toString()));
+                return constructJSONString(null, Boolean.parseBoolean(objects[1].toString()));
             } else {
-                return constructJSONObject(objects[1].toString(), false);
+                return constructJSONString(objects[1].toString(), false);
             }
         }
 
@@ -191,7 +192,7 @@ public class GroupAggregatorFunctionExtension
         }
     }
 
-    private Object constructJSONObject(String enclosingElement, boolean isDistinct) {
+    private String constructJSONString(String enclosingElement, boolean isDistinct) {
         JSONArray jsonArray = new JSONArray();
         if (!isDistinct) {
             for (Map.Entry<Object, Integer> entry : dataMap.entrySet()) {
@@ -206,10 +207,10 @@ public class GroupAggregatorFunctionExtension
         if (enclosingElement != null) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(enclosingElement, jsonArray);
-            return jsonObject;
+            return jsonObject.toJSONString();
         }
 
-        return jsonArray;
+        return jsonArray.toJSONString();
     }
 
     class ExtensionState extends State {

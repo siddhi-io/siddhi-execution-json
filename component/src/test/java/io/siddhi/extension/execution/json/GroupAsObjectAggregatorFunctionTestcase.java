@@ -34,9 +34,9 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class GroupAsStringAggregatorFunctionTestcase {
+public class GroupAsObjectAggregatorFunctionTestcase {
 
-    private static final Logger LOGGER = Logger.getLogger(GroupAsStringAggregatorFunctionTestcase.class);
+    private static final Logger LOGGER = Logger.getLogger(GroupAsObjectAggregatorFunctionTestcase.class);
     private AtomicInteger count = new AtomicInteger(0);
     private volatile boolean eventArrived;
 
@@ -54,7 +54,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream " +
-                "select json:groupAsString(symbol1) as concatJSON " +
+                "select json:groupAsObject(symbol1) as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -67,7 +67,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -75,7 +75,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -85,7 +85,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         jsonArray.add(jsonString1);
                         jsonArray.add(jsonString2);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -111,7 +111,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream " +
-                "select json:groupAsString(symbol1) as concatJSON " +
+                "select json:groupAsObject(symbol1) as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -124,7 +124,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -134,7 +134,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonObject1);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -149,7 +149,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         jsonArray.add(jsonObject1);
                         jsonArray.add(jsonObject2);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -184,7 +184,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream#window.length(3) " +
-                "select json:groupAsString(symbol1, 'result') as concatJSON " +
+                "select json:groupAsObject(symbol1, 'result') as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -199,7 +199,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -209,7 +209,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(jsonString);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -221,7 +221,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(jsonString2);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -247,7 +247,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream#window.length(3) " +
-                "select json:groupAsString(symbol1, true) as concatJSON " +
+                "select json:groupAsObject(symbol1, true) as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -260,7 +260,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -268,7 +268,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -276,7 +276,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString1);
-                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -302,7 +302,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream " +
-                "select json:groupAsString(symbol1, 'result', true) as concatJSON " +
+                "select json:groupAsObject(symbol1, 'result', true) as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -317,7 +317,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -331,7 +331,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -345,7 +345,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -380,7 +380,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
         String query = ("@info(name = 'query1') " +
                 "from inputStream#window.length(2) " +
-                "select json:groupAsString(symbol1, 'result', true) as concatJSON " +
+                "select json:groupAsObject(symbol1, 'result', true) as concatJSON " +
                 "insert into outputStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
@@ -395,7 +395,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -409,7 +409,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -422,7 +422,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
 
@@ -441,7 +441,7 @@ public class GroupAsStringAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
                         eventArrived = true;
                     }
                 }
