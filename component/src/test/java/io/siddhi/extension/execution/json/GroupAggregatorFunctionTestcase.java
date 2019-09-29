@@ -67,7 +67,7 @@ public class GroupAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -75,7 +75,7 @@ public class GroupAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -85,7 +85,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         jsonArray.add(jsonString1);
                         jsonArray.add(jsonString2);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -124,7 +124,7 @@ public class GroupAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -134,7 +134,7 @@ public class GroupAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonObject1);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -149,7 +149,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         jsonArray.add(jsonObject1);
                         jsonArray.add(jsonObject2);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -199,7 +199,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -209,7 +209,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(jsonString);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -221,7 +221,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(jsonString2);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -260,7 +260,7 @@ public class GroupAggregatorFunctionTestcase {
                     if (count.get() == 1) {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -268,7 +268,7 @@ public class GroupAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -276,7 +276,7 @@ public class GroupAggregatorFunctionTestcase {
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
                         jsonArray.add(jsonString1);
-                        AssertJUnit.assertEquals(jsonArray, event.getData(0));
+                        AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -317,7 +317,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -331,7 +331,7 @@ public class GroupAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -345,7 +345,7 @@ public class GroupAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }
@@ -395,7 +395,7 @@ public class GroupAggregatorFunctionTestcase {
                         jsonArray.add(null);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
@@ -409,7 +409,7 @@ public class GroupAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
@@ -422,7 +422,7 @@ public class GroupAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
 
@@ -441,7 +441,7 @@ public class GroupAggregatorFunctionTestcase {
 
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
-                        AssertJUnit.assertEquals(jsonObject, event.getData(0));
+                        AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                 }

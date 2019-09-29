@@ -39,16 +39,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
-import static io.siddhi.query.api.definition.Attribute.Type.STRING;
+import static io.siddhi.query.api.definition.Attribute.Type.OBJECT;
 
 /**
- * groupAsString(json, enclosing.element)
- * Returns JSON object as String by merging all JSON elements if enclosing element is provided.
- * Returns a JSON array as String by adding all JSON elements if enclosing element is not provided
+ * groupAsObject(json, enclosing.element, distinct)
+ * Returns JSON object by merging all JSON elements if enclosing element is provided.
+ * Returns a JSON array by adding all JSON elements if enclosing element is not provided
  */
 @Extension(
-        name = "groupAsString",
+        name = "groupAsObject",
         namespace = "json",
         description = "This function aggregates the JSON elements and returns a JSON object by adding " +
                 "enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON " +
@@ -79,7 +78,7 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
         examples = {
                 @Example(
                         syntax = "from InputStream#window.length(5)\n" +
-                                "select json:group(\"json\") as groupedJSONArray\n" +
+                                "select json:groupAsObject(\"json\") as groupedJSONArray\n" +
                                 "input OutputStream;",
                         description = "When we input events having values for the `json` as " +
                                 "`{\"date\":\"2013-11-19\",\"time\":\"10:30\"}` and " +
@@ -88,7 +87,7 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
                                 "{\"date\":\"2013-11-19\",\"time\":\"12:20\"}]` to the 'OutputStream'."),
                 @Example(
                         syntax = "from InputStream#window.length(5)\n" +
-                                "select json:group(\"json\", true) as groupedJSONArray\n" +
+                                "select json:groupAsObject(\"json\", true) as groupedJSONArray\n" +
                                 "input OutputStream;",
                         description = "When we input events having values for the `json` as " +
                                 "`{\"date\":\"2013-11-19\",\"time\":\"10:30\"}` and " +
@@ -96,7 +95,7 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
                                 " returns `[{\"date\":\"2013-11-19\",\"time\":\"10:30\"}]` to the 'OutputStream'."),
                 @Example(
                         syntax = "from InputStream#window.length(5)\n" +
-                                "select json:group(\"json\", \"result\") as groupedJSONArray\n" +
+                                "select json:groupAsObject(\"json\", \"result\") as groupedJSONArray\n" +
                                 "input OutputStream;",
                         description = "When we input events having values for the `json` as " +
                                 "`{\"date\":\"2013-11-19\",\"time\":\"10:30\"}` and " +
@@ -105,7 +104,7 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
                                 "{\"date\":\"2013-11-19\",\"time\":\"12:20\"}}` to the 'OutputStream'."),
                 @Example(
                         syntax = "from InputStream#window.length(5)\n" +
-                                "select json:group(\"json\", \"result\", true) as groupedJSONArray\n" +
+                                "select json:groupAsObject(\"json\", \"result\", true) as groupedJSONArray\n" +
                                 "input OutputStream;",
                         description = "When we input events having values for the `json` as " +
                                 "`{\"date\":\"2013-11-19\",\"time\":\"10:30\"}` and " +
@@ -115,8 +114,8 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
         }
 
 )
-public class GroupAsStringAggregatorFunctionExtension
-        extends AttributeAggregatorExecutor<GroupAsStringAggregatorFunctionExtension.ExtensionState> {
+public class GroupAsObjectAggregatorFunctionExtension
+        extends AttributeAggregatorExecutor<GroupAsObjectAggregatorFunctionExtension.ExtensionState> {
 
     private static final String KEY_DATA_MAP = "dataMap";
     private Map<Object, Integer> dataMap = new LinkedHashMap<>();
@@ -133,7 +132,7 @@ public class GroupAsStringAggregatorFunctionExtension
     @Override
     public Object processAdd(Object o, ExtensionState extensionState) {
         addJSONElement(o);
-        return constructJSONString(null, false);
+        return constructJSONObject(null, false);
     }
 
     @Override
@@ -145,7 +144,7 @@ public class GroupAsStringAggregatorFunctionExtension
     @Override
     public Object processRemove(Object o, ExtensionState extensionState) {
         removeJSONElement(o);
-        return constructJSONString(null, false);
+        return constructJSONObject(null, false);
     }
 
     @Override
@@ -162,17 +161,17 @@ public class GroupAsStringAggregatorFunctionExtension
 
     @Override
     public Attribute.Type getReturnType() {
-        return STRING;
+        return OBJECT;
     }
 
     private Object processJSONObject(Object[] objects) {
         if (objects.length == 3) {
-            return constructJSONString(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()));
+            return constructJSONObject(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()));
         } else {
             if (objects[1] instanceof Boolean) {
-                return constructJSONString(null, Boolean.parseBoolean(objects[1].toString()));
+                return constructJSONObject(null, Boolean.parseBoolean(objects[1].toString()));
             } else {
-                return constructJSONString(objects[1].toString(), false);
+                return constructJSONObject(objects[1].toString(), false);
             }
         }
 
@@ -192,7 +191,7 @@ public class GroupAsStringAggregatorFunctionExtension
         }
     }
 
-    private String constructJSONString(String enclosingElement, boolean isDistinct) {
+    private Object constructJSONObject(String enclosingElement, boolean isDistinct) {
         JSONArray jsonArray = new JSONArray();
         if (!isDistinct) {
             for (Map.Entry<Object, Integer> entry : dataMap.entrySet()) {
@@ -207,10 +206,10 @@ public class GroupAsStringAggregatorFunctionExtension
         if (enclosingElement != null) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(enclosingElement, jsonArray);
-            return jsonObject.toJSONString();
+            return jsonObject;
         }
 
-        return jsonArray.toJSONString();
+        return jsonArray;
     }
 
     class ExtensionState extends State {
