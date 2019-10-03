@@ -25,6 +25,7 @@ import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.query.processor.ProcessingMode;
 import io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor;
@@ -34,11 +35,12 @@ import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 
 import static io.siddhi.query.api.definition.Attribute.Type.STRING;
 
@@ -56,7 +58,7 @@ import static io.siddhi.query.api.definition.Attribute.Type.STRING;
         parameters = {
                 @Parameter(name = "json",
                         description = "The JSON element that needs to be aggregated.",
-                        type = {DataType.STRING},
+                        type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(name = "enclosing.element",
                         description = "The JSON element used to enclose the aggregated JSON elements.",
@@ -120,6 +122,7 @@ public class GroupAggregatorFunctionExtension
 
     private static final String KEY_DATA_MAP = "dataMap";
     private Map<Object, Integer> dataMap = new LinkedHashMap<>();
+    private SiddhiQueryContext siddhiQueryContext;
 
     @Override
     protected StateFactory<ExtensionState> init(ExpressionExecutor[] expressionExecutors,
@@ -127,6 +130,7 @@ public class GroupAggregatorFunctionExtension
                                                 boolean b,
                                                 ConfigReader configReader,
                                                 SiddhiQueryContext siddhiQueryContext) {
+        this.siddhiQueryContext = siddhiQueryContext;
         return () -> new ExtensionState();
     }
 
@@ -179,17 +183,43 @@ public class GroupAggregatorFunctionExtension
     }
 
     private void addJSONElement(Object json) {
-        Integer count = dataMap.get(json);
-        dataMap.put(json, (count == null) ? 1 : count + 1);
+        JSONObject jsonObject = getJSONObject(json);
+        Integer count = dataMap.get(jsonObject);
+        dataMap.put(jsonObject, (count == null) ? 1 : count + 1);
     }
 
     private void removeJSONElement(Object json) {
-        Integer count = dataMap.get(json);
+        JSONObject jsonObject = getJSONObject(json);
+        Integer count = dataMap.get(jsonObject);
         if (count == 1) {
-            dataMap.remove(json);
+            dataMap.remove(jsonObject);
         } else if (count > 1) {
-            dataMap.put(json, count - 1);
+            dataMap.put(jsonObject, count - 1);
         }
+    }
+
+    private JSONObject getJSONObject(Object json) {
+        JSONObject jsonObject;
+        if (json instanceof String) {
+            JSONParser jsonParser = new JSONParser();
+            try {
+                jsonObject = (JSONObject) jsonParser.parse(json.toString());
+            } catch (ParseException e) {
+                throw new SiddhiAppRuntimeException(siddhiQueryContext.getSiddhiAppContext().getName() + ":" +
+                        siddhiQueryContext.getName() +
+                        ": Cannot parse the given string into JSONObject." + json, e);
+            }
+        } else {
+            try {
+                jsonObject = (JSONObject) json;
+            } catch (ClassCastException e) {
+                throw new SiddhiAppRuntimeException(siddhiQueryContext.getSiddhiAppContext().getName() + ":" +
+                        siddhiQueryContext.getName() +
+                        ": Provided value is not a valid JSON object." + json, e);
+            }
+        }
+
+        return jsonObject;
     }
 
     private String constructJSONString(String enclosingElement, boolean isDistinct) {

@@ -71,20 +71,27 @@ public class GroupAggregatorFunctionTestcase {
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
-                        String jsonString = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString);
+                        jsonArray.add(jsonObject1);
                         AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
-                        String jsonString1 = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
-                        String jsonString2 = "{\"date\":\"2013-11-19\",\"time\":\"12:20\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
+
+                        JSONObject jsonObject2 = new JSONObject();
+                        jsonObject2.put("date", "2013-11-19");
+                        jsonObject2.put("time", "12:20");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString1);
-                        jsonArray.add(jsonString2);
+                        jsonArray.add(jsonObject1);
+                        jsonArray.add(jsonObject2);
                         AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
@@ -203,22 +210,29 @@ public class GroupAggregatorFunctionTestcase {
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
-                        String jsonString = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString);
+                        jsonArray.add(jsonObject1);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
                         AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
-                        String jsonString1 = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
-                        String jsonString2 = "{\"date\":\"2013-11-19\",\"time\":\"12:20\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
+
+                        JSONObject jsonObject2 = new JSONObject();
+                        jsonObject2.put("date", "2013-11-19");
+                        jsonObject2.put("time", "12:20");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString1);
-                        jsonArray.add(jsonString2);
+                        jsonArray.add(jsonObject1);
+                        jsonArray.add(jsonObject2);
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("result", jsonArray);
                         AssertJUnit.assertEquals(jsonObject.toJSONString(), event.getData(0));
@@ -264,18 +278,22 @@ public class GroupAggregatorFunctionTestcase {
                         eventArrived = true;
                     }
                     if (count.get() == 2) {
-                        String jsonString = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString);
+                        jsonArray.add(jsonObject1);
                         AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
                     if (count.get() == 3) {
-                        String jsonString1 = "{\"date\":\"2013-11-19\",\"time\":\"10:30\"}";
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("date", "2013-11-19");
+                        jsonObject1.put("time", "10:30");
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(null);
-                        jsonArray.add(jsonString1);
+                        jsonArray.add(jsonObject1);
                         AssertJUnit.assertEquals(jsonArray.toJSONString(), event.getData(0));
                         eventArrived = true;
                     }
