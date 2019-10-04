@@ -114,7 +114,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#api-docs-v203" tabindex="1" class="md-skip">
+      <a href="#api-docs-v204" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -436,6 +436,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.4/" title="2.0.4" class="md-nav__link">
+      2.0.4
+    </a>
   </li>
 
         
@@ -793,7 +805,7 @@
                   <a href="https://github.com/siddhi-io/siddhi-execution-json/blob/master/api/latest.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="api-docs-v203">API Docs - v2.0.3</h1>
+                <h1 id="api-docs-v204">API Docs - v2.0.4</h1>
 <div class="admonition info">
 <p class="admonition-title">Tested Siddhi Core version: <em><a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/">5.1.5</a></em></p>
 <p>It could also support other Siddhi Core minor versions.</p>
@@ -804,10 +816,10 @@
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<pre><code>&lt;OBJECT&gt; json:group(&lt;STRING&gt; json)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;BOOL&gt; distinct)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
+<pre><code>&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;BOOL&gt; distinct)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
 </code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -824,7 +836,7 @@
         <td style="vertical-align: top">json</td>
         <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The JSON element that needs to be aggregated.</p></td>
         <td style="vertical-align: top"></td>
-        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
@@ -899,10 +911,10 @@ input OutputStream;
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<pre><code>&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;BOOL&gt; distinct)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
+<pre><code>&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;BOOL&gt; distinct)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
 </code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -919,7 +931,7 @@ input OutputStream;
         <td style="vertical-align: top">json</td>
         <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The JSON element that needs to be aggregated.</p></td>
         <td style="vertical-align: top"></td>
-        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
@@ -1916,13 +1928,13 @@ insert into OutputStream;
           </a>
         
         
-          <a href="../2.0.3/" title="2.0.3" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2.0.4/" title="2.0.4" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                2.0.3
+                2.0.4
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
