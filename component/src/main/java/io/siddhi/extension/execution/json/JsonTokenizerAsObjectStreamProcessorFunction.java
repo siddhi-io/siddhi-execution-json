@@ -127,6 +127,7 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
     protected void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
                            StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
                            State state) {
+        ComplexEventChunk<StreamEvent> outputChunk = new ComplexEventChunk<>();
         while (streamEventChunk.hasNext()) {
             StreamEvent streamEvent = streamEventChunk.next();
             Object jsonInput = attributeExpressionExecutors[0].execute(streamEvent);
@@ -149,21 +150,30 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
                 List filteredJsonElementsList = (List) filteredJsonElements;
                 if (((List) filteredJsonElements).size() == 0 && !failOnMissingAttribute) {
                     Object[] data = {null};
-                    sendEvents(streamEvent, data, streamEventChunk);
-                }
-                for (Object filteredJsonElement : filteredJsonElementsList) {
-                    Object[] data = {filteredJsonElement};
-                    sendEvents(streamEvent, data, streamEventChunk);
+                    complexEventPopulater.populateComplexEvent(streamEvent, data);
+                    outputChunk.add(streamEvent);
+                } else {
+                    for (Object filteredJsonElement : filteredJsonElementsList) {
+                        Object[] data = {filteredJsonElement};
+                        StreamEvent aStreamEvent = streamEventCloner.copyStreamEvent(streamEvent);
+                        complexEventPopulater.populateComplexEvent(aStreamEvent, data);
+                        outputChunk.add(aStreamEvent);
+                    }
                 }
             } else if (filteredJsonElements instanceof Map) {
                 Object[] data = {filteredJsonElements};
-                sendEvents(streamEvent, data, streamEventChunk);
+                complexEventPopulater.populateComplexEvent(streamEvent, data);
+                outputChunk.add(streamEvent);
             } else if (filteredJsonElements instanceof String || filteredJsonElements == null) {
                 if (!failOnMissingAttribute || filteredJsonElements != null) {
                     Object[] data = {filteredJsonElements};
-                    sendEvents(streamEvent, data, streamEventChunk);
+                    complexEventPopulater.populateComplexEvent(streamEvent, data);
+                    outputChunk.add(streamEvent);
                 }
             }
+        }
+        if (outputChunk.getFirst() != null) {
+            nextProcessor.process(outputChunk);
         }
     }
 
@@ -242,12 +252,6 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
      */
     @Override
     public void stop() {
-    }
-
-
-    private void sendEvents(StreamEvent streamEvent, Object[] data, ComplexEventChunk<StreamEvent> streamEventChunk) {
-        complexEventPopulater.populateComplexEvent(streamEvent, data);
-        nextProcessor.process(streamEventChunk);
     }
 
     @Override
