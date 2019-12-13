@@ -28,6 +28,7 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -280,6 +281,37 @@ public class JsonTokenizerAsObjectStreamProcessorFunctionTestCase {
         inputHandler.send(new Object[]{JSON_INPUT, "$.emp[0].foo"});
         inputHandler.send(new Object[]{JSON_INPUT, "$.emp[0].bar"});
         inputHandler.send(new Object[]{JSON_INPUT, "$..bar"});
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testEventChunk() throws InterruptedException {
+        log.info("JsonTokenizerStreamProcessorFunction - testJsonTokenizerWithFailOnMissingAttribute");
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(json string,path string);\n";
+        String query = ("@info(name = 'query1')\n" +
+                "from InputStream#json:tokenizeAsObject(json, path)\n" +
+                "select jsonElement\n" +
+                "insert into OutputStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    Assert.assertNotNull(event.getData(0));
+                    count.incrementAndGet();
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Event[]{
+                new Event(System.currentTimeMillis(), new Object[]{JSON_INPUT, "$.emp"}),
+                new Event(System.currentTimeMillis(), new Object[]{JSON_INPUT, "$.emp"})
+        });
+        AssertJUnit.assertEquals(4, count.get());
         siddhiAppRuntime.shutdown();
     }
 }
