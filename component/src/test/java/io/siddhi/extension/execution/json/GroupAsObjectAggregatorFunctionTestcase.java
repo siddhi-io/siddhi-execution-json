@@ -23,16 +23,22 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.query.output.callback.QueryCallback;
 import io.siddhi.core.stream.input.InputHandler;
+import io.siddhi.core.stream.output.StreamCallback;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static net.minidev.json.parser.JSONParser.MODE_JSON_SIMPLE;
 
 public class GroupAsObjectAggregatorFunctionTestcase {
 
@@ -392,7 +398,7 @@ public class GroupAsObjectAggregatorFunctionTestcase {
 
     @Test(dependsOnMethods = {"testAggregateFunctionExtension5"})
     public void testAggregateFunctionExtension6() throws InterruptedException {
-        LOGGER.info("TestAggregateFunctionExtension5 TestCase - with window expiry");
+        LOGGER.info("TestAggregateFunctionExtension6 TestCase - with window expiry");
         SiddhiManager siddhiManager = new SiddhiManager();
 
         String inStreamDefinition = "define stream inputStream (symbol1 string, symbol2 string, symbol3 string);";
@@ -487,6 +493,51 @@ public class GroupAsObjectAggregatorFunctionTestcase {
         inputHandler.send(new Object[]{jsonObject3});
         SiddhiTestHelper.waitForEvents(100, 4, count, 60000);
         AssertJUnit.assertEquals(4, count.get());
+        AssertJUnit.assertTrue(eventArrived);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test(dependsOnMethods = {"testAggregateFunctionExtension6"})
+    public void testAggregateFunctionExtension7() throws InterruptedException {
+        LOGGER.info("TestAggregateFunctionExtension7 TestCase - with scatter and gather.");
+        SiddhiManager siddhiManager = new SiddhiManager();
+
+        String inStreamDefinition = "define stream inputStream (json string);";
+        String query = ("@info(name = 'query1') " +
+                "from inputStream#json:tokenizeAsObject(json, '$.items') " +
+                "select json:setElement(jsonElement,'price',30) as item " +
+                "insert into outputStream1;" +
+                "" +
+                "from outputStream1#window.batch() " +
+                "select json:groupAsObject(item, 'result') as finalJson " +
+                "insert into outputStream;" +
+                "");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
+
+        siddhiAppRuntime.addCallback("outputStream", new StreamCallback() {
+            @Override
+            public void receive(Event[] events) {
+                EventPrinter.print(events);
+                eventArrived = true;
+                for (Event event : events) {
+                    count.incrementAndGet();
+                    try {
+                        AssertJUnit.assertEquals(new JSONParser(MODE_JSON_SIMPLE).parse(
+                                "{\"result\":[{\"price\":30,\"name\":\"cake\"}," +
+                                        "{\"price\":30,\"name\":\"cookie\"}]}"), event.getData(0));
+                    } catch (ParseException e) {
+                        Assert.fail();
+                    }
+                }
+            }
+        });
+
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{"{\"items\": [{\"name\":\"cake\", \"price\":2}," +
+                "{\"name\":\"cookie\",  \"price\":2}]}"});
+        SiddhiTestHelper.waitForEvents(100, 1, count, 60000);
+        AssertJUnit.assertEquals(1, count.get());
         AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
