@@ -18,6 +18,8 @@
 
 package io.siddhi.extension.execution.json;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
@@ -121,6 +123,7 @@ import java.util.Map;
 )
 public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcessor<State> {
     private static final Logger log = Logger.getLogger(JsonTokenizerAsObjectStreamProcessorFunction.class);
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
     private boolean failOnMissingAttribute = true;
 
     @Override
@@ -137,7 +140,7 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
                 if (jsonInput instanceof String) {
                     filteredJsonElements = JsonPath.read((String) jsonInput, path);
                 } else {
-                    filteredJsonElements = JsonPath.read(jsonInput, path);
+                    filteredJsonElements = JsonPath.read(gson.toJson(jsonInput), path);
                 }
             } catch (PathNotFoundException e) {
                 filteredJsonElements = null;

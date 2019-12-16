@@ -18,6 +18,8 @@
 
 package io.siddhi.extension.execution.json.function;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
@@ -43,6 +45,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static io.siddhi.query.api.definition.Attribute.Type.OBJECT;
+import static net.minidev.json.parser.JSONParser.MODE_JSON_SIMPLE;
 
 /**
  * groupAsObject(json, enclosing.element, distinct)
@@ -123,6 +126,7 @@ public class GroupAsObjectAggregatorFunctionExtension
     private static final String KEY_DATA_MAP = "dataMap";
     private Map<Object, Integer> dataMap = new LinkedHashMap<>();
     private SiddhiQueryContext siddhiQueryContext;
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     @Override
     protected StateFactory<ExtensionState> init(ExpressionExecutor[] expressionExecutors,
@@ -199,16 +203,7 @@ public class GroupAsObjectAggregatorFunctionExtension
 
     private JSONObject getJSONObject(Object json) {
         JSONObject jsonObject;
-        if (json instanceof String) {
-            JSONParser jsonParser = new JSONParser();
-            try {
-                jsonObject = (JSONObject) jsonParser.parse(json.toString());
-            } catch (ParseException e) {
-                throw new SiddhiAppRuntimeException(siddhiQueryContext.getSiddhiAppContext().getName() + ":" +
-                        siddhiQueryContext.getName() +
-                        ": Cannot parse the given string into JSONObject." + json, e);
-            }
-        } else {
+        if (json instanceof JSONObject) {
             try {
                 jsonObject = (JSONObject) json;
             } catch (ClassCastException e) {
@@ -216,8 +211,27 @@ public class GroupAsObjectAggregatorFunctionExtension
                         siddhiQueryContext.getName() +
                         ": Provided value is not a valid JSON object." + json, e);
             }
+        } else if (json instanceof Map) {
+            JSONParser jsonParser = new JSONParser(MODE_JSON_SIMPLE);
+            try {
+                jsonObject = (JSONObject) jsonParser.parse(gson.toJson(json));
+            } catch (ParseException e) {
+                throw new SiddhiAppRuntimeException(siddhiQueryContext.getSiddhiAppContext().getName() + ":" +
+                        siddhiQueryContext.getName() +
+                        ": Cannot parse the given json map into JSONObject." + json, e);
+            }
+        } else if (json == null) {
+            jsonObject = null;
+        } else {
+            JSONParser jsonParser = new JSONParser(MODE_JSON_SIMPLE);
+            try {
+                jsonObject = (JSONObject) jsonParser.parse(json.toString());
+            } catch (ParseException e) {
+                throw new SiddhiAppRuntimeException(siddhiQueryContext.getSiddhiAppContext().getName() + ":" +
+                        siddhiQueryContext.getName() +
+                        ": Cannot parse the given json into JSONObject." + json, e);
+            }
         }
-
         return jsonObject;
     }
 
