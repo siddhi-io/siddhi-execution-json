@@ -48,7 +48,7 @@ import org.apache.log4j.Logger;
                 @Parameter(
                         name = "json",
                         description = "A valid JSON object to generates a JSON string.",
-                        type = {DataType.OBJECT},
+                        type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
         },
         parameterOverloads = {
@@ -89,10 +89,10 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
                     "json:toString() function. Input for 'json' argument cannot be null");
         }
         Attribute.Type firstAttributeType = attributeExpressionExecutors[0].getReturnType();
-        if (!(firstAttributeType == Attribute.Type.OBJECT)) {
+        if (!(firstAttributeType == Attribute.Type.STRING || firstAttributeType == Attribute.Type.OBJECT)) {
             throw new SiddhiAppValidationException("Invalid parameter type found for first argument 'json' of " +
-                    "json:toString() function, required " + Attribute.Type.OBJECT + ", but found " + firstAttributeType
-                    .toString());
+                    "json:toString() function, required " + Attribute.Type.STRING + " or " + Attribute.Type.OBJECT +
+                    ", but found " + firstAttributeType.toString());
         }
 
         return null;
