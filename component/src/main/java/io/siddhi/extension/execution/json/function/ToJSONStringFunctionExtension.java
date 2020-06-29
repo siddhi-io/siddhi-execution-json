@@ -53,7 +53,8 @@ import org.apache.log4j.Logger;
                         dynamic = true),
                 @Parameter(
                         name = "allow.escape",
-                        description = "TODO.",
+                        description = "If this is set to true, quotes will be escaped in the resulting string. " +
+                                "Otherwise quotes will not be escaped.",
                         type = {DataType.BOOL},
                         optional = true,
                         defaultValue = "false",
@@ -66,10 +67,23 @@ import org.apache.log4j.Logger;
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON string for the given JSON object.",
                 type = {DataType.STRING}),
-        examples = @Example(
+        examples = {
+        @Example(
                 syntax = "json:toString(json)",
                 description = "This returns the JSON string corresponding to a given JSON object."
-        )
+        ),
+        @Example(
+                syntax = "json:toString(json, true)",
+                description = "Assume the json object has the field 'user' with value 'david'. " +
+                        "With the allowEscape parameter set to true, this will return the string " +
+                        "\"{\\\"user\\\":\\\"david\\\"}\""),
+        @Example(
+                syntax = "json:toString(json, false)",
+                description = "Assume the json object has the field 'user' with value 'david'. " +
+                        "With the allowEscape parameter set to false, this will return the string " +
+                        "{\"user\":\"david\"}"),
+        }
+
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);
