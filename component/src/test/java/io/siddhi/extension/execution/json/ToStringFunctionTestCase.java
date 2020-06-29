@@ -167,7 +167,9 @@ public class ToStringFunctionTestCase {
                     count.incrementAndGet();
                     switch (count.get()) {
                         case 1:
-                            AssertJUnit.assertEquals("\"{\\\"citizen\\\":false,\\\"bar\\\":[{\\\"barName\\\":\\\"barName\\\"},{\\\"barName\\\":\\\"barName2\\\"}],\\\"name\\\":\\\"John\\\",\\\"age\\\":25}\"", event.getData(0));
+                            AssertJUnit.assertEquals("\"{\\\"citizen\\\":false,\\\"bar\\\":[{\\\"barName\\\"" +
+                                    ":\\\"barName\\\"},{\\\"barName\\\":\\\"barName2\\\"}],\\\"name\\\":\\\"John\\\"" +
+                                    ",\\\"age\\\":25}\"", event.getData(0));
                             break;
                     }
                 }
@@ -201,7 +203,12 @@ public class ToStringFunctionTestCase {
                     count.incrementAndGet();
                     switch (count.get()) {
                         case 1:
-                            AssertJUnit.assertEquals("\"{\\\"accounting\\\":[{\\\"firstName\\\":\\\"John\\\",\\\"lastName\\\":\\\"Doe\\\",\\\"age\\\":23},{\\\"firstName\\\":\\\"Mary\\\",\\\"lastName\\\":\\\"Smith\\\",\\\"age\\\":32}],\\\"sales\\\":[{\\\"firstName\\\":\\\"Sally\\\",\\\"lastName\\\":\\\"Green\\\",\\\"age\\\":27},{\\\"firstName\\\":\\\"Jim\\\",\\\"lastName\\\":\\\"Galley\\\",\\\"age\\\":41}]}\"", event.getData(0));
+                            AssertJUnit.assertEquals("\"{\\\"accounting\\\":[{\\\"firstName\\\":\\\"John\\\"," +
+                                    "\\\"lastName\\\":\\\"Doe\\\",\\\"age\\\":23},{\\\"firstName\\\":\\\"Mary\\\"," +
+                                    "\\\"lastName\\\":\\\"Smith\\\",\\\"age\\\":32}],\\\"sales\\\":[{\\\"firstName" +
+                                    "\\\":\\\"Sally\\\",\\\"lastName\\\":\\\"Green\\\",\\\"age\\\":27},{\\\"" +
+                                    "firstName\\\":\\\"Jim\\\",\\\"lastName\\\":\\\"Galley\\\",\\\"age\\\":41}]}\"",
+                                    event.getData(0));
                             break;
                     }
                 }
@@ -252,7 +259,11 @@ public class ToStringFunctionTestCase {
                     count.incrementAndGet();
                     switch (count.get()) {
                         case 1:
-                            AssertJUnit.assertEquals("{\"accounting\":[{\"firstName\":\"John\",\"lastName\":\"Doe\",\"age\":23},{\"firstName\":\"Mary\",\"lastName\":\"Smith\",\"age\":32}],\"sales\":[{\"firstName\":\"Sally\",\"lastName\":\"Green\",\"age\":27},{\"firstName\":\"Jim\",\"lastName\":\"Galley\",\"age\":41}]}", event.getData(0));
+                            AssertJUnit.assertEquals("{\"accounting\":[{\"firstName\":\"John\",\"lastName\"" +
+                                    ":\"Doe\",\"age\":23},{\"firstName\":\"Mary\",\"lastName\":\"Smith\",\"age\"" +
+                                    ":32}],\"sales\":[{\"firstName\":\"Sally\",\"lastName\":\"Green\",\"age\":27}," +
+                                    "{\"firstName\":\"Jim\",\"lastName\":\"Galley\",\"age\":41}]}",
+                                    event.getData(0));
                             break;
                     }
                 }

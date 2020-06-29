@@ -61,7 +61,7 @@ import org.apache.log4j.Logger;
         },
         parameterOverloads = {
                 @ParameterOverload(parameterNames = {"json"}),
-                @ParameterOverload(parameterNames = {"json","allow.escape"})
+                @ParameterOverload(parameterNames = {"json", "allow.escape"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON string for the given JSON object.",
@@ -103,16 +103,16 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
                     "json:toString() function, required " + Attribute.Type.OBJECT + ", but found " + firstAttributeType
                     .toString());
         }
-        if (attributeExpressionExecutors.length == 2){
+        if (attributeExpressionExecutors.length == 2) {
             if (attributeExpressionExecutors[1] == null) {
                 throw new SiddhiAppValidationException("Invalid input given to first argument 'allowEscape' of " +
                         "json:toString() function. Input for 'allowEscape' argument cannot be null");
             }
             Attribute.Type secondAttributeType = attributeExpressionExecutors[1].getReturnType();
             if (secondAttributeType != Attribute.Type.BOOL) {
-                throw new SiddhiAppValidationException("Invalid parameter type found for the second argument 'allowEscape' of " +
-                        "json:toString() function, required " + Attribute.Type.BOOL + ", but found " + secondAttributeType
-                        .toString());
+                throw new SiddhiAppValidationException("Invalid parameter type found for the second argument " +
+                        "'allowEscape' of json:toString() function, required " + Attribute.Type.BOOL +
+                        ", but found " + secondAttributeType.toString());
             }
         }
 
