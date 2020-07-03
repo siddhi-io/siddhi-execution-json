@@ -38,7 +38,7 @@
     
     
       
-        <title>2.0.3 - Siddhi Execution JSON</title>
+        <title>2.0.8 - Siddhi Execution JSON</title>
       
     
     
@@ -114,7 +114,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#api-docs-v203" tabindex="1" class="md-skip">
+      <a href="#api-docs-v208" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -140,7 +140,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2.0.3
+                2.0.8
               
             </span>
           
@@ -294,66 +294,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../2.0.8/" title="2.0.8" class="md-nav__link">
-      2.0.8
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2.0.7/" title="2.0.7" class="md-nav__link">
-      2.0.7
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2.0.6/" title="2.0.6" class="md-nav__link">
-      2.0.6
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2.0.5/" title="2.0.5" class="md-nav__link">
-      2.0.5
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2.0.4/" title="2.0.4" class="md-nav__link">
-      2.0.4
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -365,11 +305,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        2.0.3
+        2.0.8
       </label>
     
-    <a href="./" title="2.0.3" class="md-nav__link md-nav__link--active">
-      2.0.3
+    <a href="./" title="2.0.8" class="md-nav__link md-nav__link--active">
+      2.0.8
     </a>
     
       
@@ -508,6 +448,66 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.7/" title="2.0.7" class="md-nav__link">
+      2.0.7
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.6/" title="2.0.6" class="md-nav__link">
+      2.0.6
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.5/" title="2.0.5" class="md-nav__link">
+      2.0.5
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.4/" title="2.0.4" class="md-nav__link">
+      2.0.4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.0.3/" title="2.0.3" class="md-nav__link">
+      2.0.3
+    </a>
   </li>
 
         
@@ -850,12 +850,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/siddhi-io/siddhi-execution-json/blob/master/api/2.0.3.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/siddhi-execution-json/blob/master/api/2.0.8.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="api-docs-v203">API Docs - v2.0.3</h1>
+                <h1 id="api-docs-v208">API Docs - v2.0.8</h1>
 <div class="admonition info">
-<p class="admonition-title">Tested Siddhi Core version: <em><a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/">5.1.5</a></em></p>
+<p class="admonition-title">Tested Siddhi Core version: <em><a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/">5.1.13</a></em></p>
 <p>It could also support other Siddhi Core minor versions.</p>
 </div>
 <h2 id="json">Json</h2>
@@ -864,10 +864,10 @@
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<pre><code>&lt;OBJECT&gt; json:group(&lt;STRING&gt; json)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;BOOL&gt; distinct)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element)
-&lt;OBJECT&gt; json:group(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
+<pre><code>&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;BOOL&gt; distinct)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element)
+&lt;OBJECT&gt; json:group(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
 </code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -884,7 +884,7 @@
         <td style="vertical-align: top">json</td>
         <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The JSON element that needs to be aggregated.</p></td>
         <td style="vertical-align: top"></td>
-        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
@@ -959,10 +959,10 @@ input OutputStream;
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<pre><code>&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;BOOL&gt; distinct)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element)
-&lt;OBJECT&gt; json:groupAsObject(&lt;STRING&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
+<pre><code>&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;BOOL&gt; distinct)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element)
+&lt;OBJECT&gt; json:groupAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; enclosing.element, &lt;BOOL&gt; distinct)
 </code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -979,7 +979,7 @@ input OutputStream;
         <td style="vertical-align: top">json</td>
         <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The JSON element that needs to be aggregated.</p></td>
         <td style="vertical-align: top"></td>
-        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">STRING<br>OBJECT</td>
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
@@ -1734,6 +1734,7 @@ input OutputStream;
 <p></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
+&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json, &lt;BOOL&gt; allow.escape)
 </code></pre>
 
 <p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -1754,6 +1755,14 @@ input OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
+    <tr>
+        <td style="vertical-align: top">allow.escape</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">If this is set to true, quotes will be escaped in the resulting string. Otherwise quotes will not be escaped.</p></td>
+        <td style="vertical-align: top">false</td>
+        <td style="vertical-align: top">BOOL</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">Yes</td>
+    </tr>
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
@@ -1763,6 +1772,26 @@ input OutputStream;
 <p></p>
 
 <p style="word-wrap: break-word;margin: 0;">This returns the JSON string corresponding to a given JSON object.</p>
+
+<p></p>
+
+<p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
+<pre><code>json:toString(json, true)
+</code></pre>
+
+<p></p>
+
+<p style="word-wrap: break-word;margin: 0;">Assume the json object has the field 'user' with value 'david'. With the allowEscape parameter set to true, this will return the string "{\"user\":\"david\"}"</p>
+
+<p></p>
+
+<p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
+<pre><code>json:toString(json, false)
+</code></pre>
+
+<p></p>
+
+<p style="word-wrap: break-word;margin: 0;">Assume the json object has the field 'user' with value 'david'. With the allowEscape parameter set to false, this will return the string {"user":"david"}</p>
 
 <p></p>
 
@@ -1961,7 +1990,7 @@ insert into OutputStream;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../2.0.4/" title="2.0.4" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../latest/" title="latest" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1970,19 +1999,19 @@ insert into OutputStream;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2.0.4
+                latest
               </span>
             </div>
           </a>
         
         
-          <a href="../2.0.2/" title="2.0.2" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2.0.7/" title="2.0.7" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                2.0.2
+                2.0.7
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
