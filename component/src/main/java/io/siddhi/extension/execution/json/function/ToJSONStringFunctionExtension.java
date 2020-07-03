@@ -159,7 +159,7 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
         }
 
         if (allowEscape) {
-            return gson.toJson(data[0].toString());
+            return gson.toJson(gson.toJson(data[0]));
         } else {
             return gson.toJson(data[0]);
         }
