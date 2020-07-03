@@ -294,4 +294,39 @@ public class ToStringFunctionTestCase {
                 "}", false});
         siddhiAppRuntime.shutdown();
     }
+
+    @Test
+    public void testToStringFunctionWithAllowEscapeJsonList() throws InterruptedException, ParseException {
+        log.info("ToStringFunctionTestCase - testToStringFunctionWithAllowEscapeTrueSimple");
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String stream = "define stream InputStream(data object, allowEscape bool);\n";
+        String query = ("@info(name = 'query1')\n" +
+                "from InputStream\n" +
+                "select json:toString(json:setElement(data, '$', '4343234', 'wsPublisherInTS'), true) as json\n" +
+                "insert into OutputStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    count.incrementAndGet();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals("\"{\\\"user\\\":\\\"david\\\",\\\"wsPublisherInTS\\\"" +
+                                    ":\\\"4343234\\\"}\"", event.getData(0));
+                            break;
+                    }
+                }
+            }
+        });
+
+        JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse("{ \"user\":\"david\"}");
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{jsonObject, true});
+        siddhiAppRuntime.shutdown();
+    }
 }
