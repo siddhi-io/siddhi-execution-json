@@ -124,7 +124,6 @@ public class GroupAggregatorFunctionExtension
         extends AttributeAggregatorExecutor<GroupAggregatorFunctionExtension.ExtensionState> {
 
     private static final String KEY_DATA_MAP = "dataMap";
-    private Map<Object, Integer> dataMap = new LinkedHashMap<>();
     private SiddhiQueryContext siddhiQueryContext;
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
@@ -139,32 +138,32 @@ public class GroupAggregatorFunctionExtension
     }
 
     @Override
-    public Object processAdd(Object o, ExtensionState extensionState) {
-        addJSONElement(o);
-        return constructJSONString(null, false);
+    public Object processAdd(Object o, ExtensionState state) {
+        addJSONElement(o, state);
+        return constructJSONString(null, false, state);
     }
 
     @Override
-    public Object processAdd(Object[] objects, ExtensionState extensionState) {
-        addJSONElement(objects[0]);
-        return processJSONObject(objects);
+    public Object processAdd(Object[] objects, ExtensionState state) {
+        addJSONElement(objects[0], state);
+        return processJSONObject(objects, state);
     }
 
     @Override
-    public Object processRemove(Object o, ExtensionState extensionState) {
-        removeJSONElement(o);
-        return constructJSONString(null, false);
+    public Object processRemove(Object o, ExtensionState state) {
+        removeJSONElement(o, state);
+        return constructJSONString(null, false, state);
     }
 
     @Override
-    public Object processRemove(Object[] objects, ExtensionState extensionState) {
-        removeJSONElement(objects[0]);
-        return processJSONObject(objects);
+    public Object processRemove(Object[] objects, ExtensionState state) {
+        removeJSONElement(objects[0], state);
+        return processJSONObject(objects, state);
     }
 
     @Override
-    public Object reset(ExtensionState extensionState) {
-        dataMap.clear();
+    public Object reset(ExtensionState state) {
+        state.dataMap.clear();
         return null;
     }
 
@@ -173,32 +172,32 @@ public class GroupAggregatorFunctionExtension
         return STRING;
     }
 
-    private Object processJSONObject(Object[] objects) {
+    private Object processJSONObject(Object[] objects, ExtensionState state) {
         if (objects.length == 3) {
-            return constructJSONString(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()));
+            return constructJSONString(objects[1].toString(), Boolean.parseBoolean(objects[2].toString()), state);
         } else {
             if (objects[1] instanceof Boolean) {
-                return constructJSONString(null, Boolean.parseBoolean(objects[1].toString()));
+                return constructJSONString(null, Boolean.parseBoolean(objects[1].toString()), state);
             } else {
-                return constructJSONString(objects[1].toString(), false);
+                return constructJSONString(objects[1].toString(), false, state);
             }
         }
 
     }
 
-    private void addJSONElement(Object json) {
+    private void addJSONElement(Object json, ExtensionState state) {
         JSONObject jsonObject = getJSONObject(json);
-        Integer count = dataMap.get(jsonObject);
-        dataMap.put(jsonObject, (count == null) ? 1 : count + 1);
+        Integer count = state.dataMap.get(jsonObject);
+        state.dataMap.put(jsonObject, (count == null) ? 1 : count + 1);
     }
 
-    private void removeJSONElement(Object json) {
+    private void removeJSONElement(Object json, ExtensionState state) {
         JSONObject jsonObject = getJSONObject(json);
-        Integer count = dataMap.get(jsonObject);
+        Integer count = state.dataMap.get(jsonObject);
         if (count == 1) {
-            dataMap.remove(jsonObject);
+            state.dataMap.remove(jsonObject);
         } else if (count > 1) {
-            dataMap.put(jsonObject, count - 1);
+            state.dataMap.put(jsonObject, count - 1);
         }
     }
 
@@ -236,16 +235,16 @@ public class GroupAggregatorFunctionExtension
         return jsonObject;
     }
 
-    private String constructJSONString(String enclosingElement, boolean isDistinct) {
+    private String constructJSONString(String enclosingElement, boolean isDistinct, ExtensionState state) {
         JSONArray jsonArray = new JSONArray();
         if (!isDistinct) {
-            for (Map.Entry<Object, Integer> entry : dataMap.entrySet()) {
+            for (Map.Entry<Object, Integer> entry : state.dataMap.entrySet()) {
                 for (int i = 0; i < entry.getValue(); i++) {
                     jsonArray.add(entry.getKey());
                 }
             }
         } else {
-            jsonArray.addAll(dataMap.keySet());
+            jsonArray.addAll(state.dataMap.keySet());
         }
 
         if (enclosingElement != null) {
@@ -257,9 +256,14 @@ public class GroupAggregatorFunctionExtension
         return jsonArray.toJSONString();
     }
 
-    class ExtensionState extends State {
+    static class ExtensionState extends State {
 
         private final Map<String, Object> state = new HashMap<>();
+        private Map<Object, Integer> dataMap = new LinkedHashMap<>();
+
+        private ExtensionState() {
+            state.put(KEY_DATA_MAP, dataMap);
+        }
 
         @Override
         public boolean canDestroy() {
@@ -274,10 +278,6 @@ public class GroupAggregatorFunctionExtension
         @Override
         public void restore(Map<String, Object> map) {
             dataMap = (Map<Object, Integer>) map.get(KEY_DATA_MAP);
-        }
-
-        private ExtensionState() {
-            state.put(KEY_DATA_MAP, dataMap);
         }
     }
 }
