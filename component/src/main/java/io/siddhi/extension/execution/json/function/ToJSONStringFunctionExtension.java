@@ -27,6 +27,7 @@ import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -50,17 +51,39 @@ import org.apache.log4j.Logger;
                         description = "A valid JSON object to generates a JSON string.",
                         type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
+                @Parameter(
+                        name = "allow.escape",
+                        description = "If this is set to true, quotes will be escaped in the resulting string. " +
+                                "Otherwise quotes will not be escaped.",
+                        type = {DataType.BOOL},
+                        optional = true,
+                        defaultValue = "false",
+                        dynamic = true),
         },
         parameterOverloads = {
-                @ParameterOverload(parameterNames = {"json"})
+                @ParameterOverload(parameterNames = {"json"}),
+                @ParameterOverload(parameterNames = {"json", "allow.escape"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Returns the JSON string for the given JSON object.",
                 type = {DataType.STRING}),
-        examples = @Example(
+        examples = {
+        @Example(
                 syntax = "json:toString(json)",
                 description = "This returns the JSON string corresponding to a given JSON object."
-        )
+        ),
+        @Example(
+                syntax = "json:toString(json, true)",
+                description = "Assume the json object has the field 'user' with value 'david'. " +
+                        "With the allowEscape parameter set to true, this will return the string " +
+                        "\"{\\\"user\\\":\\\"david\\\"}\""),
+        @Example(
+                syntax = "json:toString(json, false)",
+                description = "Assume the json object has the field 'user' with value 'david'. " +
+                        "With the allowEscape parameter set to false, this will return the string " +
+                        "{\"user\":\"david\"}"),
+        }
+
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
     private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);
@@ -79,9 +102,9 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
                                 SiddhiQueryContext siddhiQueryContext) {
 
 
-        if (attributeExpressionExecutors.length != 1) {
+        if (!(attributeExpressionExecutors.length == 1 || attributeExpressionExecutors.length == 2)) {
             throw new SiddhiAppValidationException("Invalid no of arguments passed to json:toString() function, "
-                    + "required 1, but found " + attributeExpressionExecutors.length);
+                    + "required 1 or 2, but found " + attributeExpressionExecutors.length);
         }
 
         if (attributeExpressionExecutors[0] == null) {
@@ -93,6 +116,18 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
             throw new SiddhiAppValidationException("Invalid parameter type found for first argument 'json' of " +
                     "json:toString() function, required " + Attribute.Type.STRING + " or " + Attribute.Type.OBJECT +
                     ", but found " + firstAttributeType.toString());
+        }
+        if (attributeExpressionExecutors.length == 2) {
+            if (attributeExpressionExecutors[1] == null) {
+                throw new SiddhiAppValidationException("Invalid input given to first argument 'allowEscape' of " +
+                        "json:toString() function. Input for 'allowEscape' argument cannot be null");
+            }
+            Attribute.Type secondAttributeType = attributeExpressionExecutors[1].getReturnType();
+            if (secondAttributeType != Attribute.Type.BOOL) {
+                throw new SiddhiAppValidationException("Invalid parameter type found for the second argument " +
+                        "'allowEscape' of json:toString() function, required " + Attribute.Type.BOOL +
+                        ", but found " + secondAttributeType.toString());
+            }
         }
 
         return null;
@@ -107,7 +142,27 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
      */
     @Override
     protected Object execute(Object[] data, State state) {
-        return null;
+        Object jsonObject = data[0];
+        Object allowEscapeObject = data[1];
+
+        if (jsonObject == null || allowEscapeObject == null) {
+            throw new SiddhiAppRuntimeException("Null value passed to json:toString() function. " +
+                    (jsonObject == null ? "json is null. " : "") +
+                    (allowEscapeObject == null ? "allowEscapeObject is null. " : ""));
+        }
+        boolean allowEscape;
+        try {
+            allowEscape = (boolean) allowEscapeObject;
+        } catch (ClassCastException e) {
+            throw new SiddhiAppRuntimeException("Invalid type found for the value of allowEscape parameter. " +
+                    "Required boolean, but found " + allowEscapeObject.getClass().getSimpleName());
+        }
+
+        if (allowEscape) {
+            return gson.toJson(gson.toJson(data[0]));
+        } else {
+            return gson.toJson(data[0]);
+        }
     }
 
     /**
