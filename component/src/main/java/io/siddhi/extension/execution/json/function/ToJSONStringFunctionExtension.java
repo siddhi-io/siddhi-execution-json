@@ -35,7 +35,6 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
-import org.apache.log4j.Logger;
 
 
 /**
@@ -86,7 +85,7 @@ import org.apache.log4j.Logger;
 
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);
+    private static final long serialVersionUID = 1L;
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**

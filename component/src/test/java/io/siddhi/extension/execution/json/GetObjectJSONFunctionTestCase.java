@@ -27,7 +27,8 @@ import io.siddhi.core.util.EventPrinter;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,7 +36,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GetObjectJSONFunctionTestCase {
-    private static final Logger log = Logger.getLogger(GetObjectJSONFunctionTestCase.class);
+    private static final Logger log = LogManager.getLogger(GetObjectJSONFunctionTestCase.class);
     private static final String JSON_INPUT = "{name:\"John\", age:25, citizen:false}";
     private AtomicInteger count = new AtomicInteger(0);
 

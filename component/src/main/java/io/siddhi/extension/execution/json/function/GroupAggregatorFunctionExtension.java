@@ -123,6 +123,7 @@ import static net.minidev.json.parser.JSONParser.MODE_JSON_SIMPLE;
 public class GroupAggregatorFunctionExtension
         extends AttributeAggregatorExecutor<GroupAggregatorFunctionExtension.ExtensionState> {
 
+    private static final long serialVersionUID = 1L;
     private static final String KEY_DATA_MAP = "dataMap";
     private SiddhiQueryContext siddhiQueryContext;
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
