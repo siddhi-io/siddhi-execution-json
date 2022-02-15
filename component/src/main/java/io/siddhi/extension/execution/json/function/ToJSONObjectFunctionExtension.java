@@ -34,8 +34,8 @@ import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This class provides implementation for getting json object from the given json string.
@@ -63,7 +63,8 @@ import org.apache.log4j.Logger;
         )
 )
 public class ToJSONObjectFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(ToJSONObjectFunctionExtension.class);
+    private static final long serialVersionUID = 1L;
+    private static final Logger log = LogManager.getLogger(ToJSONObjectFunctionExtension.class);
     private static final JSONParser jsonParser = new JSONParser(JSONParser.DEFAULT_PERMISSIVE_MODE);
 
     /**

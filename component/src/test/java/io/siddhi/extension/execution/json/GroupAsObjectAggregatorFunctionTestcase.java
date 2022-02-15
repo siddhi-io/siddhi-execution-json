@@ -30,7 +30,8 @@ import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
@@ -42,7 +43,7 @@ import static net.minidev.json.parser.JSONParser.MODE_JSON_SIMPLE;
 
 public class GroupAsObjectAggregatorFunctionTestcase {
 
-    private static final Logger LOGGER = Logger.getLogger(GroupAsObjectAggregatorFunctionTestcase.class);
+    private static final Logger LOGGER = LogManager.getLogger(GroupAsObjectAggregatorFunctionTestcase.class);
     private AtomicInteger count = new AtomicInteger(0);
     private volatile boolean eventArrived;
 

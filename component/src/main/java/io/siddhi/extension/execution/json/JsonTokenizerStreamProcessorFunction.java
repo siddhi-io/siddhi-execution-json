@@ -46,7 +46,8 @@ import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.AbstractDefinition;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +121,7 @@ import java.util.Map;
         }
 )
 public class JsonTokenizerStreamProcessorFunction extends StreamProcessor<State> {
-    private static final Logger log = Logger.getLogger(JsonTokenizerStreamProcessorFunction.class);
+    private static final Logger log = LogManager.getLogger(JsonTokenizerStreamProcessorFunction.class);
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
     private boolean failOnMissingAttribute = true;
 

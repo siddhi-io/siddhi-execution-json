@@ -38,8 +38,8 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This class provides implementation for getting String values from the given json based on the 'path' provided.
@@ -93,7 +93,8 @@ import org.apache.log4j.Logger;
         }
 )
 public class GetStringJSONFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(GetStringJSONFunctionExtension.class);
+    private static final long serialVersionUID = 1L;
+    private static final Logger log = LogManager.getLogger(GetStringJSONFunctionExtension.class);
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**

@@ -123,6 +123,7 @@ import static net.minidev.json.parser.JSONParser.MODE_JSON_SIMPLE;
 public class GroupAsObjectAggregatorFunctionExtension
         extends AttributeAggregatorExecutor<GroupAsObjectAggregatorFunctionExtension.ExtensionState> {
 
+    private static final long serialVersionUID = 1L;
     private static final String KEY_DATA_MAP = "dataMap";
     private Map<Object, Integer> dataMap = new LinkedHashMap<>();
     private SiddhiQueryContext siddhiQueryContext;

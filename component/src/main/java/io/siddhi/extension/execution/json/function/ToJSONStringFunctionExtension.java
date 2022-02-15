@@ -35,7 +35,6 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
-import org.apache.log4j.Logger;
 
 
 /**
@@ -49,7 +48,7 @@ import org.apache.log4j.Logger;
                 @Parameter(
                         name = "json",
                         description = "A valid JSON object to generates a JSON string.",
-                        type = {DataType.OBJECT},
+                        type = {DataType.STRING, DataType.OBJECT},
                         dynamic = true),
                 @Parameter(
                         name = "allow.escape",
@@ -86,7 +85,7 @@ import org.apache.log4j.Logger;
 
 )
 public class ToJSONStringFunctionExtension extends FunctionExecutor {
-    private static final Logger log = Logger.getLogger(ToJSONStringFunctionExtension.class);
+    private static final long serialVersionUID = 1L;
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 
     /**
@@ -112,10 +111,10 @@ public class ToJSONStringFunctionExtension extends FunctionExecutor {
                     "json:toString() function. Input for 'json' argument cannot be null");
         }
         Attribute.Type firstAttributeType = attributeExpressionExecutors[0].getReturnType();
-        if (!(firstAttributeType == Attribute.Type.OBJECT)) {
+        if (!(firstAttributeType == Attribute.Type.STRING || firstAttributeType == Attribute.Type.OBJECT)) {
             throw new SiddhiAppValidationException("Invalid parameter type found for first argument 'json' of " +
-                    "json:toString() function, required " + Attribute.Type.OBJECT + ", but found " + firstAttributeType
-                    .toString());
+                    "json:toString() function, required " + Attribute.Type.STRING + " or " + Attribute.Type.OBJECT +
+                    ", but found " + firstAttributeType.toString());
         }
         if (attributeExpressionExecutors.length == 2) {
             if (attributeExpressionExecutors[1] == null) {
