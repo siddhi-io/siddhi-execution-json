@@ -24,6 +24,10 @@
             <artifactId>json-path</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <scope>test</scope>
@@ -91,13 +95,11 @@
                             io.siddhi.extension.execution.json,
                             io.siddhi.extension.execution.json.*
                         </Export-Package>
-                        <Private-Package>
-                            com.jayway.jsonpath.*,
-                            net.minidev.*
-                        </Private-Package>
                         <Import-Package>
                             io.siddhi.core.*;version="${siddhi.version.range}",
                             io.siddhi.query.api.*;version="${siddhi.version.range}",
+                            com.jayway.jsonpath.*;version="${com.jayway.jsonpath.version.range}",
+                            net.minidev.*;version="${net.minidev.json-smart.version.range}",
                             *;resolution:=optional
                         </Import-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>
