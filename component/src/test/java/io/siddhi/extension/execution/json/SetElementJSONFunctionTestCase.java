@@ -390,7 +390,7 @@ public class SetElementJSONFunctionTestCase {
                 "@info(name = 'query1')\n" +
                         "from InputStream\n" +
                         "select json:setElement(\"{'name' : 'Stationary', 'item' : 'pen'}\", " +
-                        "                           '$.item', 'book', 'item') as newJson\n" +
+                        "                           '$', 'book', 'item') as newJson\n" +
                         "insert into OutputStream;";
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(stream + query);
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
@@ -411,7 +411,7 @@ public class SetElementJSONFunctionTestCase {
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InputStream");
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{"test"});
-        AssertJUnit.assertEquals(0, count.get());
+        AssertJUnit.assertEquals(1, count.get());
         siddhiAppRuntime.shutdown();
     }
 

@@ -26,8 +26,11 @@
     <properties>
         <siddhi.version>5.1.21</siddhi.version>
         <siddhi.version.range>[5.0.0,6.0.0)</siddhi.version.range>
+        <com.jayway.jsonpath.version.range>[2.2.0,3.0.0)</com.jayway.jsonpath.version.range>
+        <net.minidev.json-smart.version.range>[2.5.0,3.0.0)</net.minidev.json-smart.version.range>
         <log4j.version>2.17.1</log4j.version>
-        <com.jayway.jsonpath.version>2.2.0</com.jayway.jsonpath.version>
+        <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
+        <net.minidev.jsonsmart.version>2.5.0</net.minidev.jsonsmart.version>
         <testng.version>6.11</testng.version>
         <jacoco.maven.version>0.7.8</jacoco.maven.version>
     </properties>
@@ -54,6 +57,11 @@
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path</artifactId>
                 <version>${com.jayway.jsonpath.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>${net.minidev.jsonsmart.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>

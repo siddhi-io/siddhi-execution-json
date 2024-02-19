@@ -24,6 +24,7 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.InvalidModificationException;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.JsonPathException;
 import com.jayway.jsonpath.PathNotFoundException;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
@@ -235,16 +236,22 @@ public class SetElementJSONFunctionExtension extends FunctionExecutor {
                         "provide a valid path.");
             }
         } else {
-            if (key != null) {
-                Object parsedJsonElement = gson.fromJson(jsonElement.toString(), Object.class);
-                if (jsonElement instanceof String && (parsedJsonElement instanceof Map
-                        || parsedJsonElement instanceof List)) {
-                    documentContext.put(path, key, gson.fromJson(jsonElement.toString(), Object.class));
+            try {
+                if (key != null) {
+                    Object parsedJsonElement = gson.fromJson(jsonElement.toString(), Object.class);
+                    if (jsonElement instanceof String && (parsedJsonElement instanceof Map
+                            || parsedJsonElement instanceof List)) {
+                        documentContext.put(path, key, gson.fromJson(jsonElement.toString(), Object.class));
+                    } else {
+                        documentContext.put(path, key, jsonElement);
+                    }
                 } else {
-                    documentContext.put(path, key, jsonElement);
+                    documentContext.set(path, jsonElement);
                 }
-            } else {
-                documentContext.set(path, jsonElement);
+            } catch (JsonPathException e) {
+                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
+                        ": The path '" + path + "' is not a valid path for the json '" + jsonInput + "' when updating" +
+                        " the DocumentContext. Please provide a valid path.");
             }
         }
         return documentContext.json();
