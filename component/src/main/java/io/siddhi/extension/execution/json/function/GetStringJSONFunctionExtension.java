@@ -159,8 +159,8 @@ public class GetStringJSONFunctionExtension extends FunctionExecutor {
         try {
             returnValue = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                    ": Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.warn("{}:{}: Cannot find json element for the path '{}'. Hence returning the default value 'null'",
+                    siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path);
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }

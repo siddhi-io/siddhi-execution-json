@@ -125,8 +125,8 @@ public class ToJSONObjectFunctionExtension extends FunctionExecutor {
         try {
             returnValue = jsonParser.parse(data.toString());
         } catch (ParseException e) {
-            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                    ": Cannot parse the given string into JSON. Hence returning null");
+            log.error("{}:{}: Cannot parse the given string into JSON. Hence returning null",
+                    siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName());
         }
         return returnValue;
     }
