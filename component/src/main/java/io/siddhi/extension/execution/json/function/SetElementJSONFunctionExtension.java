@@ -215,9 +215,8 @@ public class SetElementJSONFunctionExtension extends FunctionExecutor {
         try {
             object = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                    ": The path '" + path + "' is not a valid path for the json '" + jsonInput +
-                    "'. Please provide a valid path.");
+            log.warn("{}:{}: The path '{}' is not a valid path for the json '{}'. Please provide a valid path.",
+                    siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path, jsonInput);
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
@@ -231,9 +230,9 @@ public class SetElementJSONFunctionExtension extends FunctionExecutor {
                     documentContext.add(path, jsonElement);
                 }
             } catch (InvalidModificationException e) {
-                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                        ": The path '" + path + "' is not a valid path for the json '" + jsonInput + "'. Please " +
-                        "provide a valid path.");
+                log.warn("{}:{}: The path '{}' is not a valid path for the json '{}'. Please provide a valid path.",
+                        siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path,
+                        jsonInput);
             }
         } else {
             try {
@@ -249,9 +248,11 @@ public class SetElementJSONFunctionExtension extends FunctionExecutor {
                     documentContext.set(path, jsonElement);
                 }
             } catch (JsonPathException e) {
-                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                        ": The path '" + path + "' is not a valid path for the json '" + jsonInput + "' when updating" +
-                        " the DocumentContext. Please provide a valid path.");
+                log.warn(
+                        "{}:{}: The path '{}' is not a valid path for the json '{}' when updating the DocumentContext" +
+                                ". Please provide a valid path.",
+                        siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path,
+                        jsonInput);
             }
         }
         return documentContext.json();

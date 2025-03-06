@@ -155,17 +155,18 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
         try {
             filteredJsonElement = JsonPath.read(jsonInput, path);
         } catch (PathNotFoundException e) {
-            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                    ": Cannot find json element for the path '" + path + "'. Hence returning the default value 'null'");
+            log.error("{}:{}: Cannot find json element for the path '{}'. Hence returning the default value 'null'",
+                    siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path);
         } catch (InvalidJsonException e) {
             throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
         }
         if (filteredJsonElement instanceof List) {
             if (((List) filteredJsonElement).size() != 1) {
                 filteredJsonElement = null;
-                log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                        ": Multiple matches or No matches for the given path '" + path +
-                        "' in input json. Please use valid path which provide exact one match in the given json");
+                log.error(
+                        "{}:{}: Multiple matches or No matches for the given path '{}' in input json. Please use " +
+                                "valid path which provide exact one match in the given json",
+                        siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path);
             } else {
                 filteredJsonElement = ((List) filteredJsonElement).get(0);
             }
@@ -177,9 +178,10 @@ public class GetIntJSONFunctionExtension extends FunctionExecutor {
             returnValue = Integer.parseInt(filteredJsonElement.toString());
         } catch (NumberFormatException e) {
             returnValue = null;
-            log.error(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName()
-                    + ": The value that is retrieved using the given path '" + path +
-                    "', is not a valid integer value. Hence returning the default value 'null'");
+            log.error(
+                    "{}:{}: The value that is retrieved using the given path '{}', is not a valid integer value. " +
+                            "Hence returning the default value 'null'",
+                    siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path);
         }
         return returnValue;
     }

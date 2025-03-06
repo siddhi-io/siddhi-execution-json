@@ -145,8 +145,9 @@ public class JsonTokenizerAsObjectStreamProcessorFunction extends StreamProcesso
                 }
             } catch (PathNotFoundException e) {
                 filteredJsonElements = null;
-                log.warn(siddhiQueryContext.getSiddhiAppContext().getName() + ":" + siddhiQueryContext.getName() +
-                        ": Cannot find json element for the path '" + path + "' in the input json : " + jsonInput);
+                log.warn("{}:{}: Cannot find json element for the path '{}' in the input json : {}",
+                        siddhiQueryContext.getSiddhiAppContext().getName(), siddhiQueryContext.getName(), path,
+                        jsonInput);
             } catch (InvalidJsonException e) {
                 throw new SiddhiAppRuntimeException("The input JSON is not a valid JSON. Input JSON - " + jsonInput, e);
             }

@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.wso2</groupId>
         <artifactId>wso2</artifactId>
-        <version>5</version>
+        <version>5.3</version>
     </parent>
     <groupId>io.siddhi.extension.execution.json</groupId>
     <artifactId>siddhi-execution-json-parent</artifactId>
@@ -33,6 +33,7 @@
         <net.minidev.jsonsmart.version>2.5.0</net.minidev.jsonsmart.version>
         <testng.version>6.11</testng.version>
         <jacoco.maven.version>0.7.8</jacoco.maven.version>
+        <maven.findbugsplugin.version.exclude>findbugs-exclude.xml</maven.findbugsplugin.version.exclude>
     </properties>
     <scm>
         <connection>scm:git:https://github.com/wso2-extensions/siddhi-execution-json.git</connection>
@@ -108,6 +109,13 @@
                 <configuration>
                     <preparationGoals>clean install -Pdocumentation-deploy</preparationGoals>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <excludeFilterFile>${maven.findbugsplugin.version.exclude}</excludeFilterFile>
                 </configuration>
             </plugin>
         </plugins>
