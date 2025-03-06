@@ -868,12 +868,11 @@
 </div>
 <h2 id="json">Json</h2>
 <h3 id="getbool-function">getBool <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the 'boolean' value specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the 'boolean' value specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;BOOL&gt; json:getBool(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -899,33 +898,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getBool(json,'$.married')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>, the function returns <code>true</code> as there is a matching boolean at <code>$.married</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getBool(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>, the function returns <code>null</code> as there is no matching boolean at <code>$.name</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getBool(json,'$.foo')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>, the function returns <code>null</code> as there is no matching element at <code>$.foo</code>.</p>
 
 <h3 id="getdouble-function">getDouble <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the 'double' value specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the 'double' value specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;DOUBLE&gt; json:getDouble(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -951,33 +947,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getDouble(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'salary' : 12000.0}</code>, the function returns <code>12000.0</code> as there is a matching double at <code>$.salary</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getDouble(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getDouble(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching double at <code>$.name</code>.</p>
 
 <h3 id="getfloat-function">getFloat <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the 'float' value specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the 'float' value specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;FLOAT&gt; json:getFloat(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1003,33 +996,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getFloat(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'salary' : 12000.0}</code>, the function returns <code>12000</code> as there is a matching float at <code>$.salary</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getFloat(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getFloat(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching float at <code>$.name</code>.</p>
 
 <h3 id="getint-function">getInt <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the 'int' value specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the 'int' value specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;INT&gt; json:getInt(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1055,33 +1045,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getInt(json,'$.age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>23</code> as there is a matching int at <code>$.age</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getInt(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getInt(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching int at <code>$.name</code>.</p>
 
 <h3 id="getlong-function">getLong <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the 'long' value specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the 'long' value specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;LONG&gt; json:getLong(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1107,33 +1094,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getLong(json,'$.age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>23</code> as there is a matching long at <code>$.age</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getLong(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getLong(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching long at <code>$.name</code>.</p>
 
 <h3 id="getobject-function">getObject <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves the object specified in the given path of the JSON element.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves the object specified in the given path of the JSON element.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:getObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1159,33 +1143,30 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getObject(json,'$.address')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'address' : {'city' : 'NY', 'country' : 'USA'}}</code>, the function returns <code>{'city' : 'NY', 'country' : 'USA'}</code> as there is a matching object at <code>$.address</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getObject(json,'$.age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>23</code> as there is a matching object at <code>$.age</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getObject(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <h3 id="getstring-function">getString <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function retrieves value specified in the given path of the JSON element as a string.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function retrieves value specified in the given path of the JSON element as a string.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;STRING&gt; json:getString(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1211,39 +1192,35 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:getString(json,'$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>John</code> as there is a matching string at <code>$.name</code>.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:getString(json,'$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>null</code> as there are no matching element at <code>$.salary</code>.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:getString(json,'$.age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>23</code> as a string as there is a matching element at <code>$.age</code>.</p>
 
 <p><span id="example-4" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 4</span></p>
 <pre><code>json:getString(json,'$.address')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'address' : {'city' : 'NY', 'country' : 'USA'}}</code>, the function returns <code>{'city' : 'NY', 'country' : 'USA'}</code> as a string as there is  a matching element at <code>$.address</code>.</p>
 
 <h3 id="isexists-function">isExists <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function checks whether there is a JSON element present in the given path or not.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function checks whether there is a JSON element present in the given path or not.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;BOOL&gt; json:isExists(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1269,28 +1246,26 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:isExists(json, '$.name')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>true</code> as there is an element in the given path.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:isExists(json, '$.salary')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'age' : 23}</code>, the function returns <code>false</code> as there is no element in the given path.</p>
 
 <h3 id="setelement-function">setElement <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function sets JSON element into a given JSON at the specific path.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function sets JSON element into a given JSON at the specific path.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; json.element)
 &lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; json.element, &lt;STRING&gt; key)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1332,51 +1307,45 @@
         <td style="vertical-align: top">Yes</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:setElement(json, '$', &quot;{'country' : 'USA'}&quot;, 'address')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>,the function updates the <code>json</code> as <code>{'name' : 'John', 'married' : true, 'address' : {'country' : 'USA'}}</code> by adding 'address' element and returns the updated JSON.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
 <pre><code>json:setElement(json, '$', 40, 'age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>,the function updates the <code>json</code> as <code>{'name' : 'John', 'married' : true, 'age' : 40}</code> by adding 'age' element and returns the updated JSON.</p>
 
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span></p>
 <pre><code>json:setElement(json, '$', 45, 'age')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true, 'age' : 40}</code>, the function updates the <code>json</code> as <code>{'name' : 'John', 'married' : true, 'age' : 45}</code> by replacing 'age' element and returns the updated JSON.</p>
 
 <p><span id="example-4" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 4</span></p>
 <pre><code>json:setElement(json, '$.items', 'book')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'Stationary', 'items' : ['pen', 'pencil']}</code>, the function updates the <code>json</code> as <code>{'name' : 'John', 'items' : ['pen', 'pencil', 'book']}</code> by adding 'book' in the items array and returns the updated JSON.</p>
 
 <p><span id="example-5" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 5</span></p>
 <pre><code>json:setElement(json, '$.item', 'book')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'Stationary', 'item' : 'pen'}</code>, the function updates the <code>json</code> as <code>{'name' : 'John', 'item' : 'book'}</code> by replacing 'item' element and returns the updated JSON.</p>
 
 <p><span id="example-6" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 6</span></p>
 <pre><code>json:setElement(json, '$.address', 'city', 'SF')
 </code></pre>
-
 <p style="word-wrap: break-word">If the <code>json</code> is the format <code>{'name' : 'John', 'married' : true}</code>,the function will not update, but returns the original JSON as there are no valid path for <code>$.address</code>.</p>
 
 <h3 id="toobject-function">toObject <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function generate JSON object from the given JSON string.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function generate JSON object from the given JSON string.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:toObject(&lt;STRING&gt; json)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1394,21 +1363,20 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:toJson(json)
 </code></pre>
-
 <p style="word-wrap: break-word">This returns the JSON object corresponding to the given JSON string.</p>
 
 <h3 id="tostring-function">toString <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
-<p><p style="word-wrap: break-word">Function generates a JSON string corresponding to a given JSON object.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Function generates a JSON string corresponding to a given JSON object.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1426,22 +1394,21 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">Yes</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>json:toString(json)
 </code></pre>
-
 <p style="word-wrap: break-word">This returns the JSON string corresponding to a given JSON object.</p>
 
 <h3 id="tokenize-stream-processor">tokenize <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#stream-processor">(Stream Processor)</a></em></h3>
-<p><p style="word-wrap: break-word">Stream processor tokenizes the given JSON into to multiple JSON string elements and sends them as separate events.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Stream processor tokenizes the given JSON into to multiple JSON string elements and sends them as separate events.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1476,7 +1443,7 @@ json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail
         <td style="vertical-align: top">No</td>
     </tr>
 </table>
-<span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span>
+<p><span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1488,7 +1455,8 @@ json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail
         <td style="vertical-align: top; word-wrap: break-word">The JSON element retrieved based on the given path will be returned as a JSON string. If the 'path' selects a JSON array then the system returns each element in the array as a JSON string via a separate events.</td>
         <td style="vertical-align: top">STRING</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream (json string, path string);
@@ -1498,7 +1466,6 @@ from InputStream#json:tokenizeAsObject(json, path)
 select path, jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">If the input 'json' is <code>{name:'John', enrolledSubjects:['Mathematics', 'Physics']}</code>, and the 'path' is passed as <code>$.enrolledSubjects</code> then for both the elements in the selected JSON array, it generates it generates events as <code>('$.enrolledSubjects', 'Mathematics')</code>, and <code>('$.enrolledSubjects', 'Physics')</code>.<br>For the same input JSON, if the 'path' is passed as <code>$.name</code> then it will only produce one event <code>('$.name', 'John')</code> as the 'path' provided a single JSON element.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
@@ -1509,17 +1476,15 @@ from InputStream#json:tokenizeAsObject(json, path, true)
 select path, jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">If the input 'json' is <code>{name:'John', age:25}</code>,and the 'path' is passed as <code>$.salary</code> then the system will produce <code>('$.salary', null)</code>, as the 'fail.on.missing.attribute' is <code>true</code> and there are no matching element for <code>$.salary</code>.</p>
 
 <h3 id="tokenizeasobject-stream-processor">tokenizeAsObject <em><a target="_blank" href="http://siddhi.io/en/v5.0/docs/query-guide/#stream-processor">(Stream Processor)</a></em></h3>
-<p><p style="word-wrap: break-word">Stream processor tokenizes the given JSON into to multiple JSON object elements and sends them as separate events.</p>
-<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<p style="word-wrap: break-word">Stream processor tokenizes the given JSON into to multiple JSON object elements and sends them as separate events.</p>
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1554,7 +1519,7 @@ json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&
         <td style="vertical-align: top">No</td>
     </tr>
 </table>
-<span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span>
+<p><span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1566,7 +1531,8 @@ json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&
         <td style="vertical-align: top; word-wrap: break-word">The JSON element retrieved based on the given path will be returned as a JSON object. If the 'path' selects a JSON array then the system returns each element in the array as a JSON object via a separate events.</td>
         <td style="vertical-align: top">OBJECT</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream (json string, path string);
@@ -1576,7 +1542,6 @@ from InputStream#json:tokenizeAsObject(json, path)
 select path, jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">If the input 'json' is <code>{name:'John', enrolledSubjects:['Mathematics', 'Physics']}</code>, and the 'path' is passed as <code>$.enrolledSubjects</code> then for both the elements in the selected JSON array, it generates it generates events as <code>('$.enrolledSubjects', 'Mathematics')</code>, and <code>('$.enrolledSubjects', 'Physics')</code>.<br>For the same input JSON, if the 'path' is passed as <code>$.name</code> then it will only produce one event <code>('$.name', 'John')</code> as the 'path' provided a single JSON element.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
@@ -1587,7 +1552,6 @@ from InputStream#json:tokenizeAsObject(json, path, true)
 select path, jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">If the input 'json' is <code>{name:'John', age:25}</code>,and the 'path' is passed as <code>$.salary</code> then the system will produce <code>('$.salary', null)</code>, as the 'fail.on.missing.attribute' is <code>true</code> and there are no matching element for <code>$.salary</code>.</p>
                 
                   

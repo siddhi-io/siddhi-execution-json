@@ -869,8 +869,7 @@
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;BOOL&gt; json:getBool(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -896,7 +895,8 @@
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -904,7 +904,6 @@ from IpStream
 select json:getBool(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding Boolean value to the given path</p>
 
 <h3 id="getdouble-function">getDouble <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -913,8 +912,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;DOUBLE&gt; json:getDouble(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -940,7 +938,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -948,7 +947,6 @@ from IpStream
 select json:getDouble(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding double value to the given path</p>
 
 <h3 id="getfloat-function">getFloat <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -957,8 +955,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;FLOAT&gt; json:getFloat(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -984,7 +981,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -992,7 +990,6 @@ from IpStream
 select json:getFloat(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding Float value based on the given path</p>
 
 <h3 id="getint-function">getInt <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1001,8 +998,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;INT&gt; json:getInt(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1028,7 +1024,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1036,7 +1033,6 @@ from IpStream
 select json:getInt(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding integer value based on the given path</p>
 
 <h3 id="getlong-function">getLong <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1045,8 +1041,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;LONG&gt; json:getLong(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1072,7 +1067,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1080,7 +1076,6 @@ from IpStream
 select json:getLong(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding Long value based on the given path</p>
 
 <h3 id="getobject-function">getObject <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1089,8 +1084,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:getObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1116,7 +1110,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1124,7 +1119,6 @@ from IpStream
 select json:getObject(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding object to the given path</p>
 
 <h3 id="getstring-function">getString <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1133,8 +1127,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;STRING&gt; json:getString(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1160,7 +1153,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1168,7 +1162,6 @@ from IpStream
 select json:getString(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding string value to the given path</p>
 
 <h3 id="isexists-function">isExists <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1177,8 +1170,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;BOOL&gt; json:isExists(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1204,7 +1196,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1212,7 +1205,6 @@ from IpStream
 select json:isExists(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the true/false based existence of the given path</p>
 
 <h3 id="setelement-function">setElement <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1221,8 +1213,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:setElement(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT&gt; jsonelement, &lt;STRING&gt; key)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1264,7 +1255,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1272,7 +1264,6 @@ from IpStream
 select json:setElement(json,&quot;$.name&quot;) as name
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the corresponding json object based on the given path and json element</p>
 
 <h3 id="toobject-function">toObject <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1281,8 +1272,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;OBJECT&gt; json:toObject(&lt;STRING&gt; json)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1300,7 +1290,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1308,7 +1299,6 @@ from InputStream
 select json:toJson(json) as jsonObject
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return the json object related to given json string</p>
 
 <h3 id="tostring-function">toString <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#function">(Function)</a></em></h3>
@@ -1317,8 +1307,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>&lt;STRING&gt; json:toString(&lt;OBJECT&gt; json)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1336,7 +1325,8 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
         <td style="vertical-align: top">No</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream(json string);
@@ -1344,7 +1334,6 @@ from IpStream
 select json:toString(json) as jsonString
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This will return a json string related to given json object</p>
 
 <h3 id="tokenize-stream-processor">tokenize <em><a target="_blank" href="https://siddhi.io/en/v4.x/docs/query-guide/#stream-processor">(Stream Processor)</a></em></h3>
@@ -1353,8 +1342,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>json:tokenize(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1389,7 +1377,7 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
     </tr>
 </table>
-<span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span>
+<p><span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1401,7 +1389,8 @@ insert into OutputStream;
         <td style="vertical-align: top; word-wrap: break-word">The json element retrieved based on the given path and the json</td>
         <td style="vertical-align: top">STRING</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream (json string,path string);
@@ -1410,7 +1399,6 @@ from InputStream#json:tokenize(json, path)
 select jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This query performs tokenization for the given json using the path specified. If the specified path provides json array, it will generate events for each elements in specified json array by adding additional attribute as the 'jsonElement' into the stream<br><code>Eg:-
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
  path - "$.enrolledSubjects"
@@ -1426,8 +1414,7 @@ insert into OutputStream;
 <p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
 <pre><code>json:tokenizeAsObject(&lt;STRING|OBJECT&gt; json, &lt;STRING&gt; path, &lt;BOOL&gt; fail.on.missing.attribute)
 </code></pre>
-
-<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1462,7 +1449,7 @@ insert into OutputStream;
         <td style="vertical-align: top">No</td>
     </tr>
 </table>
-<span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span>
+<p><span id="extra-return-attributes" class="md-typeset" style="display: block; font-weight: bold;">Extra Return Attributes</span></p>
 <table>
     <tr>
         <th>Name</th>
@@ -1474,7 +1461,8 @@ insert into OutputStream;
         <td style="vertical-align: top; word-wrap: break-word">The json element retrieved based on the given path and the json</td>
         <td style="vertical-align: top">OBJECT</td>
     </tr>
-</table></p>
+</table>
+
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
 <pre><code>define stream InputStream (json string,path string);
@@ -1483,7 +1471,6 @@ from InputStream#json:tokenizeAsObject(json, path)
 select jsonElement
 insert into OutputStream;
 </code></pre>
-
 <p style="word-wrap: break-word">This query performs tokenization for the given json using the path specified. If the specified path provides json array, it will generate events for each elements in specified json array by adding additional attribute as the 'jsonElement' into the stream<br><code>Eg:-
  jsonInput - {name:"John",enrolledSubjects:["Mathematics","Physics"]}, 
  path - "$.enrolledSubjects"
